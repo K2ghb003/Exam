@@ -36,15 +36,15 @@ public class StudentListAction extends Action {
         // 検索条件の取得
         String entYearStr = request.getParameter("entYear");
         String classNum = request.getParameter("classNum");
-        String isAttendStr = request.getParameter("isAttend");
+        String isAuthenticatedStr = request.getParameter("isAttend");
 
         // 検索条件の変換
         Integer entYear = (entYearStr != null && !entYearStr.isEmpty()) ? Integer.parseInt(entYearStr) : null;
-        Boolean isAttend = (isAttendStr != null) ? true : null;
+        Boolean isAuthenticated = (isAuthenticatedStr != null) ? true : null;
 
         // 学生一覧の取得
         StudentDao studentDao = new StudentDao();
-        List<Student> students = studentDao.filter(school, entYear, classNum, isAttend);
+        List<Student> students = studentDao.filter(school, entYear, classNum, isAuthenticated);
 
         // 入学年度一覧の取得
         List<Integer> entYearList = studentDao.getEntYearList(school);
@@ -57,7 +57,6 @@ public class StudentListAction extends Action {
         request.setAttribute("students", students);
         request.setAttribute("entYearList", entYearList);
         request.setAttribute("classNumList", classNumList);
-//        request.setAttribute("isAttend", isAttend);
 
         // 表示するJSPへフォワード
         request.getRequestDispatcher("/scoremanager/main/student_list.jsp").forward(request, response);

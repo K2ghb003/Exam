@@ -16,7 +16,7 @@
       }
 
       .filter-btn {
-        background-color: #e0e0e0; /* グレー調に */
+        background-color: #e0e0e0;
         border: 1px solid #aaa;
         padding: 4px 16px;
         border-radius: 4px;
@@ -30,7 +30,7 @@
 
       .table th,
       .table td {
-        border-top: 1px solid #ccc !important; /* 統一された細い線 */
+        border-top: 1px solid #ccc !important;
         border-bottom: none !important;
       }
 
@@ -45,32 +45,36 @@
 
     <section class="me-4">
       <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">学生管理</h2>
+      <div style="text-align: right;">
+        <a href="StudentCreate.action">新規登録</a>
+      </div>
 
       <!-- フィルター -->
-      <form action="StudentList.action" method="get" class="px-4 mb-3">
-        <label class="me-2">入学年度：</label>
-        <select name="entYear" class="me-4">
-          <option value="">----</option>
-          <c:forEach var="year" items="${entYearList}">
-            <option value="${year}" <c:if test="${param.entYear == year}">selected</c:if>>${year}</option>
-          </c:forEach>
-        </select>
+      <div style="background: #fff; border: 1px solid #ccc; padding: 16px; border-radius: 8px; margin: 0 16px 16px 16px;">
+        <form action="StudentList.action" method="get" class="px-4 mb-3">
+          <label class="me-2">入学年度：</label>
+          <select name="entYear" class="me-4">
+            <option value="">----</option>
+            <c:forEach var="year" items="${entYearList}">
+              <option value="${year}" <c:if test="${param.entYear == year}">selected</c:if>>${year}</option>
+            </c:forEach>
+          </select>
 
-        <label class="me-2">クラス：</label>
-        <select name="classNum" class="me-4">
-          <option value="">----</option>
-          <c:forEach var="c" items="${classNumList}">
-            <option value="${c}" <c:if test="${param.classNum == c}">selected</c:if>>${c}</option>
-          </c:forEach>
-        </select>
+          <label class="me-2">クラス：</label>
+          <select name="classNum" class="me-4">
+            <option value="">----</option>
+            <c:forEach var="c" items="${classNumList}">
+              <option value="${c}" <c:if test="${param.classNum == c}">selected</c:if>>${c}</option>
+            </c:forEach>
+          </select>
 
-        <label class="me-3">
-          <input type="checkbox" name="isAttend" value="true" <c:if test="${param.isAttend == 'true'}">checked</c:if>> 在学中
-        </label>
+          <label class="me-3">
+            <input type="checkbox" name="isAttend" value="true" <c:if test="${param.isAttend == 'true'}">checked</c:if>> 在学中
+          </label>
 
-        <button type="submit" class="filter-btn me-3">絞込み</button>
-        <a href="StudentCreate.action">新規登録</a>
-      </form>
+          <button type="submit" class="filter-btn me-3">絞込み</button>
+        </form>
+      </div>
 
       <!-- 結果件数 -->
       <div class="px-4 mb-2">検索結果：${fn:length(students)}件</div>
@@ -96,11 +100,11 @@
               <td>${student.classNum}</td>
               <td>
                 <c:choose>
-                  <c:when test="${student.isAttend}">○</c:when>
+                  <c:when test="${student.attend}">○</c:when>
                   <c:otherwise>×</c:otherwise>
                 </c:choose>
               </td>
-              <td><a href="StudentEdit.action?no=${student.no}">変更</a></td>
+              <td><a href="StudentUpdate.action?no=${student.no}">変更</a></td>
             </tr>
           </c:forEach>
         </tbody>
