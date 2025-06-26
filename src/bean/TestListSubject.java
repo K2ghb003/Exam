@@ -1,99 +1,61 @@
 package bean;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 public class TestListSubject implements Serializable {
+	/**
+	 * 科目名:String
+	 */
+	private String subjectName;
 
 	/**
-	 * 入学年度:int
+	 * 科目コード:String
 	 */
-	private int entYear;
+	private String subjectCd;
 
 	/**
-	 * 学籍番号:String
+	 * テスト回数
 	 */
-	private String studentNo;
+	private int num;
 
 	/**
-	 * 学生名:String
+	 * 得点:int
 	 */
-	private String studentName;
-
-	/**
-	 * クラス番号:String
-	 */
-	private String classNum;
-
-	/**
-	 * 学生の各種ポイントや得点を科目や評価項目ごとに管理
-	 */
-	private Map<Integer, Integer> points;
-
-	/**
-	 *  コンストラクタ
-	 *  フィールドの初期化、NullPointerException防止
-	 */
-	public TestListSubject() {
-		this.points = new HashMap<>();
-	}
+	private int point;
 
 	/**
 	 * ゲッター・セッター
 	 */
-	public int getEntYear() {
-		return entYear;
+	public String getSubjectName() {
+		return subjectName;
 	}
 
-	public void setEntYear(int entYear) {
-		this.entYear = entYear;
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
 	}
 
-	public String getStudentNo() {
-		return studentNo;
+	public String getSubjectCd() {
+		return subjectCd;
 	}
 
-	public void setStudentNo(String studentNo) {
-		this.studentNo = studentNo;
+	public void setSubjectCd(String subjectCd) {
+		this.subjectCd = subjectCd;
 	}
 
-	public String getStudentName() {
-		return studentName;
+	public int getNum() {
+		return num;
 	}
 
-	public void setStudentName(String studentName) {
-		this.studentName = studentName;
+	public void setNum(int num) {
+		this.num = num;
 	}
 
-	public String getClassNum() {
-		return classNum;
+	public int getPoint() {
+		return point;
 	}
 
-	public void setClassNum(String classNum) {
-		this.classNum = classNum;
+	public void setPoint(int point) {
+		this.point = point;
 	}
 
-	public Map<Integer, Integer> getPoints() {
-		return points;
-	}
-
-	public void setPoints(Map<Integer, Integer> points) {
-		this.points = points;
-	}
-
-	/**
-	 * getPointKey ※数値を文字列に変換する、空の場合はnull
-	 */
-	public String getPoint(int key) {
-		Integer value = points.get(key);
-		return value != null ? value.toString() : null;
-	}
-
-	/**
-	 * putPoint
-	 */
-	public void putPoint(int key, int value) {
-        points.put(key, value);
-    }
 }
