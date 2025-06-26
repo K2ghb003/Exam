@@ -20,7 +20,7 @@ List<Subject> list=(List<Subject>)request.getAttribute("subject_list");
 
 			<h3>変更が完了しました</h3>
 
-			<p><a href="SubjectList.action">科目一覧</a></p>
+			<a href="SubjectList.action">科目一覧</a>
 		</section>
 	</c:param>
 </c:import>

@@ -8,7 +8,7 @@
     <section>
       <h2>科目の登録が完了しました。</h2>
       <p>登録された科目：<strong>${subject.name}</strong></p>
-      <p><a href="SubjectList.action">一覧へ戻る</a></p>
+      <p><a href="SubjectCreate.action">戻る</a>　　　　　<a href="SubjectList.action">科目一覧</a></p>
     </section>
   </c:param>
 </c:import>

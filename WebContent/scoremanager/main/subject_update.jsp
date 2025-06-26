@@ -1,50 +1,45 @@
-<%-- メニューJSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page import="bean.Subject, java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="bean.Subject" %>
+
 <%
-@SuppressWarnings("unchecked")
-Subject subject=(Subject)request.getAttribute("subject");
+    Subject subject = (Subject) request.getAttribute("subject");
+    request.setAttribute("cd", subject.getCd());  // EL式で使うために設定
+    request.setAttribute("name", subject.getName());
 %>
+
 <c:import url="/common/base.jsp">
-	<c:param name="title">
-		得点管理システム
-	</c:param>
+    <c:param name="title">得点管理システム</c:param>
 
-	<c:param name="scripts"></c:param>
+    <c:param name="scripts"></c:param>
 
-	<c:param name="content">
-		<section class="me-4">
-			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目管理</h2>
+    <c:param name="content">
+        <section>
+            <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">科目情報変更</h2>
 
-			<form action ="SubjectUpdateExecute.action">
-				<div>
-		          <label for="cd">科目コード</label><br>
-		          <input type="text" id="cd" name="cd" value="${subject.cd}" readonly /><br>
-		          <c:if test="${not empty errors.cd}">
-		            <span class="error">${errors.cd}</span>
-		          </c:if>
-		        </div>
+            <form action="SubjectUpdateExecute.action" method="post" style="width: 100%;">
+                <p>科目コード</p>
+                <p>
+                    <input type="text" name="cd" value="${cd}"
+                           readonly
+                           style="width: 100%; box-sizing: border-box; padding: 6px; font-size: 16px;">
+                </p>
 
-		        <!-- 科目名 -->
-		        <div>
-		          <label for="name">科目名</label><br>
-		          <input type="text" id="name" name="name" value="${subject.name}" required placeholder="科目名を入力してください" /><br>
-		          <c:if test="${not empty errors.name}">
-		            <span class="error">${errors.name}</span>
-		          </c:if>
-		        </div>
+                <p>科目名</p>
+                <p>
+                    <input type="text" name="name" value="${name}"
+                           required placeholder="科目名を入力してください" maxlength="20"
+                           style="width: 100%; box-sizing: border-box; padding: 6px; font-size: 16px;">
+                </p>
 
-		        <div>
-		          <input type="submit" value="変更" />
-		        </div>
-		        <div>
-		          <a href="SubjectList.action">戻る</a>
-		        </div>
-			</form>
-		</section>
-	</c:param>
+                <button type="submit"
+                        style="background-color: #007bff; color: white; border: none;
+                               padding: 6px 16px; border-radius: 4px; font-size: 16px;">
+                    変更
+                </button>
+
+                <p><a href="SubjectList.action">戻る</a></p>
+            </form>
+        </section>
+    </c:param>
 </c:import>
-
-
-
