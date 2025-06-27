@@ -1,6 +1,7 @@
 package scoremanager.main;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +11,6 @@ import bean.School;
 import bean.Student;
 import bean.Teacher;
 import dao.ClassNumDao;
-import dao.StudentDao;
 import tool.Action;
 
 public class StudentCreateAction extends Action {
@@ -32,17 +32,14 @@ public class StudentCreateAction extends Action {
         ClassNumDao classNumDao = new ClassNumDao();
         List<String> classNumList = classNumDao.filter(school);
 
-        // 入学年度一覧の取得（なければダミー追加）
-        StudentDao studentDao = new StudentDao();
-        List<Integer> entYearList = studentDao.getEntYearList(school);
-        if (entYearList == null || entYearList.isEmpty()) {
-            entYearList = new ArrayList<>();
-            for (int year = 2020; year <= 2025; year++) {
-                entYearList.add(year);
-            }
+        // 現在の年から過去5年分を生成
+        List<Integer> entYearList = new ArrayList<>();
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        for (int year = currentYear; year >= currentYear - 5; year--) {
+            entYearList.add(year);
         }
 
-        // 初期空の学生オブジェクト
+        // 初期の空学生オブジェクト
         req.setAttribute("student", new Student());
         req.setAttribute("classNumList", classNumList);
         req.setAttribute("entYearList", entYearList);
