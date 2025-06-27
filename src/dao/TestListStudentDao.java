@@ -16,11 +16,13 @@ public class TestListStudentDao extends Dao {
     // postfilter
     public List<TestListStudent> postFilter(ResultSet rSet) throws Exception {
         List<TestListStudent> list = new ArrayList<>();
+
         while (rSet.next()) {
             TestListStudent item = new TestListStudent();
             item.putPoint(rSet.getInt("no"), rSet.getInt("point"));
             list.add(item);
         }
+
         return list;
     }
 
@@ -37,6 +39,7 @@ public class TestListStudentDao extends Dao {
             con = getConnection();
 
             String sql = baseSql + " WHERE student_no LIKE ?";
+
             st = con.prepareStatement(sql);
             st.setString(1, "%" + student.getNo() + "%");
             rs = st.executeQuery();
@@ -49,17 +52,18 @@ public class TestListStudentDao extends Dao {
                 t.setClassNum(student.getClassNum());
                 list.add(t);
             }
+
         } finally {
 
 	        // リソースの解放
 	        if (rs != null) {
-	                rs.close();
+                rs.close();
 	        }
 	        if (st != null) {
-	                st.close();
+                st.close();
 	        }
 	        if (con != null) {
-	                con.close();
+                con.close();
 	        }
         }
         return list;
