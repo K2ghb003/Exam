@@ -35,9 +35,10 @@ public class TestListSubjectDao extends Dao {
 	 * @return 成績クラスのインスタンス 存在しない場合はnull
 	 * @throws Exception
 	 */
-	public List<TestListSubject> filtter(int entYaer, String classNum, Subject subject, School school) throws Exception {
+	public List<TestListSubject> filter(int entYear, String classNum, Subject subject, School school) throws Exception {
 		// 成績インスタンスを初期化
 		TestListSubject test = new TestListSubject();
+		List<TestListSubject> list = new ArrayList<TestListSubject>();
 		// コネクションを確立
 		Connection connection = getConnection();
 		// プリペアードステートメント
@@ -45,26 +46,69 @@ public class TestListSubjectDao extends Dao {
 
 //		subject.getCD();
 
-		try {
-			// プリペアードステートメントにSQL文をセット
-			statement = connection.prepareStatement("select * from Test where STUDENT_NO like ?");
-			// プリペアードステートメントに成績をバインド
-			statement.setString(1, "%" + subject.getCd() + "%" );
-			// プリペアードステートメントを実行
-			ResultSet resultSet = statement.executeQuery();
+//		工藤修正
+		StringBuilder sql = new StringBuilder(baseSql);
 
-			if (resultSet.next()) {
+		try {
+
+			if (entYear >= 0) {
+                sql.append(" AND ent_year = ?");
+            }
+            if (classNum != null && !classNum.isEmpty()) {
+                sql.append(" AND class_num = ?");
+            }
+            if (subject != null) {
+                sql.append(" AND subject_cd = ?");
+            }
+            if (school != null) {
+                sql.append(" AND school_cd = ?");
+            }
+
+            sql.append(" ORDER BY subject_cd");
+
+            PreparedStatement st = connection.prepareStatement(sql.toString());
+
+            int idx = 0;
+            st.setString(idx++, school.getCd());
+            if (entYear >= 0) {
+                st.setInt(idx++, entYear);
+            }
+            if (classNum != null && !classNum.isEmpty()) {
+                st.setString(idx++, classNum);
+            }
+            if (subject != null) {
+                st.setString(idx++, subject.getCd());
+            }
+            if (school != null) {
+                st.setString(idx++, school.getCd());
+            }
+
+            ResultSet resultSet = st.executeQuery();
+
+
+//          工藤ここまで
+			// プリペアードステートメントにSQL文をセット
+//			statement = connection.prepareStatement("select * from Test where STUDENT_NO like ?");
+			// プリペアードステートメントに成績をバインド
+//			statement.setString(1, "%" + subject.getCd() + "%" );
+			// プリペアードステートメントを実行
+//			ResultSet resultSet = statement.executeQuery();
+
+			while (resultSet.next()) {
 				// リザルトセットが存在する場合
 				// 成績インスタンスに検索結果をセット
-				test.setSubjectName(subject.getName());
-				test.setSubjectCd(subject.getCd());
-				test.setNum(resultSet.getInt("num"));
-				test.setPoint(resultSet.getInt("point"));
-			} else {
-				// リザルトセットが存在しない場合
-				// 成績インスタンスにnullをセット
-				test = null;
+//				test.setSubjectName(subject.getName());
+//				test.setSubjectCd(subject.getCd());
+//				test.setNum(resultSet.getInt("num"));
+//				test.setPoint(resultSet.getInt("point"));
+				list.addAll(postFilter(resultSet));
+
 			}
+//			else {
+//				// リザルトセットが存在しない場合
+//				// 成績インスタンスにnullをセット
+//				test = null;
+//			}
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -86,7 +130,7 @@ public class TestListSubjectDao extends Dao {
 			}
 		}
 
-		return test;
+		return list;
 	}
 
 	/**
