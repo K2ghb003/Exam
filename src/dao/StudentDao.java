@@ -82,42 +82,50 @@ public class StudentDao extends Dao {
         return student;
     }
 
-    // 学生を新規登録
+    // 新規登録 or 更新（ent_year は更新しない）
     public boolean save(Student student) throws Exception {
         try (Connection con = getConnection()) {
-            String sql = "INSERT INTO student (no, name, ent_year, class_num, is_attend, school_cd) " +
-                         "VALUES (?, ?, ?, ?, ?, ?)";
-            PreparedStatement st = con.prepareStatement(sql);
-            st.setString(1, student.getNo());
-            st.setString(2, student.getName());
-            st.setInt(3, student.getEntYear());
-            st.setString(4, student.getClassNum());
-            st.setBoolean(5, student.isAttend());
-            st.setString(6, student.getSchool().getCd());
+            // 既存チェック
+            String checkSql = "SELECT COUNT(*) FROM student WHERE no = ?";
+            PreparedStatement checkSt = con.prepareStatement(checkSql);
+            checkSt.setString(1, student.getNo());
+            ResultSet rs = checkSt.executeQuery();
 
-            int result = st.executeUpdate();
-            st.close();
+            boolean exists = false;
+            if (rs.next()) {
+                exists = rs.getInt(1) > 0;
+            }
+            rs.close();
+            checkSt.close();
 
-            return result == 1;
-        }
-    }
+            if (exists) {
+                // 更新（ent_year は更新しない）
+                String updateSql = "UPDATE student SET name = ?, class_num = ?, is_attend = ?, school_cd = ? WHERE no = ?";
+                PreparedStatement updateSt = con.prepareStatement(updateSql);
+                updateSt.setString(1, student.getName());
+                updateSt.setString(2, student.getClassNum());
+                updateSt.setBoolean(3, student.isAttend());
+                updateSt.setString(4, student.getSchool().getCd());
+                updateSt.setString(5, student.getNo());
 
-    // 学生情報を更新
-    public boolean update(Student student) throws Exception {
-        try (Connection con = getConnection()) {
-            String sql = "UPDATE student SET name = ?, ent_year = ?, class_num = ?, is_attend = ?, school_cd = ? WHERE no = ?";
-            PreparedStatement st = con.prepareStatement(sql);
-            st.setString(1, student.getName());
-            st.setInt(2, student.getEntYear());
-            st.setString(3, student.getClassNum());
-            st.setBoolean(4, student.isAttend());
-            st.setString(5, student.getSchool().getCd());
-            st.setString(6, student.getNo());
+                int result = updateSt.executeUpdate();
+                updateSt.close();
+                return result == 1;
+            } else {
+                // 新規登録
+                String insertSql = "INSERT INTO student (no, name, ent_year, class_num, is_attend, school_cd) VALUES (?, ?, ?, ?, ?, ?)";
+                PreparedStatement insertSt = con.prepareStatement(insertSql);
+                insertSt.setString(1, student.getNo());
+                insertSt.setString(2, student.getName());
+                insertSt.setInt(3, student.getEntYear());
+                insertSt.setString(4, student.getClassNum());
+                insertSt.setBoolean(5, student.isAttend());
+                insertSt.setString(6, student.getSchool().getCd());
 
-            int result = st.executeUpdate();
-            st.close();
-
-            return result == 1;
+                int result = insertSt.executeUpdate();
+                insertSt.close();
+                return result == 1;
+            }
         }
     }
 

@@ -1,47 +1,52 @@
 package scoremanager.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import bean.School;
+import bean.Student;
 import bean.Teacher;
 import dao.ClassNumDao;
+import dao.StudentDao;
 import tool.Action;
 
 public class StudentCreateAction extends Action {
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+        req.setCharacterEncoding("UTF-8");
 
-        // ログイン中の教師情報を取得
-        HttpSession session = request.getSession();
-        Teacher teacher = (Teacher) session.getAttribute("user");
-
+        Teacher teacher = (Teacher) req.getSession().getAttribute("user");
         if (teacher == null) {
-            // 未ログインの場合はログイン画面へリダイレクト
-            response.sendRedirect("Login.action");
+            req.setAttribute("error", "セッションが切れています。再ログインしてください。");
+            req.getRequestDispatcher("/scoremanager/main/error.jsp").forward(req, res);
             return;
         }
 
-        // 所属校を取得
         School school = teacher.getSchool();
-        if (school == null) {
-            request.setAttribute("error", "所属校情報が取得できません。");
-            request.getRequestDispatcher("/error.jsp").forward(request, response);
-            return;
-        }
 
-        // クラス一覧を取得
+        // クラス一覧の取得
         ClassNumDao classNumDao = new ClassNumDao();
         List<String> classNumList = classNumDao.filter(school);
 
-        // JSPに渡す
-        request.setAttribute("classNumList", classNumList);
+        // 入学年度一覧の取得（なければダミー追加）
+        StudentDao studentDao = new StudentDao();
+        List<Integer> entYearList = studentDao.getEntYearList(school);
+        if (entYearList == null || entYearList.isEmpty()) {
+            entYearList = new ArrayList<>();
+            for (int year = 2020; year <= 2025; year++) {
+                entYearList.add(year);
+            }
+        }
 
-        // 学生登録画面へフォワード
-        request.getRequestDispatcher("/scoremanager/main/student_create.jsp").forward(request, response);
+        // 初期空の学生オブジェクト
+        req.setAttribute("student", new Student());
+        req.setAttribute("classNumList", classNumList);
+        req.setAttribute("entYearList", entYearList);
+
+        req.getRequestDispatcher("/scoremanager/main/student_create.jsp").forward(req, res);
     }
 }

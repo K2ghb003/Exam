@@ -64,15 +64,16 @@ public class StudentUpdateExecuteAction extends Action {
             return;
         }
 
-        // 学生情報の更新
-        StudentDao studentDao = new StudentDao();
-        Student student = studentDao.get(no);  // 既存情報を取得
+        // 学生情報の更新（saveを使用）
+        Student student = new Student();
+        student.setNo(no);
         student.setName(name);
         student.setClassNum(classNum);
         student.setAttend("true".equals(isAttendStr));
         student.setSchool(school);
 
-        boolean result = studentDao.update(student);
+        StudentDao studentDao = new StudentDao();
+        boolean result = studentDao.save(student);
 
         if (result) {
             request.setAttribute("student", student);
