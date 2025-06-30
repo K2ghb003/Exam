@@ -25,14 +25,13 @@ public class StudentCreateExecuteAction extends Action {
         String name = req.getParameter("name");
         String entYearStr = req.getParameter("entYear");
         String classCode = req.getParameter("classNum");
-        String isAttendStr = req.getParameter("isAttend");
 
         // 学生生成
         Student student = new Student();
         student.setNo(no);
         student.setName(name);
         student.setClassNum(classCode);
-        student.setAttend("true".equals(isAttendStr));
+        student.setAttend(true);  // デフォルトで在学扱い
 
         // セッションから教師取得
         Teacher teacher = (Teacher) req.getSession().getAttribute("user");
@@ -81,7 +80,7 @@ public class StudentCreateExecuteAction extends Action {
         // リスト取得
         ClassNumDao classNumDao = new ClassNumDao();
         List<String> classNumList = classNumDao.filter(school);
-        List<Integer> entYearList = studentDao.getEntYearList(school);  // ← 学校に紐づく年度一覧
+        List<Integer> entYearList = studentDao.getEntYearList(school);
 
         req.setAttribute("classNumList", classNumList);
         req.setAttribute("entYearList", entYearList);
