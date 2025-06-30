@@ -65,7 +65,10 @@ public class StudentCreateExecuteAction extends Action {
 
         if (name == null || name.trim().isEmpty()) {
             errors.put("name", "氏名を入力してください");
+        } else if (name.matches(".*[０-９.0-9].*")) {
+            errors.put("name", "名前に英数字を使用しないでください");
         }
+
 
         if (entYear == null) {
             errors.put("entYear", "入学年度を選択してください");
