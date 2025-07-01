@@ -18,27 +18,27 @@
             <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">科目情報変更</h2>
 
             <form action="SubjectUpdateExecute.action" method="post" style="width: 100%;">
-                <p>科目コード</p>
+                <label>科目コード</label>
                 <p>
                     <input type="text" name="cd" value="${cd}"
                            readonly
                            style="width: 100%; box-sizing: border-box; padding: 6px; font-size: 16px;">
                 </p>
 
-                <p>科目名</p>
+                <label>科目名</label>
                 <p>
                     <input type="text" name="name" value="${name}"
                            required placeholder="科目名を入力してください" maxlength="20"
                            style="width: 100%; box-sizing: border-box; padding: 6px; font-size: 16px;">
                 </p>
 
-                <button type="submit"
+                <input type="submit"
                         style="background-color: #007bff; color: white; border: none;
                                padding: 6px 16px; border-radius: 4px; font-size: 16px;">
                     変更
-                </button>
+                />
 
-                <p><a href="SubjectList.action">戻る</a></p>
+                <a href="SubjectList.action">戻る</a>
             </form>
         </section>
     </c:param>
