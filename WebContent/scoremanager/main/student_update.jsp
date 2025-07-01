@@ -86,16 +86,13 @@
       <h2>学生情報変更</h2>
       <form action="StudentUpdateExecute.action" method="post">
         <label>入学年度</label>
-        <div>${student.entYear}</div>
+        <div><input name="year" value="${student.entYear}" readonly /></div>
 
         <label>学生番号</label>
-        <div>${student.no}<input type="hidden" name="no" value="${student.no}" /></div>
+        <div><input name="no" value="${student.no}" readonly /></div>
 
         <label for="name">氏名</label>
         <input type="text" name="name" id="name" value="${student.name}" placeholder="氏名を入力してください" required />
-        <c:if test="${not empty errors.name}">
-          <div class="error">${errors.name}</div>
-        </c:if>
 
         <label for="classNum">クラス</label>
         <select name="classNum" id="classNum">
@@ -111,7 +108,7 @@
         </div>
 
         <div class="buttons">
-          <button type="submit">変更</button><br>
+          <input type="submit" value="変更"/><br>
           <a href="StudentList.action">戻る</a>
         </div>
       </form>
