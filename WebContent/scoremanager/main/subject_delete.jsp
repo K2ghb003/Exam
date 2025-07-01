@@ -18,8 +18,9 @@ Subject subject = (Subject) request.getAttribute("subject");
             <form action="SubjectDeleteExecute.action" method="post">
                 <p>「<%= subject.getName() %>（<%= subject.getCd() %>）を削除してもよろしいですか？」</p>
                 <input type="hidden" name="cd" value="<%= subject.getCd() %>">
+                <input type="hidden" name="name" value="<%= subject.getName() %>">
                 <input type="submit" value="削除" style="background-color: red; color: white; border: none; padding: 6px 12px; cursor: pointer; border-radius: 8px;">
-                <p><a href="SubjectList.action">戻る</a></p>
+                <a href="SubjectList.action">戻る</a>
             </form>
         </section>
     </c:param>
