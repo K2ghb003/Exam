@@ -18,9 +18,9 @@ List<Subject> list=(List<Subject>)request.getAttribute("subject_list");
 		<section class="me-4">
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目管理</h2>
 
-			<h3>変更が完了しました</h3>
+			<p>変更が完了しました</p>
 
-			<a href="SubjectList.action">科目一覧</a>
+			<a href="SubjectCreate.action">戻る</a>　　　　　<a href="SubjectList.action">科目一覧</a>
 		</section>
 	</c:param>
 </c:import>
