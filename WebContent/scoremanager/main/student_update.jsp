@@ -106,8 +106,8 @@
         </select>
 
         <div class="checkbox-label">
-          <input type="checkbox" name="isAttend" id="isAttend" value="true" <c:if test="${student.attend}">checked</c:if> />
           <label for="isAttend">在学中</label>
+          <input type="checkbox" name="isAttend" id="isAttend" value="true" <c:if test="${student.attend}">checked</c:if> />
         </div>
 
         <div class="buttons">

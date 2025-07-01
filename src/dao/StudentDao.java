@@ -49,7 +49,7 @@ public class StudentDao extends Dao {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                list.add(mapResultSetToStudent(rs, school));
+                list.add(postFilter(rs, school));
             }
 
             rs.close();
@@ -72,7 +72,7 @@ public class StudentDao extends Dao {
             if (rs.next()) {
                 School school = new School();
                 school.setCd(rs.getString("school_cd"));
-                student = mapResultSetToStudent(rs, school);
+                student = postFilter(rs, school);
             }
 
             rs.close();
@@ -151,7 +151,7 @@ public class StudentDao extends Dao {
     }
 
     // 結果セットをStudentオブジェクトへ変換
-    private Student mapResultSetToStudent(ResultSet rs, School school) throws Exception {
+    private Student postFilter(ResultSet rs, School school) throws Exception {
         Student s = new Student();
         s.setNo(rs.getString("no"));
         s.setName(rs.getString("name"));
