@@ -19,19 +19,20 @@ public class TestRegistExecuteAction extends Action {
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
         try {
             req.setCharacterEncoding("UTF-8");
 
+            // ログインチェック
             Teacher teacher = (Teacher) req.getSession().getAttribute("user");
             if (teacher == null) {
-                req.setAttribute("error", "ログインセッションが切れています。再ログインしてください。");
+                req.setAttribute("error", "セッションが切れています。ログインし直してください。");
                 req.getRequestDispatcher("/error.jsp").forward(req, res);
                 return;
             }
 
             School school = teacher.getSchool();
 
+            // パラメータ取得
             String entYearStr = req.getParameter("entYear");
             String classNum = req.getParameter("classNum");
             String subjectCd = req.getParameter("subjectCd");
@@ -40,9 +41,10 @@ public class TestRegistExecuteAction extends Action {
             String[] studentNos = req.getParameterValues("studentNo");
             String[] points = req.getParameterValues("point");
 
+            // バリデーション
             if (entYearStr == null || classNum == null || subjectCd == null || testNoStr == null ||
                 studentNos == null || points == null || studentNos.length != points.length) {
-                req.setAttribute("error", "入力情報が不足しています。");
+                req.setAttribute("error", "必要な情報が不足しています。");
                 req.getRequestDispatcher("/error.jsp").forward(req, res);
                 return;
             }
@@ -50,46 +52,57 @@ public class TestRegistExecuteAction extends Action {
             int entYear = Integer.parseInt(entYearStr);
             int testNo = Integer.parseInt(testNoStr);
 
+            // 対象科目と学生情報取得
             SubjectDao subjectDao = new SubjectDao();
             Subject subject = subjectDao.get(subjectCd, school);
+
             if (subject == null) {
-                req.setAttribute("error", "指定された科目が見つかりません。");
+                req.setAttribute("error", "科目情報が取得できませんでした。");
                 req.getRequestDispatcher("/error.jsp").forward(req, res);
                 return;
             }
 
             StudentDao studentDao = new StudentDao();
-            List<Student> students = studentDao.filter(school, entYear, classNum, true);
+            List<Student> studentList = studentDao.filter(school, entYear, classNum, true);
 
             TestDao testDao = new TestDao();
 
+            // 登録処理
             for (int i = 0; i < studentNos.length; i++) {
                 String studentNo = studentNos[i];
                 String pointStr = points[i];
 
-                if (studentNo == null || studentNo.isEmpty() || pointStr == null || pointStr.isEmpty()) continue;
+                if (studentNo == null || pointStr == null || studentNo.isEmpty() || pointStr.isEmpty()) {
+                    continue;
+                }
 
-                int point = Integer.parseInt(pointStr);
+                int point;
+                try {
+                    point = Integer.parseInt(pointStr);
+                } catch (NumberFormatException e) {
+                    continue; // 不正な数値はスキップ
+                }
 
-                Student targetStudent = students.stream()
-                        .filter(s -> s.getNo().equals(studentNo))
+                Student target = studentList.stream()
+                        .filter(s -> studentNo.equals(s.getNo()))
                         .findFirst()
                         .orElse(null);
 
-                if (targetStudent == null) continue;
+                if (target == null) continue;
 
                 Test test = new Test();
                 test.setSchool(school);
+                test.setStudent(target);
                 test.setClassNum(classNum);
                 test.setSubject(subject);
                 test.setNo(testNo);
                 test.setPoint(point);
-                test.setStudent(targetStudent);
 
-                testDao.saveOrUpdate(test); // 🔁 INSERT or UPDATE 処理
+                testDao.saveOrUpdate(test);
             }
 
-            req.setAttribute("message", "登録が完了しました");
+            // 完了画面へ
+            req.setAttribute("message", "成績の登録が完了しました。");
             req.getRequestDispatcher("/scoremanager/main/test_regist_done.jsp").forward(req, res);
 
         } catch (Exception e) {
