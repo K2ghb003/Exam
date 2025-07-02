@@ -87,7 +87,7 @@
           <label>学生情報</label>
 
           <label class="me-2">学生番号：</label>
-              <input type="text" id="no" name="no" />
+              <input type="text" required id="no" name="no" />
           <button type="submit" class="filter-btn me-3">検索</button>
 
         </form>
