@@ -9,9 +9,9 @@ import javax.servlet.http.HttpSession;
 import bean.School;
 import bean.Student;
 import bean.Teacher;
-import bean.TestListSubject;
+import bean.TestListStudent;
 import dao.StudentDao;
-import dao.TestListSubjectDao;
+import dao.TestListStudentDao;
 import tool.Action;
 
 public class TestListStudentExecuteAction extends Action {
@@ -37,22 +37,21 @@ public class TestListStudentExecuteAction extends Action {
             return;
         }
 
+
          String studentNumber = studentNumberParam.trim();
 
-      // 学生情報を取得するDAOのインスタンスを作成
+         // 学生情報を取得するDAOのインスタンスを作成
          StudentDao studentDao = new StudentDao();
 
-         TestListSubjectDao TestListsubjectDao = new TestListSubjectDao();
+         // 学生のテスト情報を取得するDAOのインスタンス作成
+         TestListStudentDao testliststudentDao = new TestListStudentDao();
 
          // 学籍番号をもとに学生情報を取得
          Student student = studentDao.get(studentNumber);
 
-      // 学籍番号をもとに学生情報を取得
-         List<TestListSubject> testlistsubject = TestListsubjectDao.filter(student);
+         // 学籍番号をもとにテスト情報を取得
+         List<TestListStudent> testliststudent = testliststudentDao.filter(student);
 
-      // 学生リストを取得
-//         List<Student> students = studentDao.(studentNumber);
-//         request.setAttribute("students", students);
 
          if (student == null) {
              // 該当する学生が見つからない場合
@@ -60,6 +59,7 @@ public class TestListStudentExecuteAction extends Action {
              request.getRequestDispatcher("test_list.jsp").forward(request, response);
              return;
          }
+
 
         // 学校情報のインスタンスを作成
         School school = new School();
@@ -70,9 +70,11 @@ public class TestListStudentExecuteAction extends Action {
             school.setName(teacher.getSchool().getName());
         }
 
-        // 取得した情報をリクエスト属性にセット（必要に応じて）
+
+        // 取得した情報をリクエスト属性にセット
         request.setAttribute("school", school);
-        request.setAttribute("testlistsubject", testlistsubjectt);
+        request.setAttribute("testliststudent", testliststudent);
+        request.setAttribute("student", student);
 
         request.getRequestDispatcher("/scoremanager/main/test_list_student.jsp").forward(request, response);
     }

@@ -1,14 +1,17 @@
 package scoremanager.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.School;
+import bean.Student;
 import bean.Subject;
 import bean.Teacher;
 import dao.ClassNumDao;
+import dao.StudentDao;
 import dao.SubjectDao;
 import tool.Action;
 
@@ -33,14 +36,29 @@ public class TestListAction extends Action {
             return;
         }
 
-//        // 検索条件の取得
-//        String entYearStr = request.getParameter("entYear");
-//        String classNum = request.getParameter("classNum");
-//        String isAuthenticatedStr = request.getParameter("isAttend");
-//
-//        // 検索条件の変換
-//        Integer entYear = (entYearStr != null && !entYearStr.isEmpty()) ? Integer.parseInt(entYearStr) : null;
-//        Boolean isAuthenticated = (isAuthenticatedStr != null) ? true : null;
+        // 検索条件の取得
+        String studentNo = request.getParameter("no");
+        List<Student> students = null;
+
+        if (studentNo != null && !studentNo.trim().isEmpty()) {
+            // 学生番号で検索
+            StudentDao studentDao = new StudentDao();
+            Student student = studentDao.get(studentNo.trim());
+
+            if (student != null) {
+                students = new ArrayList<>();
+                students.add(student);
+            } else {
+                students = new ArrayList<>(); // 空リスト
+            }
+
+        } else {
+//            // 条件なしの場合は全件取得または適切な処理
+//            StudentDao studentDao = new StudentDao();
+//            students = studentDao.getAll(); // 例：全学生取得メソッド
+        }
+        request.setAttribute("students", students);
+
 
         // クラス一覧の取得
         ClassNumDao classNumDao = new ClassNumDao();
@@ -54,12 +72,12 @@ public class TestListAction extends Action {
         List<Integer> entYearList = new java.util.ArrayList<>();
         int currentYear = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
 
+
         // JSPへデータを渡す
         // 収集したデータをリクエストに設定
         request.setAttribute("classList", classNumList);
         request.setAttribute("subjectList", subjectList);
         request.setAttribute("entYearList", entYearList);
-
 
         // 表示するJSPへフォワード
         request.getRequestDispatcher("test_list.jsp").forward(request, response);
