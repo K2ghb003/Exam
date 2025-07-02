@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TestListStudent implements Serializable {
+public class TestListSubject implements Serializable {
 
 	/**
 	 * 入学年度:int
@@ -35,7 +35,7 @@ public class TestListStudent implements Serializable {
 	 *  コンストラクタ
 	 *  フィールドの初期化、NullPointerException防止
 	 */
-	public TestListStudent() {
+	public TestListSubject() {
 		this.points = new HashMap<>();
 	}
 
