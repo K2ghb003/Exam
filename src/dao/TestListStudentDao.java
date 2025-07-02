@@ -18,9 +18,15 @@ public class TestListStudentDao extends Dao {
         List<TestListStudent> list = new ArrayList<>();
 
         while (rSet.next()) {
-            TestListStudent item = new TestListStudent();
-            item.putPoint(rSet.getInt("no"), rSet.getInt("point"));
-            list.add(item);
+        	TestListStudent t = new TestListStudent();
+            t.setSubjectName(rSet.getString("name"));
+            t.setSubjectCd(rSet.getString("cd"));
+            t.setNum(rSet.getInt("no"));
+            t.setPoint(rSet.getInt("point"));
+
+//            TestListStudent item = new TestListStudent();
+//            item.putPoint(rSet.getInt("no"), rSet.getInt("point"));
+            list.add(t);
         }
 
         return list;
@@ -38,19 +44,15 @@ public class TestListStudentDao extends Dao {
         try {
             con = getConnection();
 
-            String sql = baseSql + " WHERE student_no LIKE ?";
+            String sql = baseSql + " left join subject on test.school_cd = subject.school_cd and test.subject_cd = subject.cd WHERE test.student_no LIKE ?";
 
             st = con.prepareStatement(sql);
             st.setString(1, "%" + student.getNo() + "%");
             rs = st.executeQuery();
 
-            while (rs.next()) {
-                TestListStudent t = new TestListStudent();
-                t.setEntYear(student.getEntYear());
-                t.setStudentNo(student.getNo());
-                t.setStudentName(student.getName());
-                t.setClassNum(student.getClassNum());
-                list.add(t);
+            if (rs.next()) {
+
+                list.addAll(postFilter(rs));
             }
 
         } finally {

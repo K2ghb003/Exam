@@ -13,15 +13,18 @@ import bean.TestListSubject;
 
 public class TestListSubjectDao extends Dao {
 
-	private final String baseSql = "SELECT * FROM test";
+	private final String baseSql = "SELECT * FROM test left join student on test.school_cd = student.school_cd and test.student_no = student.no WHERE true";
 
 	// postfilter
     public List<TestListSubject> postFilter(ResultSet rSet) throws Exception {
         List<TestListSubject> list = new ArrayList<>();
         while (rSet.next()) {
             TestListSubject item = new TestListSubject();
-            item.setNum(rSet.getInt("no"));
-            item.setPoint(rSet.getInt("point"));
+            item.setEntYear(rSet.getInt("ent_year"));
+            item.setStudentNo(rSet.getString("student_no"));
+            item.setStudentName(rSet.getString("name"));
+            item.setClassNum(rSet.getString("class_num"));
+            item.putPoint(rSet.getInt("no"), rSet.getInt("point"));
             list.add(item);
         }
         return list;
@@ -37,7 +40,6 @@ public class TestListSubjectDao extends Dao {
 	 */
 	public List<TestListSubject> filter(int entYear, String classNum, Subject subject, School school) throws Exception {
 		// 成績インスタンスを初期化
-		TestListSubject test = new TestListSubject();
 		List<TestListSubject> list = new ArrayList<TestListSubject>();
 		// コネクションを確立
 		Connection connection = getConnection();
@@ -55,21 +57,20 @@ public class TestListSubjectDao extends Dao {
                 sql.append(" AND ent_year = ?");
             }
             if (classNum != null && !classNum.isEmpty()) {
-                sql.append(" AND class_num = ?");
+                sql.append(" AND test.class_num = ?");
             }
             if (subject != null) {
                 sql.append(" AND subject_cd = ?");
             }
             if (school != null) {
-                sql.append(" AND school_cd = ?");
+                sql.append(" AND test.school_cd = ?");
             }
 
             sql.append(" ORDER BY subject_cd");
 
             PreparedStatement st = connection.prepareStatement(sql.toString());
 
-            int idx = 0;
-            st.setString(idx++, school.getCd());
+            int idx = 1;
             if (entYear >= 0) {
                 st.setInt(idx++, entYear);
             }
