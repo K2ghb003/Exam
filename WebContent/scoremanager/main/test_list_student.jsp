@@ -98,7 +98,7 @@
 
   	  <!-- 成績が見つからない場合のメッセージ表示 -->
 	  <c:if test="${notFound}">
-	    <div class="alert alert-warning">成績情報が存在しませんでした。</div>
+	    <div class="px-4 mb-2">成績情報が存在しませんでした。</div>
 	  </c:if>
 
 	  <!-- 成績情報が存在する場合の表示 -->
