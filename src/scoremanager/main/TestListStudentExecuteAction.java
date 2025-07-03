@@ -58,6 +58,14 @@ public class TestListStudentExecuteAction extends Action {
         }
 
 
+        // 成績情報が存在しない場合
+        if (testliststudent == null || testliststudent.isEmpty()) {
+            request.setAttribute("notFound", true);
+        } else {
+            request.setAttribute("testliststudent", testliststudent);
+        }
+
+
         // 取得した情報をリクエスト属性にセット
         request.setAttribute("school", school);
         request.setAttribute("testliststudent", testliststudent);

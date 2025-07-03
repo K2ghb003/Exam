@@ -96,28 +96,36 @@
       <!-- 結果 -->
       <div class="px-4 mb-2">氏名：${student.name}(${student.no})</div>
 
-      <!-- 一覧  -->
-      <table class="table mb-5" style="border-collapse: collapse;">
-         <thead>
-          <tr>
-            <th class="ps-4">科目名</th>
-            <th>科目コード</th>
-            <th>回数</th>
-            <th>点数</th>
-          </tr>
-        </thead>
+  	  <!-- 成績が見つからない場合のメッセージ表示 -->
+	  <c:if test="${notFound}">
+	    <div class="alert alert-warning">成績情報が存在しませんでした。</div>
+	  </c:if>
 
-        <tbody>
-          <c:forEach var="testliststudent" items="${testliststudent}">
+	  <!-- 成績情報が存在する場合の表示 -->
+      <!-- 一覧  -->
+	  <c:if test="${not empty testliststudent}">
+        <table class="table mb-5" style="border-collapse: collapse;">
+           <thead>
             <tr>
-              <td class="ps-4">${testliststudent.subjectName}</td>
-              <td>${testliststudent.subjectCd}</td>
-              <td>${testliststudent.num}</td>
-              <td>${testliststudent.point}</td>
+              <th class="ps-4">科目名</th>
+              <th>科目コード</th>
+              <th>回数</th>
+              <th>点数</th>
             </tr>
-          </c:forEach>
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            <c:forEach var="testliststudent" items="${testliststudent}">
+              <tr>
+                <td class="ps-4">${testliststudent.subjectName}</td>
+                <td>${testliststudent.subjectCd}</td>
+                <td>${testliststudent.num}</td>
+                <td>${testliststudent.point}</td>
+              </tr>
+            </c:forEach>
+          </tbody>
+        </table>
+      </c:if>
 
     </section>
   </c:param>
