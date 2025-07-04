@@ -9,6 +9,7 @@ import bean.School;
 import bean.Subject;
 import bean.Teacher;
 import dao.ClassNumDao;
+import dao.StudentDao;
 import dao.SubjectDao;
 import tool.Action;
 
@@ -51,7 +52,8 @@ public class TestListAction extends Action {
         List<Subject> subjectList = subjectDao.filter(school);
 
         // 入学年度リストを作成
-        List<Integer> entYearList = new java.util.ArrayList<>();
+        StudentDao studentDao = new StudentDao();
+        List<Integer> entYearList = studentDao.getEntYearList(school);
         int currentYear = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
 
         // JSPへデータを渡す

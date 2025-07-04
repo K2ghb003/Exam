@@ -44,7 +44,7 @@
     </style>
 
     <section class="me-4">
-      <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">成績一覧（学生）</h2>
+      <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">成績一覧</h2>
 
       <!-- フィルター -->
       <div style="background: #fff; border: 1px solid #ccc; padding: 16px; border-radius: 8px; margin: 0 16px 16px 16px;">
@@ -61,7 +61,7 @@
           <label class="me-2">クラス：</label>
           <select name="classNum" class="me-4">
             <option value="">----</option>
-            <c:forEach var="c" items="${classNumList}">
+            <c:forEach var="c" items="${classList}">
               <option value="${c}" <c:if test="${param.classNum == c}">selected</c:if>>${c}</option>
             </c:forEach>
           </select>
@@ -70,7 +70,7 @@
           <select name="subject" class="me-4">
             <option value="">----</option>
             <c:forEach var="sub" items="${subjectList}">
-              <option value="${sub}" <c:if test="${param.subject == sub}">selected</c:if>>${sub}</option>
+              <option value="${sub.cd}" <c:if test="${param.subject == sub.name}">selected</c:if>>${sub.name}</option>
             </c:forEach>
           </select>
 
