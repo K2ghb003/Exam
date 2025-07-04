@@ -45,22 +45,22 @@ public class SubjectUpdateExecuteAction extends Action {
         SubjectDao daoConf = new SubjectDao();
         Subject conf = new Subject();
 
-        	System.out.println("try0");
+//        	System.out.println("try0");
         	conf = daoConf.get(cd, school);
-        	System.out.println("try1");
+//        	System.out.println("try1");
         	if (conf == null) {
-        		System.out.println("try2");
+//        		System.out.println("try2");
         		errors.put("cd", "科目コードが存在していません");
         	}
 
         	// ▼ エラーがあれば戻す
-        	System.out.println("try3");
+//        	System.out.println("try3");
         	if (!errors.isEmpty()) {
-        		System.out.println("try4");
+//        		System.out.println("try4");
         		req.setAttribute("errors", errors);
         		req.setAttribute("subject", subject);
         		req.getRequestDispatcher("subject_update.jsp").forward(req, res);
-        		System.out.println("try5");
+//        		System.out.println("try5");
         		return;
         	} else{
         		SubjectDao dao=new SubjectDao();
