@@ -9,7 +9,6 @@
     <style>
       .center {
         display: flex;
-        justify-content: center;
         align-items: center;
         min-height: 40rem;
         flex-direction: column;

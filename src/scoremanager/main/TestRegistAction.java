@@ -23,14 +23,13 @@ public class TestRegistAction extends Action {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        // ログインユーザー（教師）の取得
+        // ログインチェック
         Teacher teacher = (Teacher) request.getSession().getAttribute("user");
         if (teacher == null) {
             response.sendRedirect("Login.action");
             return;
         }
 
-        // 所属校の取得
         School school = teacher.getSchool();
         if (school == null) {
             request.setAttribute("error", "所属校の情報が取得できません。");
@@ -45,59 +44,65 @@ public class TestRegistAction extends Action {
         String testNoStr = request.getParameter("no");
 
         Integer entYear = null;
-        if (entYearStr != null && !entYearStr.isEmpty()) {
-            try {
-                entYear = Integer.parseInt(entYearStr);
-            } catch (NumberFormatException e) {
-                entYear = null;
-            }
-        }
-
         Integer testNo = null;
-        if (testNoStr != null && !testNoStr.isEmpty()) {
-            try {
-                testNo = Integer.parseInt(testNoStr);
-            } catch (NumberFormatException e) {
-                testNo = null;
+
+        try {
+            if (entYearStr != null && !entYearStr.isEmpty()) {
+                entYear = Integer.parseInt(entYearStr);
             }
+            if (testNoStr != null && !testNoStr.isEmpty()) {
+                testNo = Integer.parseInt(testNoStr);
+            }
+        } catch (NumberFormatException e) {
+            // 無効な数値は無視して null のまま扱う
         }
 
-        // クラス一覧、科目一覧、入学年度一覧の取得
+        // 一覧データ取得
         ClassNumDao classNumDao = new ClassNumDao();
-        List<String> classNumList = classNumDao.filter(school);
-
         SubjectDao subjectDao = new SubjectDao();
-        List<Subject> subjectList = subjectDao.filter(school);
-
         StudentDao studentDao = new StudentDao();
+
+        List<String> classNumList = classNumDao.filter(school);
+        List<Subject> subjectList = subjectDao.filter(school);
         List<Integer> entYearList = studentDao.getEntYearList(school);
 
-        // 学生一覧と成績の取得（検索条件が揃っている場合）
-        if (entYear != null && classNum != null && !classNum.isEmpty()) {
+        // エラーフラグ
+        boolean hasError = false;
+
+        // 科目チェック
+        if (subjectCd == null || subjectCd.isEmpty()) {
+            request.setAttribute("subjectError", true);
+            hasError = true;
+        }
+
+        // 回数チェック
+        if (testNo == null) {
+            request.setAttribute("noError", true);
+            hasError = true;
+        }
+
+        // 条件がそろっていてエラーがない場合のみ検索
+        if (!hasError && entYear != null && classNum != null && !classNum.isEmpty()) {
             List<Student> studentList = studentDao.filter(school, entYear, classNum, true);
             request.setAttribute("studentList", studentList);
 
-            // 成績情報が存在する場合に取得
-            if (subjectCd != null && !subjectCd.isEmpty() && testNo != null) {
-                Subject subject = subjectDao.get(subjectCd, school);
-                if (subject != null) {
-                    TestDao testDao = new TestDao();
-                    List<Test> testList = testDao.filter(school, subject, testNo);
+            Subject subject = subjectDao.get(subjectCd, school);
+            if (subject != null) {
+                TestDao testDao = new TestDao();
+                List<Test> testList = testDao.filter(school, subject, testNo);
 
-                    // 学生番号 → 点数 のマップを作成
-                    Map<String, Integer> pointMap = new HashMap<>();
-                    for (Test t : testList) {
-                        if (t.getStudent() != null && t.getStudent().getNo() != null) {
-                            pointMap.put(t.getStudent().getNo(), t.getPoint());
-                        }
+                Map<String, Integer> pointMap = new HashMap<>();
+                for (Test t : testList) {
+                    if (t.getStudent() != null && t.getStudent().getNo() != null) {
+                        pointMap.put(t.getStudent().getNo(), t.getPoint());
                     }
-
-                    request.setAttribute("pointMap", pointMap);
                 }
+
+                request.setAttribute("pointMap", pointMap);
             }
         }
 
-        // フォーム再表示用データ設定
+        // 入力データと一覧の再表示用設定
         request.setAttribute("entYear", entYear);
         request.setAttribute("classNum", classNum);
         request.setAttribute("subjectCd", subjectCd);
@@ -107,7 +112,7 @@ public class TestRegistAction extends Action {
         request.setAttribute("classNumList", classNumList);
         request.setAttribute("subjectList", subjectList);
 
-        // JSP へフォワード
+        // JSPへフォワード
         request.getRequestDispatcher("/scoremanager/main/test_regist.jsp").forward(request, response);
     }
 }
