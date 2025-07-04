@@ -86,10 +86,10 @@
       <h2>学生情報変更</h2>
       <form action="StudentUpdateExecute.action" method="post">
         <label>入学年度</label>
-        <div><input name="year" value="${student.entYear}" readonly /></div>
+        <div><input name="year" value="${student.entYear}" style="border: none; outline: none;" readonly /></div>
 
         <label>学生番号</label>
-        <div><input name="no" value="${student.no}" readonly /></div>
+        <div><input name="no" value="${student.no}" style="border: none; outline: none;" readonly /></div>
 
         <label for="name">氏名</label>
         <input type="text" name="name" id="name" value="${student.name}" placeholder="氏名を入力してください" required />
