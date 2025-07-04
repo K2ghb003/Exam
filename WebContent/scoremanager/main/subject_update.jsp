@@ -32,11 +32,9 @@
                            style="width: 100%; box-sizing: border-box; padding: 6px; font-size: 16px;">
                 </p>
 
-                <input type="submit"
+                <input type="submit" value="変更"
                         style="background-color: #007bff; color: white; border: none;
                                padding: 6px 16px; border-radius: 4px; font-size: 16px;">
-                    変更
-                />
 
                 <a href="SubjectList.action">戻る</a>
             </form>
