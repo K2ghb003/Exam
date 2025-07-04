@@ -83,7 +83,21 @@ public class TestListSubjectExecuteAction extends Action {
 
         // JSPへデータを渡す
         // 収集したデータをリクエストに設定
-        request.setAttribute("subjectList", subjectTestList);
+        request.setAttribute("subjectTestList", subjectTestList);
+        request.setAttribute("subject", subject);
+        request.setAttribute("mode", "sj");
+
+        ClassNumDao classNumDao = new ClassNumDao();
+        List<String> classNumList = classNumDao.filter(school);
+        request.setAttribute("classList", classNumList);
+
+        SubjectDao subjectDao = new SubjectDao();
+        List<Subject> subjectList = subjectDao.filter(school);
+        request.setAttribute("subjectList", subjectList);
+
+        StudentDao studentDao = new StudentDao();
+        List<Integer> entYearList = studentDao.getEntYearList(school);
+        request.setAttribute("entYearList", entYearList);
 
 
         // 表示するJSPへフォワード

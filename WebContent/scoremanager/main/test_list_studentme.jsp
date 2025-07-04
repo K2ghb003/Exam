@@ -44,11 +44,11 @@
     </style>
 
     <section class="me-4">
-      <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">成績一覧</h2>
+      <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">成績一覧（学生）</h2>
 
       <!-- フィルター -->
       <div style="background: #fff; border: 1px solid #ccc; padding: 16px; border-radius: 8px; margin: 0 16px 16px 16px;">
-        <form action="TestListSubjectExecute.action" method="get" class="px-4 mb-3">
+        <form action="StudentList.action" method="get" class="px-4 mb-3">
 
 		  <label>科目情報</label>
 
@@ -93,11 +93,39 @@
         </form>
       </div>
 
-      <!-- 結果件数 -->
-      <!-- <div class="px-4 mb-2">検索結果：${fn:length(students)}件</div> -->
+      <!-- 結果 -->
+      <div class="px-4 mb-2">氏名：${student.name}(${student.no})</div>
 
-      <!-- 一覧 -->
-      <label><p>科目情報を選択または学生情報を入力してして検索ボックスをクリックしてください</p></label>
+  	  <!-- 成績が見つからない場合のメッセージ表示 -->
+	  <c:if test="${notFound}">
+	    <div class="px-4 mb-2">成績情報が存在しませんでした。</div>
+	  </c:if>
+
+	  <!-- 成績情報が存在する場合の表示 -->
+      <!-- 一覧  -->
+	  <c:if test="${not empty testliststudent}">
+        <table class="table mb-5" style="border-collapse: collapse;">
+           <thead>
+            <tr>
+              <th class="ps-4">科目名</th>
+              <th>科目コード</th>
+              <th>回数</th>
+              <th>点数</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <c:forEach var="testliststudent" items="${testliststudent}">
+              <tr>
+                <td class="ps-4">${testliststudent.subjectName}</td>
+                <td>${testliststudent.subjectCd}</td>
+                <td>${testliststudent.num}</td>
+                <td>${testliststudent.point}</td>
+              </tr>
+            </c:forEach>
+          </tbody>
+        </table>
+      </c:if>
 
     </section>
   </c:param>

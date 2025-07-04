@@ -8,9 +8,12 @@ import javax.servlet.http.HttpSession;
 
 import bean.School;
 import bean.Student;
+import bean.Subject;
 import bean.Teacher;
 import bean.TestListStudent;
+import dao.ClassNumDao;
 import dao.StudentDao;
+import dao.SubjectDao;
 import dao.TestListStudentDao;
 import tool.Action;
 
@@ -70,6 +73,18 @@ public class TestListStudentExecuteAction extends Action {
         request.setAttribute("school", school);
         request.setAttribute("testliststudent", testliststudent);
         request.setAttribute("student", student);
+        request.setAttribute("mode", "st");
+
+        ClassNumDao classNumDao = new ClassNumDao();
+        List<String> classNumList = classNumDao.filter(school);
+        request.setAttribute("classList", classNumList);
+
+        SubjectDao subjectDao = new SubjectDao();
+        List<Subject> subjectList = subjectDao.filter(school);
+        request.setAttribute("subjectList", subjectList);
+
+        List<Integer> entYearList = studentDao.getEntYearList(school);
+        request.setAttribute("entYearList", entYearList);
 
         request.getRequestDispatcher("/scoremanager/main/test_list_student.jsp").forward(request, response);
     }

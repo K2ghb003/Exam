@@ -29,7 +29,7 @@ public class TestListSubject implements Serializable {
 	/**
 	 * 学生の各種ポイントや得点を科目や評価項目ごとに管理
 	 */
-	private Map<Integer, Integer> points;
+	private Map<Integer,Integer> points = new HashMap<>();
 
 	/**
 	 *  コンストラクタ
@@ -87,8 +87,9 @@ public class TestListSubject implements Serializable {
 	 */
 	public String getPoint(int key) {
 		Integer value = points.get(key);
-		return value != null ? value.toString() : null;
+		return value != null ? value.toString() : "";
 	}
+
 
 	/**
 	 * putPoint
