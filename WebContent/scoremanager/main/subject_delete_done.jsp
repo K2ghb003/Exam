@@ -18,7 +18,7 @@ List<Subject> list=(List<Subject>)request.getAttribute("subject_list");
 		<section class="me-4">
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報削除</h2>
 
-			<h3>削除が完了しました</h3>
+      		<p style="background-color:#80bd9e; text-align:center ">削除が完了しました</p>
 
 			<p><a href="SubjectList.action">科目一覧</a></p>
 		</section>

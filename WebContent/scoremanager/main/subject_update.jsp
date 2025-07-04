@@ -10,10 +10,9 @@
 
 <c:import url="/common/base.jsp">
     <c:param name="title">得点管理システム</c:param>
-
     <c:param name="scripts"></c:param>
-
     <c:param name="content">
+
         <section>
             <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">科目情報変更</h2>
 
@@ -24,7 +23,7 @@
                            readonly
                            style="width: 100%; box-sizing: border-box; padding: 6px; font-size: 16px;">
                 <c:if test="${not empty errors.cd}">
-		          <div class="error">${errors.cd}</div>
+		          <div class="error" style="color:#ffbb00">${errors.cd}</div>
 		        </c:if>
                 </p>
 
