@@ -23,10 +23,13 @@
                     <input type="text" name="cd" value="${cd}"
                            readonly
                            style="width: 100%; box-sizing: border-box; padding: 6px; font-size: 16px;">
+                <c:if test="${not empty errors.cd}">
+		          <div class="error">${errors.cd}</div>
+		        </c:if>
                 </p>
 
-                <label>科目名</label>
                 <p>
+                <label>科目名</label>
                     <input type="text" name="name" value="${name}"
                            required placeholder="科目名を入力してください" maxlength="20"
                            style="width: 100%; box-sizing: border-box; padding: 6px; font-size: 16px;">
