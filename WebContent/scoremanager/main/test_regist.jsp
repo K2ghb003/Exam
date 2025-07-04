@@ -38,6 +38,11 @@
                             <option value="${subject.cd}" <c:if test="${param.subjectCd == subject.cd}">selected</c:if>>${subject.name}</option>
                         </c:forEach>
                     </select>
+                    <c:if test="${not empty param.entYear or not empty param.classNum or not empty param.subjectCd or not empty param.no}">
+                        <c:if test="${not empty requestScope.subjectError}">
+                            <div style="color: red; font-size: 0.9rem; margin-top: 4px;">科目を選択してください。</div>
+                        </c:if>
+                    </c:if>
                 </div>
 
                 <div>
@@ -48,6 +53,11 @@
                             <option value="${i}" <c:if test="${param.no == i}">selected</c:if>>${i}</option>
                         </c:forEach>
                     </select>
+                    <c:if test="${not empty param.entYear or not empty param.classNum or not empty param.subjectCd or not empty param.no}">
+                        <c:if test="${not empty requestScope.noError}">
+                            <div style="color: red; font-size: 0.9rem; margin-top: 4px;">回数を選択してください。</div>
+                        </c:if>
+                    </c:if>
                 </div>
 
                 <div style="align-self: flex-end;">

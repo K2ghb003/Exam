@@ -4,14 +4,15 @@
 <c:import url="/common/base.jsp">
   <c:param name="title">科目登録</c:param>
   <c:param name="scripts"></c:param>
+
   <c:param name="content">
     <style>
-      form {
+      section.subject-form {
         width: 500px;
         margin: auto;
       }
 
-      h2 {
+      section.subject-form h2 {
         background-color: #f1f1f1;
         padding: 10px;
         font-size: 22px;
@@ -36,6 +37,7 @@
         outline: none;
         margin-bottom: 4px;
         transition: all 0.2s ease-in-out;
+        box-sizing: border-box;
       }
 
       input[type="text"]:focus {
@@ -80,7 +82,7 @@
       }
     </style>
 
-    <section>
+    <section class="subject-form">
       <h2>科目情報登録</h2>
       <form action="SubjectCreateExecute.action" method="post">
         <!-- 科目コード -->
@@ -88,7 +90,7 @@
           <label for="cd">科目コード</label>
           <input type="text" id="cd" name="cd" value="${subject.cd}" required placeholder="科目コードを入力してください" />
           <c:if test="${not empty errors.cd}">
-            <div class="error">${errors.cd}</div>
+            <span class="error">${errors.cd}</span>
           </c:if>
         </div>
 
@@ -97,14 +99,13 @@
           <label for="name">科目名</label>
           <input type="text" id="name" name="name" value="${subject.name}" required placeholder="科目名を入力してください" />
           <c:if test="${not empty errors.name}">
-            <div class="error">${errors.name}</div>
+            <span class="error">${errors.name}</span>
           </c:if>
         </div>
 
+        <!-- 登録ボタンと戻るリンク -->
         <div>
           <input type="submit" value="登録" />
-        </div>
-        <div>
           <a href="SubjectList.action">戻る</a>
         </div>
       </form>
