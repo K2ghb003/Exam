@@ -9,6 +9,10 @@
 
   <c:param name="content">
     <style>
+      h3 {
+      font-weight: bold;
+      }
+
       select, input[type="checkbox"] {
         border: 1px solid #ccc;
         padding: 4px 8px;
@@ -44,38 +48,48 @@
     </style>
 
     <section class="me-4">
-      <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">学生管理</h2>
-      <div style="text-align: right;">
+      <h2 class="h3 mb-3 bg-secondary bg-opacity-10 py-2 px-4 ">学生管理</h2>
+      <div style="text-align: right; margin: 0 16px 16px 0;">
         <a href="StudentCreate.action">新規登録</a>
       </div>
 
       <!-- フィルター -->
-      <div style="background: #fff; border: 1px solid #ccc; padding: 16px; border-radius: 8px; margin: 0 16px 16px 16px;">
-        <form action="StudentList.action" method="get" class="px-4 mb-3">
-          <label class="me-2">入学年度：</label>
-          <select name="entYear" class="me-4">
-            <option value="">----</option>
-            <c:forEach var="year" items="${entYearList}">
-              <option value="${year}" <c:if test="${param.entYear == year}">selected</c:if>>${year}</option>
-            </c:forEach>
-          </select>
-
-          <label class="me-2">クラス：</label>
-          <select name="classNum" class="me-4">
-            <option value="">----</option>
-            <c:forEach var="c" items="${classNumList}">
-              <option value="${c}" <c:if test="${param.classNum == c}">selected</c:if>>${c}</option>
-            </c:forEach>
-          </select>
-
-          <label class="me-3">
-            <input type="checkbox" name="isAttend" value="true" <c:if test="${param.isAttend == 'true'}">checked</c:if>> 在学中
-          </label>
-
-          <button type="submit" class="filter-btn me-3">絞込み</button>
-        </form>
+      <div style="background: #fff; border: 1px solid #ccc; padding: 16px; border-radius: 8px; margin: 5px 16px 16px 16px;">
+      <form action="StudentList.action" method="get" class="mb-3">
+	  <table>
+		  <tr>
+		  	<td style="width: 30%;">
+		          <label class="me-2">入学年度：</label><br>
+		          <select name="entYear" class="me-4" style="width: 85%">
+		            <option value="">----</option>
+		            <c:forEach var="year" items="${entYearList}">
+		              <option value="${year}" <c:if test="${param.entYear == year}">selected</c:if>>${year}</option>
+		            </c:forEach>
+		          </select>
+		    </td>
+			<td style="width: 30%;">
+		          <label class="me-2">クラス：</label><br>
+		          <select name="classNum" class="me-4" style="width: 85%">
+		            <option value="">----</option>
+		            <c:forEach var="c" items="${classNumList}">
+		              <option value="${c}" <c:if test="${param.classNum == c}">selected</c:if>>${c}</option>
+		            </c:forEach>
+		          </select>
+		    </td>
+			<td style="width: 18%;">
+		          <label class="me-3">
+		            <input type="checkbox" name="isAttend" value="true" <c:if test="${param.isAttend == 'true'}">checked</c:if>> 在学中
+		          </label>
+			</td>
+			<td style="width: 10%;">
+		          <button type="submit" class="filter-btn">絞込み</button>
+		    </td>
+		  </tr>
+	  </table>
+      </form>
       </div>
-
+	<c:choose>
+    <c:when test="${fn:length(students) >0 }">
       <!-- 結果件数 -->
       <div class="px-4 mb-2">検索結果：${fn:length(students)}件</div>
 
@@ -109,6 +123,13 @@
           </c:forEach>
         </tbody>
       </table>
+      </c:when>
+    <c:otherwise>
+        <p>学生情報が存在しませんでした</p>
+    </c:otherwise>
+</c:choose>
+
+
     </section>
   </c:param>
 </c:import>
