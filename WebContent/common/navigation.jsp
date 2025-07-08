@@ -8,7 +8,6 @@
 
 <style>
   body {
-    font-family: 'Patrick Hand', cursive;
     background-color: white;
   }
 
