@@ -49,14 +49,18 @@
       <!-- フィルター -->
       <div style="background: #fff; border: 1px solid #ccc; padding: 16px; border-radius: 8px; margin: 0 16px 16px 16px;">
         <form action="StudentList.action" method="get" class="px-4 mb-3">
-
-          <label class="me-2">入学年度：</label>
-          <select name="entYear" class="me-4">
-            <option value="">----</option>
-            <c:forEach var="year" items="${entYearList}">
-              <option value="${year}" <c:if test="${param.entYear == year}">selected</c:if>>${year}</option>
-            </c:forEach>
-          </select>
+		  <div>
+		    <p>科目情報</p>
+		  </div>
+		  <div>
+	          <label class="me-2">入学年度：</label>
+	          <select name="entYear" class="me-4">
+	            <option value="">----</option>
+	            <c:forEach var="year" items="${entYearList}">
+	              <option value="${year}" <c:if test="${param.entYear == year}">selected</c:if>>${year}</option>
+	            </c:forEach>
+	          </select>
+		  </div>
 
           <label class="me-2">クラス：</label>
           <select name="classNum" class="me-4">
@@ -77,12 +81,12 @@
           <button type="submit" class="filter-btn me-3">検索</button>
 
         </form>
-      </div>
 
-      <div style="background: #fff; border: 1px solid #ccc; padding: 16px; border-radius: 8px; margin: 0 16px 16px 16px;">
-        <form action="StudentList.action" method="get" class="px-4 mb-3">
+		<hr>
 
-          <label>学生情報</label>
+        <form action="TestListStudentExecute.action" method="get" class="px-4 mb-3">
+
+          <p>学生情報</p>
 
           <label class="me-2">学生番号：</label>
               <input type="text" id="no" name="no" />
@@ -93,39 +97,8 @@
       </div>
 
       <!-- 結果件数 -->
-      <div class="px-4 mb-2">検索結果：${fn:length(students)}件</div>
+      <label><p>科目情報を選択または学生情報を入力してして検索ボックスをクリックしてください</p></label>
 
-      <!-- 一覧 -->
-      <table class="table mb-5" style="border-collapse: collapse;">
-        <thead>
-          <tr>
-            <th class="ps-4">入学年度</th>
-            <th>科目名</th>
-            <th>科目コード</th>
-            <th>回数</th>
-            <th>点数</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <c:forEach var="student" items="${students}">
-            <tr>
-              <td class="ps-4">${student.entYear}</td>
-              <td>${student.no}</td>
-              <td>${student.name}</td>
-              <td>${student.classNum}</td>
-              <td>
-                <c:choose>
-                  <c:when test="${student.attend}">○</c:when>
-                  <c:otherwise>×</c:otherwise>
-                </c:choose>
-              </td>
-              <td><a href="StudentUpdate.action?no=${student.no}">変更</a></td>
-            </tr>
-          </c:forEach>
-        </tbody>
-
-      </table>
     </section>
   </c:param>
 </c:import>
