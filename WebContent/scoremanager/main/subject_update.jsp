@@ -34,6 +34,13 @@
                 font-size: 15px;
             }
 
+            div {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 6px;
+                font-size: 15px;
+            }
+
             input[type="text"] {
                 border-radius: 8px;
                 padding: 10px;
@@ -43,7 +50,6 @@
                 box-sizing: border-box;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
                 outline: none;
-                margin-bottom: 16px;
                 transition: all 0.2s ease-in-out;
             }
 
@@ -52,7 +58,7 @@
                 box-shadow: 0 0 6px rgba(102, 175, 233, 0.6);
             }
 
-            button[type="submit"] {
+            input[type="submit"] {
                 background-color: #007bff;
                 color: white;
                 padding: 10px 24px;
@@ -63,7 +69,7 @@
                 margin-top: 10px;
             }
 
-            button[type="submit"]:hover {
+            input[type="submit"]:hover {
                 background-color: #0056b3;
             }
 
@@ -83,17 +89,23 @@
 
         <section class="subject-form">
             <h2>科目情報変更</h2>
-            <form action="SubjectUpdateExecute.action" method="post">
-                <!-- 科目コード（読み取り専用） -->
-                <label for="cd">科目コード</label>
-                <input type="text" id="cd" name="cd" value="${cd}" readonly />
 
-                <!-- 科目名 -->
-                <label for="name">科目名</label>
-                <input type="text" id="name" name="name" value="${name}" required placeholder="科目名を入力してください" maxlength="20" />
+            <form action="SubjectUpdateExecute.action" method="post" >
+                <label>科目コード</label>
+                <p>
+                    <input type="text" name="cd" value="${cd}" readonly>
+                <c:if test="${not empty errors.cd}">
+		          <div class="error" style="color:#ffbb00">${errors.cd}</div>
+		        </c:if>
+                </p>
 
-                <!-- ボタン -->
-                <button type="submit">変更</button>
+                <p>
+                <label>科目名</label>
+                    <input type="text" name="name" value="${name}"
+                           required placeholder="科目名を入力してください" maxlength="20">
+                </p>
+
+                <input type="submit" value="変更">
                 <a href="SubjectList.action">戻る</a>
             </form>
         </section>
