@@ -61,7 +61,7 @@
         border-radius: 6px;
         border: none;
         cursor: pointer;
-        margin-top: 10px;
+        margin: 15px 0px 15px 0px;
       }
 
       .btn-submit:hover {
@@ -69,12 +69,12 @@
       }
 
       a {
-        margin-left: 12px;
+        <%--margin-left: 12px;
         font-size: 14px;
         display: inline-block;
         margin-top: 16px;
         color: #007bff;
-        text-decoration: none;
+        text-decoration: none;--%>
       }
 
       a:hover {
@@ -82,7 +82,7 @@
       }
     </style>
 
-    <div class="form-container">
+    <div><%--  class="form-container" --%>
       <h2>学生情報登録</h2>
       <form action="StudentCreateExecute.action" method="post">
 
@@ -95,19 +95,19 @@
           </c:forEach>
         </select>
         <c:if test="${not empty errors.entYear}">
-          <span class="error">${errors.entYear}</span>
+          <div class="error">${errors.entYear}</div>
         </c:if>
 
         <!-- 学生番号 -->
         <label for="no">学生番号</label>
-        <input type="text" id="no" name="no" value="${student.no}" placeholder="学生番号を入力してください" />
+        <input type="text" id="no" name="no" value="${student.no}" placeholder="学生番号を入力してください" required />
         <c:if test="${not empty errors.no}">
-          <span class="error">${errors.no}</span>
+          <div class="error">${errors.no}</div>
         </c:if>
 
         <!-- 氏名 -->
         <label for="name">氏名</label>
-        <input type="text" id="name" name="name" value="${student.name}" placeholder="氏名を入力してください" />
+        <input type="text" id="name" name="name" value="${student.name}" placeholder="氏名を入力してください" required />
         <c:if test="${not empty errors.name}">
           <span class="error">${errors.name}</span>
         </c:if>
@@ -126,7 +126,7 @@
 
         <!-- 登録ボタン -->
         <div>
-          <input type="submit" value="登録して終了" class="btn-submit" />
+          <button class="btn-submit" name="end">登録して終了</button>
         </div>
         <div>
           <a href="StudentList.action">戻る</a>
