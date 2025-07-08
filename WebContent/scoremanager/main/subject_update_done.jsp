@@ -8,19 +8,26 @@
 List<Subject> list=(List<Subject>)request.getAttribute("subject_list");
 %>
 <c:import url="/common/base.jsp">
-	<c:param name="title">
-		得点管理システム
-	</c:param>
-
+	<c:param name="title">得点管理システム</c:param>
 	<c:param name="scripts"></c:param>
-
 	<c:param name="content">
-		<section class="me-4">
-			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目管理</h2>
 
-			<h3>変更が完了しました</h3>
+		<style>
+	      h2 {
+	        background-color: #f1f1f1;
+	        padding: 10px;
+	        font-size: 22px;
+	        border-left: 5px solid #007bff;
+	        margin-bottom: 20px;
+	      }
 
-			<a href="SubjectList.action">科目一覧</a>
+		</style>
+
+	    <section>
+	      <h2>科目情報変更</h2>
+	      <p style="background-color:#80bd9e; text-align:center ">変更が完了しました</p>
+
+		  <a href="SubjectList.action">科目一覧</a>
 		</section>
 	</c:param>
 </c:import>
