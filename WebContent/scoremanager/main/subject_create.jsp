@@ -90,7 +90,7 @@
           <label for="cd">科目コード</label>
           <input type="text" id="cd" name="cd" value="${subject.cd}" required placeholder="科目コードを入力してください" />
           <c:if test="${not empty errors.cd}">
-            <span class="error">${errors.cd}</span>
+            <div class="error">${errors.cd}</div>
           </c:if>
         </div>
 
@@ -99,7 +99,7 @@
           <label for="name">科目名</label>
           <input type="text" id="name" name="name" value="${subject.name}" required placeholder="科目名を入力してください" />
           <c:if test="${not empty errors.name}">
-            <span class="error">${errors.name}</span>
+            <div class="error">${errors.name}</div>
           </c:if>
         </div>
 
