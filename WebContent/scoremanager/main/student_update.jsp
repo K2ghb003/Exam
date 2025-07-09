@@ -5,25 +5,35 @@
   <c:param name="title">得点管理システム</c:param>
   <c:param name="scripts"></c:param>
   <c:param name="content">
+<%-- section.student-form
+ display: flex;
+ margin-left: 120px; --%>
     <style>
       section.student-form {
         width: 500px;
         margin: auto;
       }
-
-      section.student-form h2 {
+      .h2{
         background-color: #f1f1f1;
         padding: 10px;
-        font-size: 22px;
+        font-size: 22px !important;
         border-left: 5px solid #007bff;
         margin-bottom: 20px;
       }
 
       .form-row {
-        display: flex;
         align-items: center;
         margin-bottom: 16px;
       }
+      .form-row input{
+        align-items: center;
+        margin-left: 16px;
+      }
+      .form-row select{
+        align-items: center;
+        margin-left: 16px;
+      }
+
 
       .form-row label {
         width: 120px;
@@ -60,7 +70,7 @@
       }
 
       .checkbox-row input[type="checkbox"] {
-        margin-left: 120px;
+
         margin-right: 6px;
         transform: scale(1.2);
       }
@@ -75,7 +85,7 @@
       }
 
       .button-row {
-        margin-left: 120px;
+        margin-bottom: 20px;
         margin-top: 20px;
       }
 
@@ -105,25 +115,25 @@
       }
     </style>
 
-    <section class="student-form">
-      <h2>学生情報変更</h2>
+    <section> <%--  class="student-form" --%>
+      <h2 class="h2">学生情報変更</h2>
       <form action="StudentUpdateExecute.action" method="post">
 
         <div class="form-row">
-          <label>入学年度</label>
-          <div class="value">${student.entYear}</div>
+          <label>入学年度</label><br>
+          <input type="text" class="value" style="font-size: 18px; border: 0; box-shadow: 0 0 0 0;" value="${student.entYear}" readonly />
         </div>
 
         <div class="form-row">
-          <label>学生番号</label>
-          <div class="value">
-            ${student.no}
-            <input type="hidden" name="no" value="${student.no}" />
+          <div>
+          <label>学生番号</label><br>
+             <%--${student.no} --%>
+            <input type="text" class="value" name="no" style="font-size: 18px; border: 0; box-shadow: 0 0 0 0;" value="${student.no}" readonly/>
           </div>
         </div>
 
         <div class="form-row">
-          <label for="name">氏名</label>
+          <label for="name">氏名</label><br>
           <input type="text" name="name" id="name" value="${student.name}" placeholder="氏名を入力してください" required />
         </div>
         <c:if test="${not empty errors.name}">
@@ -131,7 +141,7 @@
         </c:if>
 
         <div class="form-row">
-          <label for="classNum">クラス</label>
+          <label for="classNum">クラス</label><br>
           <select name="classNum" id="classNum">
             <option value="">選択してください</option>
             <c:forEach var="c" items="${classNumList}">
@@ -141,12 +151,12 @@
         </div>
 
         <div class="checkbox-row">
-          <input type="checkbox" name="isAttend" id="isAttend" value="true" <c:if test="${student.attend}">checked</c:if> />
-          <label for="isAttend" style="margin: 0;">在学中</label>
+          <input class="form-check-input" type="checkbox" name="isAttend" id="isAttend" value="true" <c:if test="${student.attend}">checked</c:if> />
+          <label for="isAttend" style="margin: 0 0 0 0;">在学中</label>
         </div>
 
         <div class="button-row">
-          <input type="submit" value="変更" />
+          <input type="submit" style="" value="変更" /><br>
           <a href="StudentList.action">戻る</a>
         </div>
       </form>
