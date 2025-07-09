@@ -97,6 +97,7 @@
 
       .submenu a:hover {
         transform: scale(1.05);
+        color: var(--bs-link-color);
       }
 
       .score-wrapper:hover .score-main {
@@ -119,13 +120,13 @@
         <div class="score-wrapper menu-item">
           <div class="btn-circle score-main menu-item">成績管理</div>
           <div class="submenu">
-            <a href="TestRegist.action">成績登録</a>
+            <a href="TestRegist.action" class="a">成績登録</a>
             <a href="TestList.action">成績参照</a>
           </div>
         </div>
 
-        <a href="ClassList.action" class="btn-circle menu-item">クラス管理</a>
         <a href="SubjectList.action" class="btn-circle menu-item">科目管理</a>
+<%--         <a href="ClassList.action" class="btn-circle menu-item">クラス管理</a> --%>
       </div>
     </div>
 

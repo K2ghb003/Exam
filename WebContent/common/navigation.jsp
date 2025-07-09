@@ -55,5 +55,5 @@
   </div>
 
   <a href="SubjectList.action" class="cp_link">科目管理</a>
-  <a href="ClassList.action" class="cp_link">クラス管理</a>
+  <%-- <a href="ClassList.action" class="cp_link">クラス管理</a> --%>
 </div>
