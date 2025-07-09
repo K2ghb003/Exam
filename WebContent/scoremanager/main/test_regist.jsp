@@ -16,6 +16,7 @@
 
   <c:param name="content">
     <section style="padding: 20px;">
+      <!-- タイトル -->
       <h2 style="border-left: 6px solid #007bff; background-color: #f5f5f5;
                  padding: 12px 16px; margin-bottom: 20px; font-size: 20px; border-radius: 4px;">
         成績管理
@@ -25,8 +26,8 @@
       <div style="border: 1px solid #ccc; padding: 16px; border-radius: 6px; margin-bottom: 20px;">
         <form action="TestRegist.action" method="post">
           <input type="hidden" name="searchFlg" value="true">
-
           <div style="display: flex; justify-content: center; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+            <!-- 入学年度 -->
             <div style="display: flex; flex-direction: column; min-width: 120px;">
               <label>入学年度：</label>
               <select name="entYear">
@@ -37,6 +38,7 @@
               </select>
             </div>
 
+            <!-- クラス -->
             <div style="display: flex; flex-direction: column; min-width: 120px;">
               <label>クラス：</label>
               <select name="classNum">
@@ -47,6 +49,7 @@
               </select>
             </div>
 
+            <!-- 科目 -->
             <div style="display: flex; flex-direction: column; min-width: 120px;">
               <label>科目：</label>
               <select name="subjectCd">
@@ -60,6 +63,7 @@
               </c:if>
             </div>
 
+            <!-- 回数 -->
             <div style="display: flex; flex-direction: column; min-width: 120px;">
               <label>回数：</label>
               <select name="no">
@@ -73,6 +77,7 @@
               </c:if>
             </div>
 
+            <!-- 検索ボタン -->
             <div style="align-self: flex-end;">
               <input type="submit" value="検索" style="padding: 6px 14px;">
             </div>
@@ -88,24 +93,36 @@
           <input type="hidden" name="subjectCd" value="${param.subjectCd}">
           <input type="hidden" name="no" value="${param.no}">
 
-          <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+          <!-- 科目名と回数表示 -->
+          <div style="margin-bottom: 10px; font-size: 16px;">
+            科目：
+            <c:forEach var="subject" items="${subjectList}">
+              <c:if test="${subject.cd == param.subjectCd}">
+                ${subject.name}
+              </c:if>
+            </c:forEach>
+            （<c:out value="${param.no}" />回）
+          </div>
+
+          <!-- テーブル -->
+          <table style="width: 100%; border-collapse: collapse;">
             <thead style="background-color: #f0f8ff;">
-              <tr>
-                <th>入学年度</th>
-                <th>クラス</th>
-                <th>学生番号</th>
-                <th>氏名</th>
-                <th>点数</th>
+              <tr style="border-bottom: 1px solid #ccc;">
+                <th style="text-align: left; padding: 8px;">入学年度</th>
+                <th style="text-align: left; padding: 8px;">クラス</th>
+                <th style="text-align: left; padding: 8px;">学生番号</th>
+                <th style="text-align: left; padding: 8px;">氏名</th>
+                <th style="text-align: left; padding: 8px;">点数</th>
               </tr>
             </thead>
             <tbody>
               <c:forEach var="student" items="${studentList}">
-                <tr>
-                  <td>${param.entYear}</td>
-                  <td>${param.classNum}</td>
-                  <td>${student.no}</td>
-                  <td>${student.name}</td>
-                  <td>
+                <tr style="border-bottom: 1px solid #eee;">
+                  <td style="padding: 8px;">${param.entYear}</td>
+                  <td style="padding: 8px;">${param.classNum}</td>
+                  <td style="padding: 8px;">${student.no}</td>
+                  <td style="padding: 8px;">${student.name}</td>
+                  <td style="padding: 8px;">
                     <input type="hidden" name="studentNo" value="${student.no}">
                     <input type="number" name="point"
                            value="${pointMap[student.no] != null ? pointMap[student.no] : ''}"
