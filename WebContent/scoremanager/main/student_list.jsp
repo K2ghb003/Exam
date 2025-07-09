@@ -45,12 +45,26 @@
       .table td, .table th {
         vertical-align: middle;
       }
+
+      .create-link {
+        color: #28a745;
+        font-weight: bold;
+        text-decoration: none;
+        margin-right: 12px;
+        transition: color 0.2s;
+        text-decoration: underline;
+      }
+
+      .create-link:hover {
+        color: #1e7e34;
+        text-decoration: underline;
+      }
     </style>
 
     <section class="me-4">
       <h2 class="h3 mb-3 bg-secondary bg-opacity-10 py-2 px-4 ">学生管理</h2>
       <div style="text-align: right; margin: 0 16px 16px 0;">
-        <a href="StudentCreate.action">新規登録</a>
+        <a href="StudentCreate.action" class="create-link">新規登録</a>
       </div>
 
       <!-- フィルター -->
@@ -78,7 +92,7 @@
 		    </td>
 			<td style="width: 18%;">
 		          <label class="me-3">
-		            <input type="checkbox" name="isAttend" value="true" <c:if test="${param.isAttend == 'true'}">checked</c:if>> 在学中
+		            <input class="form-check-input" type="checkbox" name="isAttend" value="true" <c:if test="${param.isAttend == 'true'}">checked</c:if>> 在学中
 		          </label>
 			</td>
 			<td style="width: 10%;">
