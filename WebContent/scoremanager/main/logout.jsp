@@ -11,7 +11,7 @@
 		<div id="wrap_box">
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2">ログアウト</h2>
 			<div id="wrap_box">
-				<p class="text-center" style="background-color:#66CC99">ログアウトしました</p><br><br>
+				<p class="text-center" style="background-color:#a0d6b4">ログアウトしました</p><br><br>
 				<a href="../Login.action">ログイン</a>
 			</div>
 		</div>
