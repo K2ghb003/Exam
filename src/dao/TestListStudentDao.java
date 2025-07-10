@@ -20,6 +20,7 @@ public class TestListStudentDao extends Dao {
         while (rSet.next()) {
         	TestListStudent t = new TestListStudent();
             t.setSubjectName(rSet.getString("name"));
+//            System.out.println("Loaded subject: " + rSet.getString("name"));
             t.setSubjectCd(rSet.getString("cd"));
             t.setNum(rSet.getInt("no"));
             t.setPoint(rSet.getInt("point"));
@@ -44,16 +45,16 @@ public class TestListStudentDao extends Dao {
         try {
             con = getConnection();
 
-            String sql = baseSql + " left join subject on test.school_cd = subject.school_cd and test.subject_cd = subject.cd WHERE test.student_no LIKE ?";
+            String sql = baseSql + " right join subject on test.school_cd = subject.school_cd and test.subject_cd = subject.cd WHERE test.student_no LIKE ?";
 
             st = con.prepareStatement(sql);
-            st.setString(1, "%" + student.getNo() + "%");
+            st.setString(1, student.getNo());
             rs = st.executeQuery();
 
-            if (rs.next()) {
+//            if (rs.next()) {
 
                 list.addAll(postFilter(rs));
-            }
+//            }
 
         } finally {
 

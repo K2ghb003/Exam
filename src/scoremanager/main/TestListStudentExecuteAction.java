@@ -52,6 +52,8 @@ public class TestListStudentExecuteAction extends Action {
 
         // 学籍番号をもとにテスト情報を取得
         List<TestListStudent> testliststudent = testliststudentDao.filter(student);
+//        System.out.println(student.getNo());
+//        System.out.println(testliststudent.size());
 
 
         // Teacherから学校情報を取得して設定
@@ -71,7 +73,7 @@ public class TestListStudentExecuteAction extends Action {
 
         // 取得した情報をリクエスト属性にセット
         request.setAttribute("school", school);
-        request.setAttribute("testliststudent", testliststudent);
+//        request.setAttribute("testliststudent", testliststudent);
         request.setAttribute("student", student);
         request.setAttribute("mode", "st");
 
