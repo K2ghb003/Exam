@@ -68,6 +68,9 @@
             <c:forEach var="year" items="${entYearList}">
               <option value="${year}" <c:if test="${param.entYear == year}">selected</c:if>>${year}</option>
             </c:forEach>
+            <c:if test="${not empty errors.entYear}">
+	          <div class="error">${errors.entYear}</div>
+	        </c:if>
           </select>
 
           <label class="me-2">クラス：</label>
@@ -76,6 +79,9 @@
             <c:forEach var="c" items="${classList}">
               <option value="${c}" <c:if test="${param.classNum == c}">selected</c:if>>${c}</option>
             </c:forEach>
+            <c:if test="${not empty errors.classNum}">
+	          <div class="error">${errors.classNum}</div>
+	        </c:if>
           </select>
 
           <label class="me-2">科目：</label>
@@ -144,6 +150,11 @@
 		    <!-- 結果件数 -->
 		      <div class="px-4 mb-2">科目：${subject.name}</div>
 
+			<c:choose>
+		  		<c:when test="${empty subjectTestList}">
+					<div>学生情報が存在しませんでした</div>
+				</c:when>
+				<c:otherwise>
 
 		      <!-- 一覧 -->
 		      <table class="table mb-5" style="border-collapse: collapse;">
@@ -172,6 +183,8 @@
 		        </tbody>
 
 		      </table>
+		    </c:otherwise>
+			</c:choose>
 		  </c:when>
 		  <c:otherwise>
 		  </c:otherwise>
