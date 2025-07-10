@@ -48,11 +48,17 @@
 
       <!-- フィルター -->
       <div style="background: #fff; border: 1px solid #ccc; padding: 16px; border-radius: 8px; margin: 0 16px 16px 16px;">
-        <form action="StudentList.action" method="get" class="px-4 mb-3">
-		  <div>
+        <form action="TestListSubjectExecute.action" method="get" class="px-4 mb-3">
+        <table>
+
+        <tr>
+        <td>
+         <div>
 		    <p>科目情報</p>
 		  </div>
-		  <div>
+        </td>
+        <td>
+          <div>
 	          <label class="me-2">入学年度：</label>
 	          <select name="entYear" class="me-4">
 	            <option value="">----</option>
@@ -61,7 +67,8 @@
 	            </c:forEach>
 	          </select>
 		  </div>
-
+        </td>
+        <td>
           <label class="me-2">クラス：</label>
           <select name="classNum" class="me-4">
             <option value="">----</option>
@@ -69,16 +76,22 @@
               <option value="${c}" <c:if test="${param.classNum == c}">selected</c:if>>${c}</option>
             </c:forEach>
           </select>
-
-          <label class="me-2">科目：</label>
+        </td>
+        <td>
+  		  <label class="me-2">科目：</label>
           <select name="subject" class="me-4">
             <option value="">----</option>
             <c:forEach var="sub" items="${subjectList}">
               <option value="${sub.cd}" <c:if test="${param.subject == sub.name}">selected</c:if>>${sub.name}</option>
             </c:forEach>
           </select>
+        </td>
+        <td>
+        <button type="submit" class="filter-btn me-3">検索</button>
+        </td>
+        </tr>
 
-          <button type="submit" class="filter-btn me-3">検索</button>
+        </table>
 
         </form>
 
@@ -89,7 +102,7 @@
           <p>学生情報</p>
 
           <label class="me-2">学生番号：</label>
-              <input type="text" id="no" name="no" />
+              <input type="text" id="no" name="no" required />
 
           <button type="submit" class="filter-btn me-3">検索</button>
 
@@ -97,7 +110,7 @@
       </div>
 
       <!-- 結果件数 -->
-      <label><p>科目情報を選択または学生情報を入力してして検索ボックスをクリックしてください</p></label>
+      <p style="color: #00c5ff">科目情報を選択または学生情報を入力してして検索ボックスをクリックしてください</p>
 
     </section>
   </c:param>
