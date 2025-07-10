@@ -82,7 +82,7 @@
           <select name="subject" class="me-4">
             <option value="">----</option>
             <c:forEach var="sub" items="${subjectList}">
-              <option value="${sub.name}" <c:if test="${param.subject == sub.name}">selected</c:if>>${sub.name}</option>
+              <option value="${sub.cd}" <c:if test="${param.subject == sub.cd}">selected</c:if>>${sub.name}</option>
             </c:forEach>
           </select>
 

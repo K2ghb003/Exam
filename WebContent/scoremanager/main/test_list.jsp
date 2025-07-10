@@ -49,16 +49,11 @@
       <!-- フィルター -->
       <div style="background: #fff; border: 1px solid #ccc; padding: 16px; border-radius: 8px; margin: 0 16px 16px 16px;">
         <form action="TestListSubjectExecute.action" method="get" class="px-4 mb-3">
-        <table>
-
-        <tr>
-        <td>
-         <div>
+        <div style="display: flex; justify-content: center; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+         <div style="display: flex; flex-direction: column; min-width: 120px;">
 		    <p>科目情報</p>
 		  </div>
-        </td>
-        <td>
-          <div>
+          <div style="display: flex; flex-direction: column; min-width: 120px;">
 	          <label class="me-2">入学年度：</label>
 	          <select name="entYear" class="me-4">
 	            <option value="">----</option>
@@ -67,8 +62,7 @@
 	            </c:forEach>
 	          </select>
 		  </div>
-        </td>
-        <td>
+		  <div style="display: flex; flex-direction: column; min-width: 120px;">
           <label class="me-2">クラス：</label>
           <select name="classNum" class="me-4">
             <option value="">----</option>
@@ -76,36 +70,37 @@
               <option value="${c}" <c:if test="${param.classNum == c}">selected</c:if>>${c}</option>
             </c:forEach>
           </select>
-        </td>
-        <td>
+          </div>
+          <div style="display: flex; flex-direction: column; min-width: 120px;">
   		  <label class="me-2">科目：</label>
           <select name="subject" class="me-4">
             <option value="">----</option>
             <c:forEach var="sub" items="${subjectList}">
-              <option value="${sub.cd}" <c:if test="${param.subject == sub.name}">selected</c:if>>${sub.name}</option>
+              <option value="${sub.cd}" <c:if test="${param.subject == sub.cd}">selected</c:if>>${sub.name}</option>
             </c:forEach>
           </select>
-        </td>
-        <td>
+          </div>
         <button type="submit" class="filter-btn me-3">検索</button>
-        </td>
-        </tr>
-
-        </table>
-
+		</div>
         </form>
 
 		<hr>
 
         <form action="TestListStudentExecute.action" method="get" class="px-4 mb-3">
+		<div style="display: flex; justify-content: center; align-items: flex-end; gap: 8px; flex-wrap: wrap;">
+		  <div style="display: flex; flex-direction: column; min-width: 120px;">
+            <p>学生情報</p>
+          </div>
 
-          <p>学生情報</p>
-
+		  <div style="display: flex; flex-direction: column; min-width: 120px;">
           <label class="me-2">学生番号：</label>
               <input type="text" id="no" name="no" required />
-
+		  </div>
+		  <div style="display: flex; flex-direction: column; min-width: 120px;">
           <button type="submit" class="filter-btn me-3">検索</button>
+          </div>
 
+		</div>
         </form>
       </div>
 
