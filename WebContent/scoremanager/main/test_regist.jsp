@@ -82,7 +82,7 @@
           <!-- 共通エラー表示 -->
           <c:if test="${param.searchFlg == 'true'
               && (empty param.entYear or empty param.classNum or empty param.subjectCd or empty param.no)}">
-            <div style="color: red; font-size: 0.9rem; margin-top: 12px; text-align: center;">
+            <div style="color: #f8a73d; font-size: 0.9rem; margin-top: 12px; text-align: center;">
               すべて選択してください。
             </div>
           </c:if>
@@ -132,7 +132,7 @@
                            value="${pointMap[student.no] != null ? pointMap[student.no] : ''}"
                            style="width: 60px;">
                     <c:if test="${not empty pointErrors[student.no]}">
-                      <div class="point-error" style="color: red; font-size: 0.9rem; margin-top: 4px;">
+                      <div class="point-error" style="color: #f8a73d; font-size: 0.9rem; margin-top: 4px;">
                         ${pointErrors[student.no]}
                       </div>
                     </c:if>
