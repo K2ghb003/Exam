@@ -42,6 +42,7 @@ public class TestListSubjectExecuteAction extends Action {
         String entYearStr = request.getParameter("entYear");
         String classNum = request.getParameter("classNum");
         String subjectStr = request.getParameter("subject");
+//        System.out.println(entYearStr + " " + classNum + " " + subjectStr);
 //
 //        // 検索条件の変換
         Integer entYear = (entYearStr != null && !entYearStr.isEmpty()) ? Integer.parseInt(entYearStr) : null;
@@ -50,8 +51,15 @@ public class TestListSubjectExecuteAction extends Action {
 
         Map<String, String> errors = new HashMap<>();
         if (subjectStr == null || subjectStr.trim().isEmpty()) {
-            errors.put("subject", "科目番号を入力してください");
+            errors.put("subject", "科目番号");
         }
+        if (entYearStr == null || entYearStr.trim().isEmpty()) {
+            errors.put("entYear", "入学年度");
+        }
+        if (classNum == null || classNum.trim().isEmpty()) {
+            errors.put("classNum", "クラス");
+        }
+//        System.out.println(errors.size());
         if (!errors.isEmpty()) {
         	ClassNumDao classNumDao = new ClassNumDao();
             List<String> classNumList = classNumDao.filter(school);
@@ -69,7 +77,6 @@ public class TestListSubjectExecuteAction extends Action {
         	request.getRequestDispatcher("test_list.jsp").forward(request, response);
             return;
         }
-
         // クラス一覧の取得
         SubjectDao subDao = new SubjectDao();
         Subject subject = subDao.get(subjectStr, school);
