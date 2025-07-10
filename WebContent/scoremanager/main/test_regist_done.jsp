@@ -21,7 +21,7 @@
       <a href="TestRegist.action" style="margin-right: 30px; text-decoration: underline; color: #0000cc;">戻る</a>
 
       <!-- ④ 成績参照リンク -->
-      <a href="TestRefer.action" style="text-decoration: underline; color: #0000cc;">成績参照</a>
+      <a href="TestList.action" style="text-decoration: underline; color: #0000cc;">成績参照</a>
     </section>
   </c:param>
 </c:import>
