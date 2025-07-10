@@ -16,6 +16,7 @@
 
   <c:param name="content">
     <section style="padding: 20px;">
+
       <!-- タイトル -->
       <h2 style="border-left: 6px solid #007bff; background-color: #f5f5f5;
                  padding: 12px 16px; margin-bottom: 20px; font-size: 20px; border-radius: 4px;">
@@ -27,6 +28,7 @@
         <form action="TestRegist.action" method="post">
           <input type="hidden" name="searchFlg" value="true">
           <div style="display: flex; justify-content: center; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+
             <!-- 入学年度 -->
             <div style="display: flex; flex-direction: column; min-width: 120px;">
               <label>入学年度：</label>
@@ -58,9 +60,6 @@
                   <option value="${subject.cd}" <c:if test="${param.subjectCd == subject.cd}">selected</c:if>>${subject.name}</option>
                 </c:forEach>
               </select>
-              <c:if test="${param.searchFlg == 'true' && not empty requestScope.subjectError}">
-                <div style="color: red; font-size: 0.9rem;">科目を選択してください。</div>
-              </c:if>
             </div>
 
             <!-- 回数 -->
@@ -72,9 +71,6 @@
                   <option value="${i}" <c:if test="${param.no == i}">selected</c:if>>${i}</option>
                 </c:forEach>
               </select>
-              <c:if test="${param.searchFlg == 'true' && not empty requestScope.noError}">
-                <div style="color: red; font-size: 0.9rem;">回数を選択してください。</div>
-              </c:if>
             </div>
 
             <!-- 検索ボタン -->
@@ -82,6 +78,14 @@
               <input type="submit" value="検索" style="padding: 6px 14px;">
             </div>
           </div>
+
+          <!-- 共通エラー表示 -->
+          <c:if test="${param.searchFlg == 'true'
+              && (empty param.entYear or empty param.classNum or empty param.subjectCd or empty param.no)}">
+            <div style="color: red; font-size: 0.9rem; margin-top: 12px; text-align: center;">
+              すべて選択してください。
+            </div>
+          </c:if>
         </form>
       </div>
 
