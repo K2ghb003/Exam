@@ -19,8 +19,8 @@
 
       <!-- タイトル -->
       <h2
-      <c:if test="${param.searchFlg == 'true'}"> style="border-left: 6px solid #007bff; background-color: #f5f5f5;
-                 padding: 12px 16px; margin-bottom: 20px; font-size: 20px; border-radius: 4px;" </c:if>
+      <c:if test="${param.searchFlg == 'true'}"> style="background-color: #f1f1f1; padding: 10px; font-size: 22px;
+        border-left: 5px solid #007bff; margin-bottom: 20px;"" </c:if>
       <c:if test="${not param.searchFlg == 'true'}">  class="h3 mb-3 bg-secondary bg-opacity-10 py-2 px-4"  </c:if>
       >
         成績管理
