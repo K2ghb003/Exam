@@ -50,7 +50,7 @@
       <div style="background: #fff; border: 1px solid #ccc; padding: 16px; border-radius: 8px; margin: 0 16px 16px 16px;">
         <form action="TestListSubjectExecute.action" method="get" class="px-4 mb-3">
         <div style="display: flex; justify-content: center; align-items: flex-end; gap: 16px;">
-         <div style="display: flex; flex-direction: column; min-width: 120px;">
+         <div style="display: flex; flex-direction: column; min-width: 80px;">
 		    <p>科目情報</p>
 		  </div>
           <div style="display: flex; flex-direction: column; min-width: 120px;">
@@ -125,16 +125,14 @@
 		          を入力してください
 					  </div>
 					</c:if>
-
-
 	          </div>
 	        </c:if>
 
 		<hr>
 
         <form action="TestListStudentExecute.action" method="get" class="px-4 mb-3">
-		<div style="display: flex; align-items: flex-end; gap: 8px; flex-wrap: wrap;">
-		  <div style="display: flex; flex-direction: column; min-width: 120px;">
+		<div style="display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+		  <div style="display: flex; flex-direction: column; min-width: 80px;">
             <p>学生情報</p>
           </div>
 
@@ -142,7 +140,7 @@
           <label class="me-2">学生番号：</label>
               <input type="text" id="no" name="no" required />
 		  </div>
-		  <div style="display: flex; flex-direction: column; min-width: 120px;">
+		  <div style="display: flex; flex-direction: column;">
           <button type="submit" class="filter-btn me-3">検索</button>
           </div>
 

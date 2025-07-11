@@ -38,10 +38,10 @@ public class TestRegistAction extends Action {
         }
 
         // パラメータ取得
-        String entYearStr = request.getParameter("entYear");
-        String classNum = request.getParameter("classNum");
-        String subjectCd = request.getParameter("subjectCd");
-        String testNoStr = request.getParameter("no");
+        String entYearStr = request.getParameter("f1");
+        String classNum = request.getParameter("f2");
+        String subjectCd = request.getParameter("f3");
+        String testNoStr = request.getParameter("f4");
 
         Integer entYear = null;
         Integer testNo = null;

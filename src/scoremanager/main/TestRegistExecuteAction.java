@@ -38,10 +38,10 @@ public class TestRegistExecuteAction extends Action {
             // パラメータ取得
             String entYearStr = req.getParameter("entYear");
             String classNum = req.getParameter("classNum");
-            String subjectCd = req.getParameter("subjectCd");
-            String testNoStr = req.getParameter("no");
+            String subjectCd = req.getParameter("subject");
+            String testNoStr = req.getParameter("count");
 
-            String[] studentNos = req.getParameterValues("studentNo");
+            String[] studentNos = req.getParameterValues("regist");
             String[] points = req.getParameterValues("point");
 
             if (entYearStr == null || classNum == null || subjectCd == null || testNoStr == null ||
