@@ -6,12 +6,11 @@
   <c:param name="scripts"></c:param>
 
   <c:param name="content">
-    <style>
-      section.subject-form {
+  <%-- section.subject-form {
         width: 500px;
         margin: auto;
-      }
-
+      } --%>
+    <style>
       section.subject-form h2 {
         background-color: #f1f1f1;
         padding: 10px;
@@ -69,12 +68,12 @@
       }
 
       a {
-        margin-left: 12px;
+        <%-- margin-left: 12px;
         font-size: 14px;
         display: inline-block;
-        margin-top: 16px;
+        margin-top: 16px;--%>
         color: #007bff;
-        text-decoration: none;
+        <%--text-decoration: none;--%>
       }
 
       a:hover {
@@ -104,10 +103,9 @@
         </div>
 
         <!-- 登録ボタンと戻るリンク -->
-        <div>
-          <input type="submit" value="登録" />
-          <a href="SubjectList.action">戻る</a>
-        </div>
+        <p><input type="submit" value="登録" /></p>
+        <p><a href="SubjectList.action">戻る</a></p>
+
       </form>
     </section>
   </c:param>

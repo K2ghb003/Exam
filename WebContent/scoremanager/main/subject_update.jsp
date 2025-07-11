@@ -13,12 +13,11 @@
     <c:param name="scripts"></c:param>
 
     <c:param name="content">
-        <style>
-            section.subject-form {
+    <%-- section.subject-form {
                 width: 500px;
                 margin: auto;
-            }
-
+            } --%>
+        <style>
             section.subject-form h2 {
                 background-color: #f1f1f1;
                 padding: 10px;
@@ -93,7 +92,7 @@
             <form action="SubjectUpdateExecute.action" method="post" >
                 <label>科目コード</label>
                 <p>
-                    <input type="text" name="cd" value="${cd}" readonly>
+                    <input type="text" name="cd" value="${cd}" style="border: 0; box-shadow: 0 0 0 0;" readonly>
                 <c:if test="${not empty errors.cd}">
 		          <div class="error" style="color:#ffbb00">${errors.cd}</div>
 		        </c:if>
@@ -105,7 +104,7 @@
                            required placeholder="科目名を入力してください" maxlength="20">
                 </p>
 
-                <input type="submit" value="変更">
+                <input type="submit" value="変更"><br>
                 <a href="SubjectList.action">戻る</a>
             </form>
         </section>
