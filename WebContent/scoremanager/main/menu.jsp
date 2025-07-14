@@ -78,7 +78,7 @@
 
       .submenu {
         position: absolute;
-        top: -2rem;
+        top: -4rem;
         left: 10%;
         display: flex;
         flex-direction: column;
