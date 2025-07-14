@@ -42,7 +42,7 @@
         background-color: #f1f1f1;
         padding: 10px;
         font-size: 22px;
-        border-left: 5px solid #007bff;
+        border-left: 5px solid #28a745;
         margin-bottom: 20px;
       }
   p {
@@ -57,8 +57,12 @@
     <section class="me-4"><%--  class="form-box" --%>
       <h2>学生情報変更</h2>
 
-      <div class="alert alert-success px-4" role="alert" style="--bs-alert-padding-y: 0rem;
-      	text-align: center; margin: 0 0 0 0; background-color: #d4edda; border-color: #c3e6cb; color: #0e3818;">変更が完了しました</div>
+	  <div class="alert alert-success px-4" role="alert" style="--bs-alert-padding-y: 0rem;
+      	text-align: center; margin: 0 0 0 0; background-color: #d4edda; border-color: #c3e6cb; color: #0e3818;"> <%--  py-3 --%>
+        <p>変更が完了しました</p>
+      </div>
+      <%-- <div class="alert alert-success px-4" role="alert" style="--bs-alert-padding-y: 0rem;
+      	text-align: center; margin: 0 0 0 0; background-color: #d4edda; border-color: #c3e6cb; color: #0e3818;">変更が完了しました</div> --%>
 
       <div class="link" style="margin-left: 1rem; margin-top: 5rem;">
         <a href="StudentList.action" style="margin-right: 1.5rem; color: #007bff; text-decoration: none;">学生一覧</a>

@@ -36,10 +36,10 @@ public class TestRegistExecuteAction extends Action {
             School school = teacher.getSchool();
 
             // パラメータ取得
-            String entYearStr = req.getParameter("entYear");
-            String classNum = req.getParameter("classNum");
-            String subjectCd = req.getParameter("subject");
-            String testNoStr = req.getParameter("count");
+            String entYearStr = req.getParameter("f1");
+            String classNum = req.getParameter("f2");
+            String subjectCd = req.getParameter("f3");
+            String testNoStr = req.getParameter("f4");
 
             String[] studentNos = req.getParameterValues("regist");
             String[] points = req.getParameterValues("point");
