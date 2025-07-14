@@ -17,7 +17,7 @@ List<Subject> list=(List<Subject>)request.getAttribute("subject_list");
 	        background-color: #f1f1f1;
 	        padding: 10px;
 	        font-size: 22px;
-	        border-left: 5px solid #007bff;
+	        border-left: 5px solid #28a745;
 	        margin-bottom: 20px;
 	      }
 	    p {
