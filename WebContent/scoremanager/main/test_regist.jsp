@@ -28,7 +28,7 @@
 
       <!-- 検索フォーム -->
       <div style="border: 1px solid #ccc; padding: 16px; border-radius: 6px; margin-bottom: 20px;">
-        <form action="TestRegist.action" method="get">
+        <form action="TestRegist.action" method="post">
           <input type="hidden" name="searchFlg" value="true">
           <div style="display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap;"> <%--  justify-content: center; --%>
 
@@ -132,11 +132,11 @@
 			    <div class="px-4 mb-2">成績情報が存在しませんでした。</div>
 			  </c:if>
       <c:if test="${not empty studentList}">
-        <form action="TestRegistExecute.action" method="post">
-          <input type="hidden" name="entYear" value="${param.f1}">
-          <input type="hidden" name="classNum" value="${param.f2}">
-          <input type="hidden" name="subject" value="${param.f3}">
-          <input type="hidden" name="count" value="${param.f4}">
+        <form action="TestRegistExecute.action" method="post"> <%-- FIX LATER OT POST --%>
+          <input type="hidden" name="f1" value="${param.f1}">
+          <input type="hidden" name="f2" value="${param.f2}">
+          <input type="hidden" name="f3" value="${param.f3}">
+          <input type="hidden" name="f4" value="${param.f4}">
 
           <!-- 科目名と回数表示 -->
           <div style="margin-bottom: 10px; font-size: 16px;">
