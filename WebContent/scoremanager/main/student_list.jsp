@@ -62,7 +62,7 @@
     </style>
 
     <section class="me-4">
-      <h2 class="h3 mb-3 bg-secondary bg-opacity-10 py-2 px-4 ">学生管理</h2>
+      <h2 class="h3 mb-3 bg-secondary bg-opacity-10 py-2 px-4">学生管理</h2>
       <div style="text-align: right; margin: 0 16px 16px 0;">
         <a href="StudentCreate.action" class="create-link">新規登録</a>
       </div>

@@ -44,12 +44,12 @@
     </style>
 
     <section class="me-4">
-      <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">成績一覧</h2>
+      <h2 class="h3 mb-3 bg-secondary bg-opacity-10 py-2 px-4">成績一覧</h2> <%--  class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4" --%>
 
       <!-- フィルター -->
       <div style="background: #fff; border: 1px solid #ccc; padding: 16px; border-radius: 8px; margin: 0 16px 16px 16px;">
         <form action="TestListSubjectExecute.action" method="get" class="px-4 mb-3">
-        <div style="display: flex; justify-content: center; align-items: flex-end; gap: 16px;">
+        <div style="display: flex; align-items: flex-end; gap: 16px;"><%--  justify-content: center; --%>
          <div style="display: flex; flex-direction: column; min-width: 80px;">
 		    <p>科目情報</p>
 		  </div>

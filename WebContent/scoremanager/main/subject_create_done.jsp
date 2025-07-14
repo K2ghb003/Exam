@@ -11,15 +11,23 @@
         background-color: #f1f1f1;
         padding: 10px;
         font-size: 22px;
-        border-left: 5px solid #80bd9e;
+        border-left: 5px solid #28a745;
         margin-bottom: 20px;
       }
+    p {
+	    margin-top: 0;
+	    margin-bottom: 0;
+		}
 
 	</style>
 
-    <section>
+    <section class="me-4">
       <h2>科目情報登録</h2>
-      <p style="background-color:#80bd9e; text-align:center ">登録が完了しました</p>
+
+      <div class="alert alert-success px-4" role="alert" style="--bs-alert-padding-y: 0rem;
+      	text-align: center; margin: 0 0 0 0; background-color: #d4edda; border-color: #c3e6cb; color: #0e3818;"> <%--  py-3 --%>
+        <p>登録が完了しました</p>
+      </div>
 
 	  <div style="margin-left: 1rem; margin-top: 5rem;">
         <a href="SubjectCreate.action" style="margin-right: 1.5rem; color: #007bff; text-decoration: none;">戻る</a>

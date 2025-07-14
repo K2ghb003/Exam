@@ -30,7 +30,7 @@
       <div style="border: 1px solid #ccc; padding: 16px; border-radius: 6px; margin-bottom: 20px;">
         <form action="TestRegist.action" method="get">
           <input type="hidden" name="searchFlg" value="true">
-          <div style="display: flex; justify-content: center; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+          <div style="display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap;"> <%--  justify-content: center; --%>
 
             <!-- 入学年度 -->
             <div style="display: flex; flex-direction: column; min-width: 120px;">
