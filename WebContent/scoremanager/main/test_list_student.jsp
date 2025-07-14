@@ -59,64 +59,120 @@
       <!-- フィルター -->
       <div style="background: #fff; border: 1px solid #ccc; padding: 16px; border-radius: 8px; margin: 0 16px 16px 16px;">
         <form action="TestListSubjectExecute.action" method="get" class="px-4 mb-3">
-
-		  <label>科目情報</label>
-
-          <label class="me-2">入学年度：</label>
-          <select name="entYear" class="me-4">
-            <option value="">----</option>
-            <c:forEach var="year" items="${entYearList}">
-              <option value="${year}" <c:if test="${param.entYear == year}">selected</c:if>>${year}</option>
-            </c:forEach>
-            <c:if test="${not empty errors.entYear}">
-	          <div class="error">${errors.entYear}</div>
-	        </c:if>
-          </select>
-
+        <div style="display: flex; justify-content: center; align-items: flex-end; gap: 16px;">
+         <div style="display: flex; flex-direction: column; min-width: 80px;">
+		    <p>科目情報</p>
+		  </div>
+          <div style="display: flex; flex-direction: column; min-width: 120px;">
+	          <label class="me-2">入学年度：</label>
+	          <select name="entYear" class="me-4">
+	            <option value="">----</option>
+	            <c:forEach var="year" items="${entYearList}">
+	              <option value="${year}" <c:if test="${param.entYear == year}">selected</c:if>>${year}</option>
+	            </c:forEach>
+	            <c:if test="${not empty requestScope.errors}">
+		          <div class="error">${requestScope.errors.get(entYear)}</div>
+		        </c:if>
+	          </select>
+		  </div>
+		  <div style="display: flex; flex-direction: column; min-width: 120px;">
           <label class="me-2">クラス：</label>
           <select name="classNum" class="me-4">
             <option value="">----</option>
             <c:forEach var="c" items="${classList}">
               <option value="${c}" <c:if test="${param.classNum == c}">selected</c:if>>${c}</option>
             </c:forEach>
-            <c:if test="${not empty errors.classNum}">
-	          <div class="error">${errors.classNum}</div>
+            <c:if test="${not empty requestScope.errors}">
+	          <div class="error">${requestScope.errors.classNum}</div>
 	        </c:if>
           </select>
-
-          <label class="me-2">科目：</label>
+          </div>
+          <div style="display: flex; flex-direction: column; min-width: 120px;">
+  		  <label class="me-2">科目：</label>
           <select name="subject" class="me-4">
             <option value="">----</option>
             <c:forEach var="sub" items="${subjectList}">
               <option value="${sub.cd}" <c:if test="${param.subject == sub.cd}">selected</c:if>>${sub.name}</option>
             </c:forEach>
+            <c:if test="${not empty requestScope.errors}">
+	          <div class="error">$requestScope.{errors['subject']}</div>
+	        </c:if>
           </select>
-
-          <button type="submit" class="filter-btn me-3">検索</button>
-
+          </div>
+        <button type="submit" class="filter-btn me-3">検索</button>
+		</div>
         </form>
-      </div>
+        <%--<p>DEBUG: entYear param = ${param.entYear}</p>
+		<p>DEBUG: errors = ${errors}</p> --%>
 
-      <div style="background: #fff; border: 1px solid #ccc; padding: 16px; border-radius: 8px; margin: 0 16px 16px 16px;">
+	        <c:if test="${errors.size() > 0}">
+	          <div class="error">
+		          <%--<c:if test="${not empty errors.entYear}">${errors.entYear}</c:if>
+		          <c:if test="${not empty errors.classNum}">${errors.classNum}</c:if>
+		          <c:if test="${not empty errors.subject}">${errors.subject}</c:if> --%>
+
+		            <c:if test="${errors.size() > 0}">
+					  <div class="error"  style="color: #f8a73d">
+					    <c:set var="first" value="true" />
+
+					    <c:if test="${not empty errors.entYear}">
+					      <c:if test="${not first}">、</c:if>
+					      ${errors['entYear']}
+					      <c:set var="first" value="false" />
+					    </c:if>
+
+					    <c:if test="${not empty errors.classNum}">
+					      <c:if test="${not first}">、</c:if>
+					      ${errors['classNum']}
+					      <c:set var="first" value="false" />
+					    </c:if>
+
+					    <c:if test="${not empty errors.subject}">
+					      <c:if test="${not first}">、</c:if>
+					      ${errors['subject']}
+					      <c:set var="first" value="false" />
+					    </c:if>
+		          を入力してください
+					  </div>
+					</c:if>
+	          </div>
+	        </c:if>
+
+		<hr>
+
         <form action="TestListStudentExecute.action" method="get" class="px-4 mb-3">
+		<div style="display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+		  <div style="display: flex; flex-direction: column; min-width: 80px;">
+            <p>学生情報</p>
+          </div>
 
-          <label>学生情報</label>
-
+		  <div style="display: flex; flex-direction: column; min-width: 120px;">
           <label class="me-2">学生番号：</label>
-              <input type="text" required id="no" name="no" <c:if test="${not empty student.no}">value="${student.no}"</c:if> />
+              <input type="text" required id="no" name="no" <c:if test="${not empty student.no}">value="${student.no}"</c:if>
+              <c:if test="${not empty param.no}">value="${param.no}"</c:if> />
+		  </div>
+		  <div style="display: flex; flex-direction: column;">
           <button type="submit" class="filter-btn me-3">検索</button>
+          </div>
 
+		</div>
         </form>
       </div>
 
       <c:choose>
 		  <c:when test="${mode == 'st'}">
 	      	  <!-- 結果 -->
+	      	  <c:if test="${not empty student}">
 		      <div class="px-4 mb-2">氏名：${student.name}(${student.no})</div>
+		      </c:if>
 
 		  	  <!-- 成績が見つからない場合のメッセージ表示 -->
 			  <c:if test="${notFound}">
 			    <div class="px-4 mb-2">成績情報が存在しませんでした。</div>
+			  </c:if>
+
+			  <c:if test="${notExistant}">
+			    <div class="px-4 mb-2">学生の情報が存在しませんでした。</div>
 			  </c:if>
 
 			  <!-- 成績情報が存在する場合の表示 -->

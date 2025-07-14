@@ -12,12 +12,11 @@
   <c:param name="scripts"></c:param>
 
   <c:param name="content">
-    <style>
-      section.subject-delete {
+  <%-- section.subject-delete {
         width: 500px;
         margin: auto;
-      }
-
+      } --%>
+    <style>
       section.subject-delete h2 {
         background-color: #f1f1f1;
         padding: 10px;
@@ -66,7 +65,9 @@
         </p>
         <input type="hidden" name="cd" value="<%= subject.getCd() %>">
         <input type="submit" value="削除">
-        <a href="SubjectList.action">戻る</a>
+        <div class="link" style="margin-left: 1rem; margin-top: 5rem;">
+        	<a href="SubjectList.action">戻る</a>
+        </div>
       </form>
     </section>
   </c:param>

@@ -27,7 +27,9 @@ List<Subject> list=(List<Subject>)request.getAttribute("subject_list");
 	      <h2>科目情報変更</h2>
 	      <p style="background-color:#80bd9e; text-align:center ">変更が完了しました</p>
 
-		  <a href="SubjectList.action">科目一覧</a>
+		  <div class="link" style="margin-left: 1rem; margin-top: 5rem;">
+		  	<a href="SubjectList.action">科目一覧</a>
+		  </div>
 		</section>
 	</c:param>
 </c:import>

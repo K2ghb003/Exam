@@ -35,6 +35,7 @@
         text-decoration: none;
         font-weight: bold;
         transition: color 0.2s;
+        text-decoration: underline;
       }
 
       .delete-link:hover {
@@ -48,6 +49,7 @@
         text-decoration: none;
         margin-right: 12px;
         transition: color 0.2s;
+        text-decoration: underline;
       }
 
       .create-link:hover {
@@ -61,8 +63,8 @@
       }
     </style>
 
-    <section style="width: 800px; margin: auto;">
-      <h2 style="background-color: #f1f1f1; padding: 10px; font-size: 22px; border-left: 5px solid #007bff; margin-bottom: 20px;">
+    <section class="me-4"> <%--  style="width: 800px; margin: auto;" --%>
+      <h2 class="h3 mb-3 bg-secondary bg-opacity-10 py-2 px-4"> <%--  style="background-color: #f1f1f1; padding: 10px; font-size: 22px; border-left: 5px solid #007bff; margin-bottom: 20px;" --%>
         科目管理
       </h2>
 

@@ -11,7 +11,7 @@
         background-color: #f1f1f1;
         padding: 10px;
         font-size: 22px;
-        border-left: 5px solid #007bff;
+        border-left: 5px solid #80bd9e;
         margin-bottom: 20px;
       }
 
@@ -21,7 +21,11 @@
       <h2>科目情報登録</h2>
       <p style="background-color:#80bd9e; text-align:center ">登録が完了しました</p>
 
-      <p><a href="SubjectCreate.action">戻る</a>　　　　　<a href="SubjectList.action">科目一覧</a></p>
+	  <div style="margin-left: 1rem; margin-top: 5rem;">
+        <a href="SubjectCreate.action" style="margin-right: 1.5rem; color: #007bff; text-decoration: none;">戻る</a>
+        <a href="SubjectList.action" style="color: #007bff; text-decoration: none;">学生一覧</a>
+      </div>
+      <%-- <p><a href="SubjectCreate.action">戻る</a>　　　　　<a href="SubjectList.action">科目一覧</a></p> --%>
     </section>
   </c:param>
 </c:import>

@@ -51,43 +51,51 @@ public class TestListStudentExecuteAction extends Action {
         Student student = studentDao.get(studentNumber);
 
         // 学籍番号をもとにテスト情報を取得
-        List<TestListStudent> testliststudent = testliststudentDao.filter(student);
+        try{
+        	List<TestListStudent> testliststudent = testliststudentDao.filter(student);
+
 //        System.out.println(student.getNo());
 //        System.out.println(testliststudent.size());
 
 
         // Teacherから学校情報を取得して設定
-        if (teacher.getSchool() != null) {
-            school.setCd(teacher.getSchool().getCd());
-            school.setName(teacher.getSchool().getName());
+
+
+	        // 成績情報が存在しない場合
+	        if (testliststudent == null || testliststudent.isEmpty()) {
+	            request.setAttribute("notFound", true);
+	        } else {
+	            request.setAttribute("testliststudent", testliststudent);
+	        }
+
+        } catch(Exception e){
+        	request.setAttribute("notExistant", true);
+        } finally{
+
+
+        	if (teacher.getSchool() != null) {
+        		school.setCd(teacher.getSchool().getCd());
+        		school.setName(teacher.getSchool().getName());
+        	}
+	        // 取得した情報をリクエスト属性にセット
+	        request.setAttribute("school", school);
+	//        request.setAttribute("testliststudent", testliststudent);
+	        request.setAttribute("student", student);
+	        request.setAttribute("mode", "st");
+
+	        ClassNumDao classNumDao = new ClassNumDao();
+	        List<String> classNumList = classNumDao.filter(school);
+	        request.setAttribute("classList", classNumList);
+
+	        SubjectDao subjectDao = new SubjectDao();
+	        List<Subject> subjectList = subjectDao.filter(school);
+	        request.setAttribute("subjectList", subjectList);
+
+	        List<Integer> entYearList = studentDao.getEntYearList(school);
+	        request.setAttribute("entYearList", entYearList);
+
+	        request.getRequestDispatcher("/scoremanager/main/test_list_student.jsp").forward(request, response);
+
         }
-
-
-        // 成績情報が存在しない場合
-        if (testliststudent == null || testliststudent.isEmpty()) {
-            request.setAttribute("notFound", true);
-        } else {
-            request.setAttribute("testliststudent", testliststudent);
-        }
-
-
-        // 取得した情報をリクエスト属性にセット
-        request.setAttribute("school", school);
-//        request.setAttribute("testliststudent", testliststudent);
-        request.setAttribute("student", student);
-        request.setAttribute("mode", "st");
-
-        ClassNumDao classNumDao = new ClassNumDao();
-        List<String> classNumList = classNumDao.filter(school);
-        request.setAttribute("classList", classNumList);
-
-        SubjectDao subjectDao = new SubjectDao();
-        List<Subject> subjectList = subjectDao.filter(school);
-        request.setAttribute("subjectList", subjectList);
-
-        List<Integer> entYearList = studentDao.getEntYearList(school);
-        request.setAttribute("entYearList", entYearList);
-
-        request.getRequestDispatcher("/scoremanager/main/test_list_student.jsp").forward(request, response);
     }
 }

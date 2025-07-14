@@ -17,7 +17,7 @@ List<Subject> list=(List<Subject>)request.getAttribute("subject_list");
 	        background-color: #f1f1f1;
 	        padding: 10px;
 	        font-size: 22px;
-	        border-left: 5px solid red;
+	        border-left: 5px solid #007bff;
 	        margin-bottom: 20px;
 	      }
 
@@ -27,7 +27,9 @@ List<Subject> list=(List<Subject>)request.getAttribute("subject_list");
 	      <h2>科目情報削除</h2>
 	      <p style="background-color:#80bd9e; text-align:center ">削除が完了しました</p>
 
-		  <p><a href="SubjectList.action">科目一覧</a></p>
+		  <div class="link" style="margin-left: 1rem; margin-top: 5rem;">
+		  	<p><a href="SubjectList.action">科目一覧</a></p>
+		  </div>
 		</section>
 	</c:param>
 </c:import>

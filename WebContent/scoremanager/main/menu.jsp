@@ -10,15 +10,25 @@
       .center {
         display: flex;
         align-items: center;
-        min-height: 40rem;
         flex-direction: column;
+        padding: 4rem 0 6rem;
+      }
+
+      .menu-button-wrapper {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+
+      #menu-button {
+        margin-top: 2rem; /* ← 少し下にずらす調整 */
       }
 
       .menu-options {
         display: flex;
         justify-content: center;
         gap: 5rem;
-        margin-top: 3rem;
+        margin-top: 2rem;
         flex-wrap: wrap;
       }
 
@@ -112,15 +122,19 @@
     </style>
 
     <div class="center">
-      <div id="menu-button" class="btn-circle show">メニュー</div>
+      <!-- 最初のメニュー ボタン（中央・下に微調整） -->
+      <div class="menu-button-wrapper">
+        <div id="menu-button" class="btn-circle show">メニュー</div>
+      </div>
 
+      <!-- 下のメニュー項目（スライドイン表示） -->
       <div id="menu-options" class="menu-options" style="display: none;">
         <a href="StudentList.action" class="btn-circle menu-item">学生管理</a>
 
         <div class="score-wrapper menu-item">
           <div class="btn-circle score-main menu-item">成績管理</div>
           <div class="submenu">
-            <a href="TestRegist.action" class="a">成績登録</a>
+            <a href="TestRegist.action">成績登録</a>
             <a href="TestList.action">成績参照</a>
           </div>
         </div>
