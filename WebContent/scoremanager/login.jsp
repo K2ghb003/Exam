@@ -78,7 +78,7 @@
         height: 100%;
         background-color: #fff;
         opacity: 0;
-        animation: kiran 5s linear infinite;
+        animation: kiran 3.3s linear infinite;
         pointer-events: none;
       }
 
