@@ -204,14 +204,27 @@
 
 		  <c:when test="${mode == 'sj'}">
 		    <!-- 結果件数 -->
+
+			<%-- <c:choose>
+				<c:when test="${empty subjectTestList}"> --%>
+			<c:if test="${not empty subjectTestList}">
 		      <div class="px-4 mb-2">科目：${subject.name}</div>
+		    </c:if>
 
-			<c:choose>
-		  		<c:when test="${empty subjectTestList}">
-					<div>学生情報が存在しませんでした</div>
-				</c:when>
-				<c:otherwise>
+		  	  <!-- 成績が見つからない場合のメッセージ表示 -->
+			  <c:if test="${notFound}">
+			    <div class="px-4 mb-2">成績情報が存在しませんでした。</div>
+			  </c:if>
 
+			  <c:if test="${notExistant}">
+			    <div class="px-4 mb-2">学生の情報が存在しませんでした。</div>
+			  </c:if>
+		  		<%-- <c:when test="${empty subjectTestList}">
+					<div>学生情報が存在しませんでした</div> --%>
+				<%-- </c:when> --%>
+			<%-- <c:otherwise> --%>
+
+			<c:if test="${not empty subjectTestList}">
 		      <!-- 一覧 -->
 		      <table class="table mb-5" style="border-collapse: collapse;">
 		        <thead>
@@ -239,8 +252,9 @@
 		        </tbody>
 
 		      </table>
-		    </c:otherwise>
-			</c:choose>
+		    </c:if>
+		    <%-- </c:otherwise>
+			</c:choose> --%>
 		  </c:when>
 		  <c:otherwise>
 		  </c:otherwise>

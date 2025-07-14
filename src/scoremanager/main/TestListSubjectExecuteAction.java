@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.School;
+import bean.Student;
 import bean.Subject;
 import bean.Teacher;
 import bean.TestListSubject;
@@ -82,32 +83,60 @@ public class TestListSubjectExecuteAction extends Action {
         Subject subject = subDao.get(subjectStr, school);
 
         TestListSubjectDao dao = new TestListSubjectDao();
-        List<TestListSubject> subjectTestList = dao.filter(entYear.intValue(), classNum, subject, school);
+
+//        try{
+        	List<TestListSubject> subjectTestList = dao.filter(entYear.intValue(), classNum, subject, school);
+
+//        System.out.println(student.getNo());
+//        System.out.println(testliststudent.size());
+
+
+        // Teacherから学校情報を取得して設定
+
+
+	        // 成績情報が存在しない場合
+	        if (subjectTestList == null || subjectTestList.isEmpty()) {
+	        	StudentDao studentDao = new StudentDao();
+	        	List<Student> students = studentDao.filter(school, entYear, classNum, null);
+	             System.out.println(students.size());
+	        	if(students.size() > 0){
+	        		request.setAttribute("notFound", true);
+	        	}else{
+	        		request.setAttribute("notExistant", true);
+	        	}
+	        } else {
+	            request.setAttribute("subjectTestList", subjectTestList);
+	        }
+
+//        } catch(Exception e){
+//        	request.setAttribute("notExistant", true);
+//        } finally{
 
         // 科目一覧の取得
 
         // 入学年度リストを作成
+	        System.out.println(subjectTestList.size());
 
         // JSPへデータを渡す
         // 収集したデータをリクエストに設定
-        request.setAttribute("subjectTestList", subjectTestList);
-        request.setAttribute("subject", subject);
-        request.setAttribute("mode", "sj");
+	        request.setAttribute("subject", subject);
+	        request.setAttribute("mode", "sj");
 
-        ClassNumDao classNumDao = new ClassNumDao();
-        List<String> classNumList = classNumDao.filter(school);
-        request.setAttribute("classList", classNumList);
+	        ClassNumDao classNumDao = new ClassNumDao();
+	        List<String> classNumList = classNumDao.filter(school);
+	        request.setAttribute("classList", classNumList);
 
-        SubjectDao subjectDao = new SubjectDao();
-        List<Subject> subjectList = subjectDao.filter(school);
-        request.setAttribute("subjectList", subjectList);
+	        SubjectDao subjectDao = new SubjectDao();
+	        List<Subject> subjectList = subjectDao.filter(school);
+	        request.setAttribute("subjectList", subjectList);
 
-        StudentDao studentDao = new StudentDao();
-        List<Integer> entYearList = studentDao.getEntYearList(school);
-        request.setAttribute("entYearList", entYearList);
+	        StudentDao studentDao = new StudentDao();
+	        List<Integer> entYearList = studentDao.getEntYearList(school);
+	        request.setAttribute("entYearList", entYearList);
 
 
-        // 表示するJSPへフォワード
-        request.getRequestDispatcher("test_list_student.jsp").forward(request, response);
+	        // 表示するJSPへフォワード
+	        request.getRequestDispatcher("test_list_student.jsp").forward(request, response);
+//        }
     }
 }
