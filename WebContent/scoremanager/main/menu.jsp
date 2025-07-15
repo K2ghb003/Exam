@@ -135,14 +135,14 @@
         <div class="score-wrapper menu-item">
           <div class="btn-circle score-main menu-item">成績管理</div>
           <div class="submenu">
-            <a href="/exam/scoremanager/main/TestRegist.action">成績登録</a>
-            <a href="/exam/scoremanager/main/TestList.action">成績参照</a>
+            <a href="/exam/scoremanager/main/tests/TestRegist.action">成績登録</a>
+            <a href="/exam/scoremanager/main/tests/TestList.action">成績参照</a>
           </div>
         </div>
 
         <a href="/exam/scoremanager/main/subject/SubjectList.action" class="btn-circle menu-item">科目管理</a>
-        <a href="/exam/scoremanager/main/ClassList.action" class="btn-circle menu-item">クラス管理</a>
-        <a href="/exam/scoremanager/main/SchoolList.action" class="btn-circle menu-item">学校管理</a>
+        <a href="/exam/scoremanager/main/class/ClassList.action" class="btn-circle menu-item">クラス管理</a>
+        <a href="/exam/scoremanager/main/school/SchoolList.action" class="btn-circle menu-item">学校管理</a>
       </div>
     </div>
 
