@@ -88,7 +88,7 @@ public class StudentCreateExecuteAction extends Action {
         if (!errors.isEmpty()) {
             req.setAttribute("student", student);
             req.setAttribute("errors", errors);
-            req.getRequestDispatcher("/scoremanager/main/student_create.jsp").forward(req, res);
+            req.getRequestDispatcher("/scoremanager/main/student/student_create.jsp").forward(req, res);
             return;
         }
 
@@ -96,7 +96,7 @@ public class StudentCreateExecuteAction extends Action {
         boolean result = studentDao.save(student);
         if (result) {
             req.setAttribute("student", student);
-            req.getRequestDispatcher("/scoremanager/main/student_create_done.jsp").forward(req, res);
+            req.getRequestDispatcher("/scoremanager/main/student/student_create_done.jsp").forward(req, res);
         } else {
             req.setAttribute("error", "登録に失敗しました");
             req.getRequestDispatcher("/scoremanager/main/error.jsp").forward(req, res);

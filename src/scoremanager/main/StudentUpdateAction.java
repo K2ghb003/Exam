@@ -60,7 +60,7 @@ public class StudentUpdateAction extends Action {
             request.setAttribute("classNumList", classNumList);
 
             // 画面へフォワード
-            request.getRequestDispatcher("/scoremanager/main/student_update.jsp").forward(request, response);
+            request.getRequestDispatcher("/scoremanager/main/student/student_update.jsp").forward(request, response);
 
         } catch (Exception e) {
             e.printStackTrace();

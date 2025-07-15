@@ -60,7 +60,7 @@ public class StudentUpdateExecuteAction extends Action {
             request.setAttribute("classNumList", classNumDao.filter(school));
             request.setAttribute("errors", errors);
 
-            request.getRequestDispatcher("/scoremanager/main/student_update.jsp").forward(request, response);
+            request.getRequestDispatcher("/scoremanager/main/student/student_update.jsp").forward(request, response);
             return;
         }
 
@@ -77,7 +77,7 @@ public class StudentUpdateExecuteAction extends Action {
 
         if (result) {
             request.setAttribute("student", student);
-            request.getRequestDispatcher("/scoremanager/main/student_update_done.jsp").forward(request, response);
+            request.getRequestDispatcher("/scoremanager/main/student/student_update_done.jsp").forward(request, response);
         } else {
             request.setAttribute("error", "学生情報の更新に失敗しました。");
             request.getRequestDispatcher("/scoremanager/main/error.jsp").forward(request, response);
