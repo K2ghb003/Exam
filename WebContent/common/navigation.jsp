@@ -5,17 +5,18 @@
 
 <!-- サイドバーメニュー本体 -->
 <div class="sidebar">
-  <div class="slide-skew delay-0"><a href="Menu.action" class="cp_link">メニュー</a></div>
-  <div class="slide-skew delay-1"><a href="StudentList.action" class="cp_link">学生管理</a></div>
+  <div class="slide-skew delay-0"><a href="/exam/scoremanager/main/Menu.action" class="cp_link">メニュー</a></div>
+  <div class="slide-skew delay-1"><a href="/exam/scoremanager/main/student/StudentList.action" class="cp_link">学生管理</a></div>
 
   <div class="slide-skew delay-2 nav-label">成績管理</div>
   <div class="submenu">
-    <div class="slide-skew delay-3"><a href="TestRegist.action" class="cp_link">成績登録</a></div>
-    <div class="slide-skew delay-4"><a href="TestList.action" class="cp_link">成績参照</a></div>
+    <div class="slide-skew delay-3"><a href="/exam/scoremanager/main/TestRegist.action" class="cp_link">成績登録</a></div>
+    <div class="slide-skew delay-4"><a href="/exam/scoremanager/main/TestList.action" class="cp_link">成績参照</a></div>
   </div>
 
-  <div class="slide-skew delay-5"><a href="SubjectList.action" class="cp_link">科目管理</a></div>
-  <div class="slide-skew delay-6"><a href="ClassList.action" class="cp_link">クラス管理</a></div>
+  <div class="slide-skew delay-5"><a href="/exam/scoremanager/main/subject/SubjectList.action" class="cp_link">科目管理</a></div>
+  <div class="slide-skew delay-6"><a href="/exam/scoremanager/main/ClassList.action" class="cp_link">クラス管理</a></div>
+  <div class="slide-skew delay-6"><a href="/exam/scoremanager/main/SchoolList.action" class="cp_link">学校管理</a></div>
 </div>
 
 <!-- スタイル -->

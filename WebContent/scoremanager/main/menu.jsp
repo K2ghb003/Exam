@@ -130,18 +130,19 @@
 
       <!-- 下のメニュー項目（スライドイン表示） -->
       <div id="menu-options" class="menu-options" style="display: none;">
-        <a href="StudentList.action" class="btn-circle menu-item">学生管理</a>
+        <a href="/exam/scoremanager/main/student/StudentList.action" class="btn-circle menu-item">学生管理</a>
 
         <div class="score-wrapper menu-item">
           <div class="btn-circle score-main menu-item">成績管理</div>
           <div class="submenu">
-            <a href="TestRegist.action">成績登録</a>
-            <a href="TestList.action">成績参照</a>
+            <a href="/exam/scoremanager/main/TestRegist.action">成績登録</a>
+            <a href="/exam/scoremanager/main/TestList.action">成績参照</a>
           </div>
         </div>
 
-        <a href="SubjectList.action" class="btn-circle menu-item">科目管理</a>
-        <a href="ClassList.action" class="btn-circle menu-item">クラス管理</a>
+        <a href="/exam/scoremanager/main/subject/SubjectList.action" class="btn-circle menu-item">科目管理</a>
+        <a href="/exam/scoremanager/main/ClassList.action" class="btn-circle menu-item">クラス管理</a>
+        <a href="/exam/scoremanager/main/SchoolList.action" class="btn-circle menu-item">学校管理</a>
       </div>
     </div>
 
