@@ -15,6 +15,22 @@
   </c:param>
 
   <c:param name="content">
+
+
+  	<style>
+  	.filter-btn {
+        background-color: #e0e0e0;
+        border: 1px solid #aaa;
+        padding: 4px 16px;
+        border-radius: 4px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .filter-btn:hover {
+        background-color: #d0d0d0;
+      }
+  	</style>
     <section> <%--  style="padding: 20px;" --%>
 
       <!-- タイトル -->
@@ -78,7 +94,7 @@
 
             <!-- 検索ボタン -->
             <div style="align-self: flex-end;">
-              <input type="submit" value="検索" style="padding: 6px 14px;">
+              <input type="submit" value="検索" class="filter-btn me-3">
             </div>
           </div>
 
@@ -128,7 +144,7 @@
       </div>
 
       <!-- 成績入力フォーム -->
-      <c:if test="${empty studentList && param.searchFlg == 'true'}">
+      <c:if test="${empty studentList && param.searchFlg == 'true' && not(empty param.f1 or empty param.f2 or empty param.f3 or empty param.f4)}">
 			    <div class="px-4 mb-2">成績情報が存在しませんでした。</div>
 			  </c:if>
       <c:if test="${not empty studentList}">

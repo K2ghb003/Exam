@@ -16,12 +16,37 @@
 
   <c:param name="content">
     <style>
-      /* --- アニメーション --- */
+      @media screen and (max-width: 600px) {
+        .form-floating {
+          margin-left: 1rem !important;
+          margin-right: 1rem !important;
+        }
+
+        .form-control {
+          font-size: 1rem !important;
+          padding: 0.75rem !important;
+        }
+
+        .btn-login {
+          width: 90% !important;
+          font-size: 1.1rem;
+          padding: 1rem 0 !important;
+        }
+
+        .anim-box.kiran {
+          padding: 1rem 1rem;
+          max-width: 90%;
+        }
+
+        #wrap_box {
+          width: 100%;
+        }
+      }
+
       .kurukuru-poyoyon {
         display: inline-block;
         opacity: 0;
-        animation: kurukuru 1.4s ease-out forwards,
-                   poyoyon2 1s ease-in-out 1.5s forwards;
+        animation: kurukuru 1.4s ease-out forwards, poyoyon2 1s ease-in-out 1.5s forwards;
       }
 
       @keyframes kurukuru {
@@ -36,7 +61,7 @@
       }
 
       @keyframes poyoyon2 {
-        0%  {
+        0% {
           transform: scale(1.0, 1.0) translate(0, 0);
           opacity: 1;
         }
@@ -57,7 +82,6 @@
         }
       }
 
-      /* --- キラッと光るアニメーション --- */
       .anim-box.kiran {
         position: relative;
         overflow: hidden;
@@ -65,7 +89,7 @@
         background-color: #f1f2f3;
         padding: 1rem 4rem;
         width: 100%;
-        max-width: 600px; /* ← 横幅拡張 */
+        max-width: 600px;
         text-align: center;
       }
 
@@ -109,7 +133,6 @@
         }
       }
 
-      /* --- ログインボタン --- */
       .btn-login {
         width: 250px;
         background-color: skyblue;
@@ -138,15 +161,13 @@
       }
     </style>
 
-    <section class="w-75 text-center m-auto border pb-3">
+    <section class="text-center m-auto border pb-3" style="max-width: 500px; width: 90%;">
       <form action="LoginExecute.action" method="post">
         <div id="wrap_box">
-          <!-- ログイン見出し -->
           <h2 class="h3 mb-3 fw-normal anim-box kiran mx-auto">
             <span class="kurukuru-poyoyon">ログイン</span>
           </h2>
 
-          <!-- エラーメッセージ -->
           <c:if test="${errors.size()>0}">
             <div>
               <ul>
@@ -157,7 +178,6 @@
             </div>
           </c:if>
 
-          <!-- 入力フォーム -->
           <div>
             <div class="form-floating mx-5">
               <input class="form-control px-5 fs-5" autocomplete="off"
@@ -182,7 +202,6 @@
             </div>
           </div>
 
-          <!-- ログインボタン -->
           <div class="mt-4">
             <input class="btn-login" type="submit" name="login" value="ログイン"/>
           </div>
