@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager.main.subject;
 
 import java.io.IOException;
 
@@ -10,6 +10,6 @@ import tool.Action;
 
 public class SubjectCreateAction extends Action {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/scoremanager/main/subject_create.jsp").forward(request, response);
+        request.getRequestDispatcher("/scoremanager/main/subject/subject_create.jsp").forward(request, response);
     }
 }

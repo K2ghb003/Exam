@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager.main.subject;
 
 import java.util.List;
 
@@ -45,7 +45,7 @@ public class SubjectListAction extends Action {
 //		System.out.println("session get");
 
 		//JSPへフォワード 7
-		req.getRequestDispatcher("subject_list.jsp").forward(req, res);
+		req.getRequestDispatcher("/scoremanager/main/subject/subject_list.jsp").forward(req, res);
 //		System.out.println("forrward get");
 	}
 }

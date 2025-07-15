@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager.main.subject;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,7 +8,7 @@ import bean.Subject;
 import dao.SubjectDao;
 import tool.Action;
 
-public class SubjectUpdateAction extends Action {
+public class SubjectDeleteAction extends Action {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -19,8 +19,6 @@ public class SubjectUpdateAction extends Action {
 
 		//リクエストパラメータ―の取得 2
 		String cd = req.getParameter("cd");
-//		String id = "oom";
-//		System.out.println("id get");
 
 
 		//DBからデータ取得 3
@@ -40,7 +38,7 @@ public class SubjectUpdateAction extends Action {
 //		System.out.println("session get");
 
 		//JSPへフォワード 7
-		req.getRequestDispatcher("subject_update.jsp").forward(req, res);
+		req.getRequestDispatcher("/scoremanager/main/subject/subject_delete.jsp").forward(req, res);
 //		System.out.println("forrward get");
 	}
 }

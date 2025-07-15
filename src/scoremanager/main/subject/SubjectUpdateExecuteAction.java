@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager.main.subject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -59,7 +59,7 @@ public class SubjectUpdateExecuteAction extends Action {
 //        		System.out.println("try4");
         		req.setAttribute("errors", errors);
         		req.setAttribute("subject", subject);
-        		req.getRequestDispatcher("subject_update.jsp").forward(req, res);
+        		req.getRequestDispatcher("/scoremanager/main/subject/subject_update.jsp").forward(req, res);
 //        		System.out.println("try5");
         		return;
         	} else{
@@ -71,7 +71,7 @@ public class SubjectUpdateExecuteAction extends Action {
         			req.setAttribute("subject", subject);
 
         			//JSPへフォワード 7
-        			req.getRequestDispatcher("subject_update_done.jsp").forward(req, res);
+        			req.getRequestDispatcher("/scoremanager/main/subject/subject_update_done.jsp").forward(req, res);
         		} else{
         			req.getRequestDispatcher("error.jsp").forward(req, res);
         		}

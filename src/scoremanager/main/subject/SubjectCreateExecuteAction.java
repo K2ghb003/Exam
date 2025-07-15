@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager.main.subject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -58,7 +58,7 @@ public class SubjectCreateExecuteAction extends Action {
         if (!errors.isEmpty()) {
             req.setAttribute("errors", errors);
             req.setAttribute("subject", subject);
-            req.getRequestDispatcher("/scoremanager/main/subject_create.jsp").forward(req, res);
+            req.getRequestDispatcher("/scoremanager/main/subject/subject_create.jsp").forward(req, res);
             return;
         }
 
@@ -68,7 +68,7 @@ public class SubjectCreateExecuteAction extends Action {
 
         if (result) {
             req.setAttribute("subject", subject);
-            req.getRequestDispatcher("/scoremanager/main/subject_create_done.jsp").forward(req, res);
+            req.getRequestDispatcher("/scoremanager/main/subject/subject_create_done.jsp").forward(req, res);
         } else {
             req.setAttribute("error", "登録に失敗しました");
             req.getRequestDispatcher("/scoremanager/main/error.jsp").forward(req, res);
