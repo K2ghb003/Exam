@@ -88,6 +88,7 @@
         visibility: hidden;
         transition: opacity 0.4s ease, visibility 0.4s ease;
         z-index: 2;
+        margin-left: 0;
       }
 
       .submenu a {
