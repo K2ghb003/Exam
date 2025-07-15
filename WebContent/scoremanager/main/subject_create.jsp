@@ -15,7 +15,7 @@
         background-color: #f1f1f1;
         padding: 10px;
         font-size: 22px;
-        border-left: 5px solid #28a745;
+        border-left: 5px solid #007bff;
         margin-bottom: 20px;
       }
 
