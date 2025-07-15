@@ -98,7 +98,7 @@ public class TestListSubjectExecuteAction extends Action {
 	        if (subjectTestList == null || subjectTestList.isEmpty()) {
 	        	StudentDao studentDao = new StudentDao();
 	        	List<Student> students = studentDao.filter(school, entYear, classNum, null);
-	             System.out.println(students.size());
+//	             System.out.println(students.size());
 	        	if(students.size() > 0){
 	        		request.setAttribute("notFound", true);
 	        	}else{
@@ -115,7 +115,7 @@ public class TestListSubjectExecuteAction extends Action {
         // 科目一覧の取得
 
         // 入学年度リストを作成
-	        System.out.println(subjectTestList.size());
+//	        System.out.println(subjectTestList.size());
 
         // JSPへデータを渡す
         // 収集したデータをリクエストに設定

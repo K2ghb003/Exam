@@ -45,117 +45,99 @@
 
     <section class="me-4">
       <c:choose>
-		  <c:when test="${mode == 'st'}">
-	      	<h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">成績一覧（学生）</h2>
+		  <c:when test="${mode == 'st'}"> <%-- fw-normal  --%>
+	      	<h2 class="h3 mb-3 bg-secondary bg-opacity-10 py-2 px-4">成績一覧（学生）</h2>
 	      </c:when>
 		  <c:when test="${mode == 'sj'}">
-			<h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">成績一覧（科目別）</h2>
+			<h2 class="h3 mb-3 bg-secondary bg-opacity-10 py-2 px-4">成績一覧（科目別）</h2>
 		  </c:when>
 		  <c:otherwise>
-		    <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">成績一覧</h2>
+		    <h2 class="h3 mb-3 bg-secondary bg-opacity-10 py-2 px-4">成績一覧</h2>
 		  </c:otherwise>
 		</c:choose>
 
       <!-- フィルター -->
-      <div style="background: #fff; border: 1px solid #ccc; padding: 16px; border-radius: 8px; margin: 0 16px 16px 16px;">
-        <form action="TestListSubjectExecute.action" method="get" class="px-4 mb-3">
-        <div style="display: flex; justify-content: center; align-items: flex-end; gap: 16px;">
-         <div style="display: flex; flex-direction: column; min-width: 80px;">
-		    <p>科目情報</p>
-		  </div>
-          <div style="display: flex; flex-direction: column; min-width: 120px;">
-	          <label class="me-2">入学年度：</label>
-	          <select name="entYear" class="me-4">
-	            <option value="">----</option>
-	            <c:forEach var="year" items="${entYearList}">
-	              <option value="${year}" <c:if test="${param.entYear == year}">selected</c:if>>${year}</option>
-	            </c:forEach>
-	            <c:if test="${not empty requestScope.errors}">
-		          <div class="error">${requestScope.errors.get(entYear)}</div>
-		        </c:if>
-	          </select>
-		  </div>
-		  <div style="display: flex; flex-direction: column; min-width: 120px;">
-          <label class="me-2">クラス：</label>
-          <select name="classNum" class="me-4">
-            <option value="">----</option>
-            <c:forEach var="c" items="${classList}">
-              <option value="${c}" <c:if test="${param.classNum == c}">selected</c:if>>${c}</option>
-            </c:forEach>
-            <c:if test="${not empty requestScope.errors}">
-	          <div class="error">${requestScope.errors.classNum}</div>
-	        </c:if>
-          </select>
+      <div class="bg-white border rounded p-3 p-md-4 mb-4 mx-2">
+        <!-- 科目情報検索 -->
+        <form action="TestListSubjectExecute.action" method="get" class="mb-3">
+          <div class="row g-3">
+            <div class="col-12">
+              <p class="mb-0 fw-bold">科目情報</p>
+            </div>
+
+            <div class="col-6 col-md-3">
+              <label for="entYear" class="form-label">入学年度：</label>
+              <select name="entYear" class="form-select w-100">
+                <option value="">----</option>
+                <c:forEach var="year" items="${entYearList}">
+                  <option value="${year}" <c:if test="${param.entYear == year}">selected</c:if>>${year}</option>
+                </c:forEach>
+              </select>
+            </div>
+
+            <div class="col-6 col-md-3">
+              <label for="classNum" class="form-label">クラス：</label>
+              <select name="classNum" class="form-select w-100">
+                <option value="">----</option>
+                <c:forEach var="c" items="${classList}">
+                  <option value="${c}" <c:if test="${param.classNum == c}">selected</c:if>>${c}</option>
+                </c:forEach>
+              </select>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <label for="subject" class="form-label">科目：</label>
+              <select name="subject" class="form-select w-100">
+                <option value="">----</option>
+                <c:forEach var="sub" items="${subjectList}">
+                  <option value="${sub.cd}" <c:if test="${param.subject == sub.cd}">selected</c:if>>${sub.name}</option>
+                </c:forEach>
+              </select>
+            </div>
+
+            <div class="col-12 col-md-2 d-grid align-items-end">
+              <button type="submit" class="filter-btn">検索</button>
+            </div>
           </div>
-          <div style="display: flex; flex-direction: column; min-width: 120px;">
-  		  <label class="me-2">科目：</label>
-          <select name="subject" class="me-4">
-            <option value="">----</option>
-            <c:forEach var="sub" items="${subjectList}">
-              <option value="${sub.cd}" <c:if test="${param.subject == sub.cd}">selected</c:if>>${sub.name}</option>
-            </c:forEach>
-            <c:if test="${not empty requestScope.errors}">
-	          <div class="error">$requestScope.{errors['subject']}</div>
-	        </c:if>
-          </select>
-          </div>
-        <button type="submit" class="filter-btn me-3">検索</button>
-		</div>
         </form>
-        <%--<p>DEBUG: entYear param = ${param.entYear}</p>
-		<p>DEBUG: errors = ${errors}</p> --%>
 
-	        <c:if test="${errors.size() > 0}">
-	          <div class="error">
-		          <%--<c:if test="${not empty errors.entYear}">${errors.entYear}</c:if>
-		          <c:if test="${not empty errors.classNum}">${errors.classNum}</c:if>
-		          <c:if test="${not empty errors.subject}">${errors.subject}</c:if> --%>
-
-		            <c:if test="${errors.size() > 0}">
-					  <div class="error"  style="color: #f8a73d">
-					    <c:set var="first" value="true" />
-
-					    <c:if test="${not empty errors.entYear}">
-					      <c:if test="${not first}">、</c:if>
-					      ${errors['entYear']}
-					      <c:set var="first" value="false" />
-					    </c:if>
-
-					    <c:if test="${not empty errors.classNum}">
-					      <c:if test="${not first}">、</c:if>
-					      ${errors['classNum']}
-					      <c:set var="first" value="false" />
-					    </c:if>
-
-					    <c:if test="${not empty errors.subject}">
-					      <c:if test="${not first}">、</c:if>
-					      ${errors['subject']}
-					      <c:set var="first" value="false" />
-					    </c:if>
-		          を入力してください
-					  </div>
-					</c:if>
-	          </div>
-	        </c:if>
-
-		<hr>
-
-        <form action="TestListStudentExecute.action" method="get" class="px-4 mb-3">
-		<div style="display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
-		  <div style="display: flex; flex-direction: column; min-width: 80px;">
-            <p>学生情報</p>
+        <!-- エラー表示 -->
+        <c:if test="${errors.size() > 0}">
+          <div class="error mt-2">
+            <c:set var="first" value="true" />
+            <c:if test="${not empty errors.entYear}">
+              <c:if test="${not first}">、</c:if>${errors['entYear']}
+              <c:set var="first" value="false" />
+            </c:if>
+            <c:if test="${not empty errors.classNum}">
+              <c:if test="${not first}">、</c:if>${errors['classNum']}
+              <c:set var="first" value="false" />
+            </c:if>
+            <c:if test="${not empty errors.subject}">
+              <c:if test="${not first}">、</c:if>${errors['subject']}
+            </c:if>
+            を入力してください
           </div>
+        </c:if>
 
-		  <div style="display: flex; flex-direction: column; min-width: 120px;">
-          <label class="me-2">学生番号：</label>
-              <input type="text" required id="no" name="no" <c:if test="${not empty student.no}">value="${student.no}"</c:if>
-              <c:if test="${not empty param.no}">value="${param.no}"</c:if> />
-		  </div>
-		  <div style="display: flex; flex-direction: column;">
-          <button type="submit" class="filter-btn me-3">検索</button>
+        <hr>
+
+        <!-- 学生番号検索 -->
+        <form action="TestListStudentExecute.action" method="get" class="mb-3">
+          <div class="row g-3 align-items-end">
+            <div class="col-12">
+              <p class="mb-0 fw-bold">学生情報</p>
+            </div>
+
+            <div class="col-6 col-md-4">
+              <label for="no" class="form-label">学生番号：</label>
+              <input type="text" id="no" name="no" class="form-control" required />
+            </div>
+
+            <div class="col-6 col-md-2 d-grid">
+              <button type="submit" class="filter-btn">検索</button>
+            </div>
           </div>
-
-		</div>
         </form>
       </div>
 
