@@ -88,7 +88,7 @@
         visibility: hidden;
         transition: opacity 0.4s ease, visibility 0.4s ease;
         z-index: 2;
-        margin-left: 0;
+        <%-- margin-left: 0; --%>
       }
 
       .submenu a {
@@ -141,7 +141,7 @@
         </div>
 
         <a href="SubjectList.action" class="btn-circle menu-item">科目管理</a>
-<%--         <a href="ClassList.action" class="btn-circle menu-item">クラス管理</a> --%>
+        <a href="ClassList.action" class="btn-circle menu-item">クラス管理</a>
       </div>
     </div>
 

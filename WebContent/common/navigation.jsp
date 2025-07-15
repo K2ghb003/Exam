@@ -15,7 +15,7 @@
   </div>
 
   <div class="slide-skew delay-5"><a href="SubjectList.action" class="cp_link">科目管理</a></div>
-  <%-- <div class="slide-skew delay-6"><a href="ClassList.action" class="cp_link">クラス管理</a></div> --%>
+  <div class="slide-skew delay-6"><a href="ClassList.action" class="cp_link">クラス管理</a></div>
 </div>
 
 <!-- スタイル -->
@@ -76,6 +76,6 @@
   }
 
   .submenu {
-    margin-left: 16px;
+    margin-left: 5px;
   }
 </style>
