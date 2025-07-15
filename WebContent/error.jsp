@@ -16,7 +16,15 @@
           <c:when test="${user.isAuthenticated()}">
             <main class="col-12 text-center">
               <h2 class="text-danger mt-4">エラーが発生しました</h2>
-              <p class="mb-4">お手数ですが、もう一度お試しください。</p>
+
+              <c:if test="${param.error == 'h2'}">
+                <p class="mb-4 text-danger">H2 データベースに接続できません。H2 Console が起動しているか確認してください。</p>
+              </c:if>
+
+              <c:if test="${param.error != 'h2'}">
+                <p class="mb-4">お手数ですが、もう一度お試しください。</p>
+              </c:if>
+
               <a href="/exam/scoremanager/main/Menu.action" class="btn btn-secondary">メニューに戻る</a>
             </main>
           </c:when>
@@ -25,7 +33,15 @@
           <c:otherwise>
             <main class="col-12 text-center">
               <h2 class="text-danger mt-4">エラーが発生しました</h2>
-              <p class="mb-4">ログインしてから操作をお試しください。</p>
+
+              <c:if test="${param.error == 'h2'}">
+                <p class="mb-4 text-danger">H2 データベースに接続できません。H2 Console を起動してください。</p>
+              </c:if>
+
+              <c:if test="${param.error != 'h2'}">
+                <p class="mb-4">ログインしてから操作をお試しください。</p>
+              </c:if>
+
               <a href="/exam/scoremanager/Login.action" class="btn btn-primary">ログインページへ戻る</a>
             </main>
           </c:otherwise>
