@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager.main.student;
 
 import java.io.IOException;
 import java.util.List;

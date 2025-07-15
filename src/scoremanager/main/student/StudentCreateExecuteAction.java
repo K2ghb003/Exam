@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager.main.student;
 
 import java.util.HashMap;
 import java.util.List;
