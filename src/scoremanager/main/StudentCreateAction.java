@@ -44,6 +44,6 @@ public class StudentCreateAction extends Action {
         req.setAttribute("classNumList", classNumList);
         req.setAttribute("entYearList", entYearList);
 
-        req.getRequestDispatcher("/scoremanager/main/student_create.jsp").forward(req, res);
+        req.getRequestDispatcher("/scoremanager/main/student/student_create.jsp").forward(req, res);
     }
 }

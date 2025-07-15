@@ -59,7 +59,7 @@
 
 	  <div class="alert alert-success px-4" role="alert" style="--bs-alert-padding-y: 0rem;
       	text-align: center; margin: 0 0 0 0; background-color: #d4edda; border-color: #c3e6cb; color: #0e3818;"> <%--  py-3 --%>
-        <p>変更が完了しました</p>
+        変更が完了しました
       </div>
       <%-- <div class="alert alert-success px-4" role="alert" style="--bs-alert-padding-y: 0rem;
       	text-align: center; margin: 0 0 0 0; background-color: #d4edda; border-color: #c3e6cb; color: #0e3818;">変更が完了しました</div> --%>

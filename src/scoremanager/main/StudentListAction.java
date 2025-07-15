@@ -59,6 +59,6 @@ public class StudentListAction extends Action {
         request.setAttribute("classNumList", classNumList);
 
         // 表示するJSPへフォワード
-        request.getRequestDispatcher("/scoremanager/main/student_list.jsp").forward(request, response);
+        request.getRequestDispatcher("/scoremanager/main/student/student_list.jsp").forward(request, response);
     }
 }
