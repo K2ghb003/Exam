@@ -13,11 +13,12 @@
       <h2 class="mb-4">クラス編集</h2>
 
       <!-- エラーメッセージ表示 -->
-      <c:if test="${not empty error}">
+      <!-- <c:if test="${not empty error}">
         <div class="alert alert-danger">${error}</div>
-      </c:if>
+      </c:if> -->
 
       <form action="ClassEditExecute.action" method="post">
+
         <!-- 現在のクラス番号（hiddenでも渡す） -->
         <div class="form-group mb-3">
           <label>現在のクラス番号：</label>
@@ -28,7 +29,7 @@
         <!-- 新しいクラス番号 -->
         <div class="form-group mb-3">
           <label for="new_class_num">新しいクラス番号：</label>
-          <input type="text" class="form-control" id="new_class_num" name="new_class_num" value="">
+          <input type="text" class="form-control" id="new_class_num" name="new_class_num" value="" required>
         </div>
 
         <!-- ボタン -->
