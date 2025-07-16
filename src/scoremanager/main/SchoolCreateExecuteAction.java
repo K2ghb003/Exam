@@ -50,6 +50,6 @@ public class SchoolCreateExecuteAction extends Action {
         dao.save(school);
 
         // 完了後は一覧画面へ
-        response.sendRedirect("SchoolList.action");
+        request.getRequestDispatcher("/scoremanager/main/school_create_done.jsp").forward(request, response);
     }
 }

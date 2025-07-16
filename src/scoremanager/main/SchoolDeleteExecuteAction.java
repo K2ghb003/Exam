@@ -39,6 +39,6 @@ public class SchoolDeleteExecuteAction extends Action {
             request.setAttribute("error", "削除に失敗しました");
         }
 
-        response.sendRedirect("SchoolList.action");
+        request.getRequestDispatcher("/scoremanager/main/school_delete_done.jsp").forward(request, response);
     }
 }

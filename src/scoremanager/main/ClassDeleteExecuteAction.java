@@ -44,7 +44,7 @@ public class ClassDeleteExecuteAction extends Action {
             }
 
             // 削除成功後にクラス一覧へリダイレクト
-            response.sendRedirect("ClassList.action");
+            request.getRequestDispatcher("/scoremanager/main/class_delete_done.jsp").forward(request, response);
 
         } catch (Exception e) {
             request.setAttribute("error", "削除中に予期せぬエラーが発生しました。");

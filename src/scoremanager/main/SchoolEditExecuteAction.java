@@ -29,7 +29,7 @@ public class SchoolEditExecuteAction extends Action {
 
         if (success) {
             // 保存に成功したら一覧にリダイレクト
-            response.sendRedirect("SchoolList.action");
+        	request.getRequestDispatcher("/scoremanager/main/school_edit_done.jsp").forward(request, response);
         } else {
             // 保存に失敗した場合はエラーページへ
             request.setAttribute("error", "学校情報の更新に失敗しました。");
