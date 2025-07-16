@@ -13,33 +13,22 @@ public class ClassEditAction extends Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        // セッションから教師情報を取得
+
+        // ログインユーザー（教師）確認
         Teacher teacher = (Teacher) request.getSession().getAttribute("user");
-
         if (teacher == null) {
-            request.setAttribute("error", "セッションが切れています。ログインし直してください。");
-            request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+            request.getRequestDispatcher("/scoremanager/main/error.jsp").forward(request, response);
             return;
         }
 
-        String classNumStr = request.getParameter("classNum");
-        if (classNumStr == null || classNumStr.isEmpty()) {
-            request.setAttribute("error", "クラス番号が指定されていません。");
-            request.getRequestDispatcher("/view/error.jsp").forward(request, response);
-            return;
-        }
+        String classNum = request.getParameter("class_num");
 
         School school = teacher.getSchool();
+
         ClassNumDao dao = new ClassNumDao();
-        ClassNum classNum = dao.get(classNumStr, school);
+        ClassNum classnum = dao.get(classNum, school);
 
-        if (classNum == null) {
-            request.setAttribute("error", "指定されたクラスが見つかりません。");
-            request.getRequestDispatcher("/view/error.jsp").forward(request, response);
-            return;
-        }
-
-        request.setAttribute("classNum", classNum);
+        request.setAttribute("classnum", classnum);
         request.getRequestDispatcher("/scoremanager/main/class_edit.jsp").forward(request, response);
     }
 }
