@@ -1,42 +1,103 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%
+    request.setAttribute("class_num", request.getAttribute("classnum.class_num"));
+%>
 
 <c:import url="/common/base.jsp">
   <c:param name="title">クラス編集</c:param>
-
-  <c:param name="scripts">
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  </c:param>
+  <c:param name="scripts"></c:param>
 
   <c:param name="content">
-    <section class="container mt-5">
-      <h2 class="mb-4">クラス編集</h2>
+    <style>
+      section.class-form h2 {
+        background-color: #f1f1f1;
+        padding: 10px;
+        font-size: 22px;
+        border-left: 5px solid #007bff;
+        margin-bottom: 20px;
+      }
 
-      <!-- エラーメッセージ表示 -->
-      <!-- <c:if test="${not empty error}">
-        <div class="alert alert-danger">${error}</div>
-      </c:if> -->
+      label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 6px;
+        font-size: 15px;
+      }
+
+      input[type="text"] {
+        border-radius: 8px;
+        padding: 10px;
+        width: 100%;
+        font-size: 16px;
+        border: 2px solid #cce4ff;
+        box-sizing: border-box;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+        outline: none;
+        transition: all 0.2s ease-in-out;
+      }
+
+      input[type="text"]:focus {
+        border-color: #66afe9;
+        box-shadow: 0 0 6px rgba(102, 175, 233, 0.6);
+      }
+
+      input[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 24px;
+        font-size: 16px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+
+      a {
+        margin-left: 12px;
+        font-size: 14px;
+        display: inline-block;
+        margin-top: 16px;
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .error {
+        color: #cc0000;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+    </style>
+
+    <section class="class-form">
+      <h2>クラス編集</h2>
+
+      <c:if test="${not empty error}">
+        <div class="error">${error}</div>
+      </c:if>
 
       <form action="ClassEditExecute.action" method="post">
+        <label>現在のクラス番号</label>
+        <p>
+          <input type="text" name="class_num" value="${classnum.class_num}" readonly style="border: 0; box-shadow: none;">
+        </p>
 
-        <!-- 現在のクラス番号（hiddenでも渡す） -->
-        <div class="form-group mb-3">
-          <label>現在のクラス番号：</label>
-          <input type="text" class="form-control" value="${classnum.class_num}" readonly>
-          <input type="hidden" name="class_num" value="${classnum.class_num}">
-        </div>
+        <label>新しいクラス番号</label>
+        <p>
+          <input type="text" name="new_class_num" value="" placeholder="新しいクラス番号を入力してください" maxlength="10" required>
+        </p>
 
-        <!-- 新しいクラス番号 -->
-        <div class="form-group mb-3">
-          <label for="new_class_num">新しいクラス番号：</label>
-          <input type="text" class="form-control" id="new_class_num" name="new_class_num" value="" required>
-        </div>
-
-        <!-- ボタン -->
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary">更新</button>
-          <a href="ClassList.action" class="btn btn-secondary">戻る</a>
-        </div>
+        <input type="submit" value="変更">
+        <a href="ClassList.action">戻る</a>
       </form>
     </section>
   </c:param>

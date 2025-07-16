@@ -4,24 +4,77 @@
 <c:import url="/common/base.jsp">
   <c:param name="title">クラス削除確認</c:param>
   <c:param name="scripts"></c:param>
+
   <c:param name="content">
-    <div class="content">
+    <style>
+      section.class-delete h2 {
+        background-color: #f1f1f1;
+        padding: 10px;
+        font-size: 22px;
+        border-left: 5px solid red;
+        margin-bottom: 20px;
+      }
+
+      .delete-message {
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+
+      input[type="submit"] {
+        background-color: red;
+        color: white;
+        padding: 10px 24px;
+        font-size: 16px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        margin-right: 12px;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #cc0000;
+      }
+
+      .btn-cancel {
+        font-size: 14px;
+        padding: 10px 20px;
+        background-color: #6c757d;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+      }
+
+      .btn-cancel:hover {
+        background-color: #545b62;
+        text-decoration: none;
+      }
+
+      .alert-danger {
+        color: #842029;
+        background-color: #f8d7da;
+        border: 1px solid #f5c2c7;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+      }
+    </style>
+
+    <section class="class-delete container mt-4">
       <h2>クラス削除確認</h2>
 
       <c:if test="${not empty error}">
-        <div style="background-color: #f8d7da; padding: 1em; margin-bottom: 1em; border: 1px solid #f5c2c7; color: #842029;">
-          ${error}
-        </div>
+        <div class="alert-danger">${error}</div>
       </c:if>
 
-      <p>以下のクラスを削除してもよろしいですか？</p>
-      <p><strong>クラス番号：</strong> ${class_num}</p>
+      <p class="delete-message">
+        「${class_num}」を削除してもよろしいですか？
+      </p>
 
       <form action="ClassDeleteExecute.action" method="post">
-        <input type="hidden" name="class_num" value="${class_num}" />
-        <button type="submit" style="background-color: #dc3545; color: white; padding: 0.5em 1em;">削除</button>
-        <a href="ClassList.action" style="margin-left: 1em; padding: 0.5em 1em; background-color: #6c757d; color: white; text-decoration: none;">キャンセル</a>
+        <input type="hidden" name="class_num" value="${class_num}">
+        <input type="submit" value="削除">
+        <a href="ClassList.action" class="btn-cancel">キャンセル</a>
       </form>
-    </div>
+    </section>
   </c:param>
 </c:import>
