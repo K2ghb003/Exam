@@ -26,14 +26,14 @@
                 margin-bottom: 20px;
             }
 
-            label {
+            section.subject-form label {
                 font-weight: bold;
                 display: block;
                 margin-bottom: 6px;
                 font-size: 15px;
             }
 
-            div {
+            section.subject-form div {
                 font-weight: bold;
                 display: block;
                 margin-bottom: 6px;
