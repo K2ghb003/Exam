@@ -18,7 +18,7 @@
               <h2 class="text-danger mt-4">エラーが発生しました</h2>
 
               <c:if test="${param.error == 'h2'}">
-                <p class="mb-4 text-danger">H2 データベースに接続できません。H2 Console が起動しているか確認してください。</p>
+                <p class="mb-4 text-danger">H2 データベースに接続できません。H2 Console が起動しているか接続が切断されていないか確認してください。</p>
               </c:if>
 
               <c:if test="${param.error != 'h2'}">
