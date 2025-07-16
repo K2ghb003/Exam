@@ -83,14 +83,15 @@
     <section class="container mt-4">
       <h2>クラス新規登録</h2>
 
+<%--
       <c:if test="${not empty error}">
         <div class="alert alert-danger">${error}</div>
       </c:if>
-
+ --%>
       <form action="ClassCreate.action" method="post">
         <div class="mb-3">
           <label for="class_num">クラス番号</label>
-          <input type="text" name="class_num" id="class_num" value="${class_num}" />
+          <input type="text" name="class_num" id="class_num" value="${class_num}" required/>
         </div>
 
         <button type="submit" class="btn btn-primary">登録して一覧へ</button>
