@@ -49,7 +49,7 @@ public class ClassCreateAction extends Action {
         boolean success = dao.save(newClass);
 
         if (success) {
-            response.sendRedirect("ClassList.action");
+        	request.getRequestDispatcher("/scoremanager/main/class_create_done.jsp").forward(request, response);
         } else {
             request.setAttribute("error", "クラスの登録に失敗しました。");
             request.getRequestDispatcher("/scoremanager/main/class_create.jsp").forward(request, response);
