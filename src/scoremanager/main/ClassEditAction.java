@@ -13,43 +13,33 @@ public class ClassEditAction extends Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-        // ログインチェック
+        // セッションから教師情報を取得
         Teacher teacher = (Teacher) request.getSession().getAttribute("user");
+
         if (teacher == null) {
-            response.sendRedirect("Login.action");
+            request.setAttribute("error", "セッションが切れています。ログインし直してください。");
+            request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+            return;
+        }
+
+        String classNumStr = request.getParameter("classNum");
+        if (classNumStr == null || classNumStr.isEmpty()) {
+            request.setAttribute("error", "クラス番号が指定されていません。");
+            request.getRequestDispatcher("/view/error.jsp").forward(request, response);
             return;
         }
 
         School school = teacher.getSchool();
-
-        String oldClassNum = request.getParameter("old_class_num");
-        String newClassNum = request.getParameter("new_class_num");
-
-        // バリデーション
-        if (oldClassNum == null || newClassNum == null || newClassNum.trim().isEmpty()) {
-            request.setAttribute("error", "新しいクラス番号を入力してください。");
-            request.getRequestDispatcher("/scoremanager/main/class_edit.jsp").forward(request, response);
-            return;
-        }
-
         ClassNumDao dao = new ClassNumDao();
-        ClassNum classNumObj = dao.get(oldClassNum, school);
+        ClassNum classNum = dao.get(classNumStr, school);
 
-        if (classNumObj == null) {
-            request.setAttribute("error", "指定されたクラスが存在しません。");
-            request.getRequestDispatcher("/scoremanager/main/class_edit.jsp").forward(request, response);
+        if (classNum == null) {
+            request.setAttribute("error", "指定されたクラスが見つかりません。");
+            request.getRequestDispatcher("/view/error.jsp").forward(request, response);
             return;
         }
 
-        // 変更処理（使用中のデータかのチェックは省略。必要ならロジック追加可）
-        boolean success = dao.save(classNumObj, newClassNum);
-
-        if (success) {
-            response.sendRedirect("ClassList.action");
-        } else {
-            request.setAttribute("error", "クラス情報の更新に失敗しました。");
-            request.getRequestDispatcher("/scoremanager/main/class_edit.jsp").forward(request, response);
-        }
+        request.setAttribute("classNum", classNum);
+        request.getRequestDispatcher("/scoremanager/main/class_edit.jsp").forward(request, response);
     }
 }

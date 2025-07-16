@@ -42,13 +42,13 @@ public class ClassNumDao extends Dao {
 
         PreparedStatement st = con.prepareStatement(sql);
         st.setString(1, school.getCd());
-        st.setString(2, classNum);  // ← 正しく修正済み
+        st.setString(2, classNum);
 
         ResultSet rs = st.executeQuery();
         if (rs.next()) {
             class_num = new ClassNum();
-            class_num.setSchool(school);
             class_num.setClass_num(rs.getString("class_num"));
+            class_num.setSchool(school);
         }
 
         rs.close();
@@ -75,15 +75,15 @@ public class ClassNumDao extends Dao {
         return line == 1;
     }
 
-    // クラス番号の更新（変更先classNumが重複しないよう注意）
+    // クラス番号の更新（class_numを変更）
     public boolean save(ClassNum classNum, String newClassNum) throws Exception {
         Connection con = getConnection();
         String sql = "UPDATE class_num SET class_num = ? WHERE school_cd = ? AND class_num = ?";
 
         PreparedStatement st = con.prepareStatement(sql);
-        st.setString(1, newClassNum);  // 新しいクラス番号
+        st.setString(1, newClassNum);
         st.setString(2, classNum.getSchool().getCd());
-        st.setString(3, classNum.getClass_num());  // 現在のクラス番号
+        st.setString(3, classNum.getClass_num());
 
         int line = st.executeUpdate();
 
@@ -93,7 +93,7 @@ public class ClassNumDao extends Dao {
         return line == 1;
     }
 
-    // クラスの削除（使用中かどうか事前確認必要）
+    // クラスの削除（事前に使用状況を確認する必要あり）
     public boolean delete(String classNum, School school) throws Exception {
         Connection con = getConnection();
         String sql = "DELETE FROM class_num WHERE class_num = ? AND school_cd = ?";
@@ -110,7 +110,7 @@ public class ClassNumDao extends Dao {
         return line == 1;
     }
 
-    // クラスが過去データで使用されているか確認（例：studentテーブルにあるか）
+    // クラスがstudentテーブルで使用されているかチェック
     public boolean isUsedClass(String classNum, School school) throws Exception {
         Connection con = getConnection();
         String sql = "SELECT COUNT(*) FROM student WHERE class_num = ? AND school_cd = ?";

@@ -54,19 +54,38 @@ public class SchoolDao extends Dao {
     }
 
     /**
-     * 学校の登録（INSERT）
+     * 学校の登録または更新
+     * 存在すれば UPDATE、存在しなければ INSERT
      */
     public boolean save(School school) throws Exception {
-        String sql = "INSERT INTO school (cd, name) VALUES (?, ?)";
+        try (Connection con = getConnection()) {
+            // 既に存在するかチェック
+            String checkSql = "SELECT COUNT(*) FROM school WHERE cd = ?";
+            try (PreparedStatement checkSt = con.prepareStatement(checkSql)) {
+                checkSt.setString(1, school.getCd());
+                ResultSet rs = checkSt.executeQuery();
+                rs.next();
+                int count = rs.getInt(1);
+                rs.close();
 
-        try (Connection con = getConnection();
-             PreparedStatement st = con.prepareStatement(sql)) {
-
-            st.setString(1, school.getCd());
-            st.setString(2, school.getName());
-
-            int line = st.executeUpdate();
-            return line == 1;
+                if (count > 0) {
+                    // 存在する → UPDATE
+                    String updateSql = "UPDATE school SET name = ? WHERE cd = ?";
+                    try (PreparedStatement updateSt = con.prepareStatement(updateSql)) {
+                        updateSt.setString(1, school.getName());
+                        updateSt.setString(2, school.getCd());
+                        return updateSt.executeUpdate() == 1;
+                    }
+                } else {
+                    // 存在しない → INSERT
+                    String insertSql = "INSERT INTO school (cd, name) VALUES (?, ?)";
+                    try (PreparedStatement insertSt = con.prepareStatement(insertSql)) {
+                        insertSt.setString(1, school.getCd());
+                        insertSt.setString(2, school.getName());
+                        return insertSt.executeUpdate() == 1;
+                    }
+                }
+            }
         }
     }
 

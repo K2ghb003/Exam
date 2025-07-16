@@ -2,33 +2,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:import url="/common/base.jsp">
-  <c:param name="title">クラス削除</c:param>
-
+  <c:param name="title">クラス削除確認</c:param>
+  <c:param name="scripts"></c:param>
   <c:param name="content">
-    <section class="container mt-5">
-      <h2 class="mb-4 text-danger">クラス削除確認</h2>
+    <div class="content">
+      <h2>クラス削除確認</h2>
 
       <c:if test="${not empty error}">
-        <div class="alert alert-danger">${error}</div>
+        <div style="background-color: #f8d7da; padding: 1em; margin-bottom: 1em; border: 1px solid #f5c2c7; color: #842029;">
+          ${error}
+        </div>
       </c:if>
 
+      <p>以下のクラスを削除してもよろしいですか？</p>
+      <p><strong>クラス番号：</strong> ${class_num}</p>
+
       <form action="ClassDeleteExecute.action" method="post">
-        <input type="hidden" name="class_num" value="${classNum.class_num}" />
-
-        <div class="mb-3">
-          <label class="form-label fw-bold">削除対象のクラス番号：</label>
-          <p class="fs-5">${classNum.class_num}</p>
-        </div>
-
-        <div class="alert alert-warning">
-          このクラスを削除してもよろしいですか？（元に戻すことはできません）
-        </div>
-
-        <div class="d-flex gap-3">
-          <button type="submit" class="btn btn-danger">削除</button>
-          <a href="ClassList.action" class="btn btn-secondary">キャンセル</a>
-        </div>
+        <input type="hidden" name="class_num" value="${class_num}" />
+        <button type="submit" style="background-color: #dc3545; color: white; padding: 0.5em 1em;">削除</button>
+        <a href="ClassList.action" style="margin-left: 1em; padding: 0.5em 1em; background-color: #6c757d; color: white; text-decoration: none;">キャンセル</a>
       </form>
-    </section>
+    </div>
   </c:param>
 </c:import>
