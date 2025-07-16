@@ -80,6 +80,7 @@
 		              <option value="${year}" <c:if test="${param.entYear == year}">selected</c:if>>${year}</option>
 		            </c:forEach>
 		          </select>
+		          <c:set var="Year" value="true" />
 		    </td>
 			<td style="width: 30%;">
 		          <label class="me-2">クラス：</label><br>
@@ -101,7 +102,16 @@
 		    </td>
 		  </tr>
 	  </table>
-		          <c:if test="${not empty param.classNum}">
+	  	<c:choose>
+	  		<c:when test="${not empty param.classNum && empty param.entYear}">
+				<div class="error"  style="color: #f8a73d; font-size: 0.9rem; margin-top: 12px;">クラスを指定する場合は入学年度も指定してください</div>
+				<c:set var="Year" value="false" />
+	  		</c:when>
+			<%--<c:when test="${empty param.classNum && empty param.entYear}">
+				<c:set var="Year" value="true" />
+			</c:when>--%>
+	  	</c:choose>
+		          <%--<c:if test="${not empty param.classNum}">
 		          	<c:if test="${empty param.entYear}">
 		          	<div class="error"  style="color: #f8a73d; font-size: 0.9rem; margin-top: 12px;">クラスを指定する場合は入学年度も指定してください</div>
 						<c:set var="Year" value="false" />
@@ -109,7 +119,7 @@
 		          	<c:if test="${not empty param.entYear}">
 						<c:set var="Year" value="true" />
 		          	</c:if>
-		          </c:if>
+		          </c:if>--%>
       </form>
       </div>
 	<c:choose>
