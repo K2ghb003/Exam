@@ -54,6 +54,6 @@ public class ClassEditExecuteAction extends Action {
             return;
         }
 
-        response.sendRedirect("ClassList.action");
+        request.getRequestDispatcher("/scoremanager/main/class_edit_done.jsp").forward(request, response);
     }
 }
