@@ -38,6 +38,6 @@ public class ClassListAction extends Action {
         request.setAttribute("classList", classList);
 
         // 指定されたJSPにフォワード（修正ポイント）
-        request.getRequestDispatcher("/scoremanager/main/class_list.jsp").forward(request, response);
+        request.getRequestDispatcher("/scoremanager/main/classes/class_list.jsp").forward(request, response);
     }
 }

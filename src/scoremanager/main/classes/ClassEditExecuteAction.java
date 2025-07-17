@@ -19,7 +19,7 @@ public class ClassEditExecuteAction extends Action {
         // ログインチェック
         Teacher teacher = (Teacher) request.getSession().getAttribute("user");
         if (teacher == null) {
-            request.getRequestDispatcher("/scoremanager/main/error.jsp").forward(request, response);
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
             return;
         }
 
@@ -29,7 +29,7 @@ public class ClassEditExecuteAction extends Action {
 
         if (newClassNum == null || newClassNum.isEmpty()) {
             request.setAttribute("error", "新しいクラス番号を入力してください。");
-            request.getRequestDispatcher("/scoremanager/main/class_edit.jsp").forward(request, response);
+            request.getRequestDispatcher("/scoremanager/main/classes/class_edit.jsp").forward(request, response);
             return;
         }
 
@@ -38,7 +38,7 @@ public class ClassEditExecuteAction extends Action {
         // すでに使用中のクラスは変更不可
         if (dao.isUsedClass(oldClassNum, school)) {
             request.setAttribute("error", "このクラスは使用中のため変更できません。");
-            request.getRequestDispatcher("/scoremanager/main/class_edit.jsp").forward(request, response);
+            request.getRequestDispatcher("/scoremanager/main/classes/class_edit.jsp").forward(request, response);
             return;
         }
 
@@ -50,10 +50,10 @@ public class ClassEditExecuteAction extends Action {
 
         if (!success) {
             request.setAttribute("error", "更新に失敗しました。");
-            request.getRequestDispatcher("/scoremanager/main/class_edit.jsp").forward(request, response);
+            request.getRequestDispatcher("/scoremanager/main/classes/class_edit.jsp").forward(request, response);
             return;
         }
 
-        request.getRequestDispatcher("/scoremanager/main/class_edit_done.jsp").forward(request, response);
+        request.getRequestDispatcher("/scoremanager/main/classes/class_edit_done.jsp").forward(request, response);
     }
 }

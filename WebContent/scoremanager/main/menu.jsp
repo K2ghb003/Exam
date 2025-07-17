@@ -6,6 +6,7 @@
   <c:param name="showNavigation" value="false" />
   <c:param name="scripts"></c:param>
   <c:param name="content">
+        <%-- (.submenu)margin-left: 0; --%>
     <style>
       .center {
         display: flex;
@@ -88,7 +89,6 @@
         visibility: hidden;
         transition: opacity 0.4s ease, visibility 0.4s ease;
         z-index: 2;
-        <%-- margin-left: 0; --%>
       }
 
       .submenu a {
@@ -141,8 +141,9 @@
         </div>
 
         <a href="/exam/scoremanager/main/subject/SubjectList.action" class="btn-circle menu-item">科目管理</a>
-        <a href="/exam/scoremanager/main/ClassList.action" class="btn-circle menu-item">クラス管理</a>
+        <a href="/exam/scoremanager/main/classes/ClassList.action" class="btn-circle menu-item">クラス管理</a>
         <a href="/exam/scoremanager/main/SchoolList.action" class="btn-circle menu-item">学校管理</a>
+        <%--<a href="/exam/scoremanager/main/SchoolListaa.action" class="btn-circle menu-item">エラーテスト</a>--%>
       </div>
     </div>
 
@@ -152,14 +153,16 @@
           const menuBtn = document.getElementById("menu-button");
           const menuOptions = document.getElementById("menu-options");
           const items = document.querySelectorAll(".menu-item");
+          var speed = 1;
 
           menuBtn.style.display = "none";
           menuOptions.style.display = "flex";
 
           items.forEach((item, index) => {
+        	  speed = speed - 0.05;
             setTimeout(() => {
               item.classList.add("show");
-            }, (index + 1) * 400);
+            }, (speed)*(index + 1) * 400);
           });
         }, 703);
       });

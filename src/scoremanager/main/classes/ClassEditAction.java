@@ -17,7 +17,7 @@ public class ClassEditAction extends Action {
         // ログインユーザー（教師）確認
         Teacher teacher = (Teacher) request.getSession().getAttribute("user");
         if (teacher == null) {
-            request.getRequestDispatcher("/scoremanager/main/error.jsp").forward(request, response);
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
             return;
         }
 
@@ -29,6 +29,6 @@ public class ClassEditAction extends Action {
         ClassNum classnum = dao.get(classNum, school);
 
         request.setAttribute("classnum", classnum);
-        request.getRequestDispatcher("/scoremanager/main/class_edit.jsp").forward(request, response);
+        request.getRequestDispatcher("/scoremanager/main/classes/class_edit.jsp").forward(request, response);
     }
 }

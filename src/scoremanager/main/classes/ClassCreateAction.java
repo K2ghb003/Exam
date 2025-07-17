@@ -28,7 +28,7 @@ public class ClassCreateAction extends Action {
         // 入力チェック
         if (classNum == null || classNum.trim().isEmpty()) {
             request.setAttribute("error", "クラス番号を入力してください。");
-            request.getRequestDispatcher("/scoremanager/main/class_create.jsp").forward(request, response);
+            request.getRequestDispatcher("/scoremanager/main/classes/class_create.jsp").forward(request, response);
             return;
         }
 
@@ -37,7 +37,7 @@ public class ClassCreateAction extends Action {
         // 重複チェック
         if (dao.get(classNum, school) != null && dao.get(classNum, school).getClass_num() != null) {
             request.setAttribute("error", "このクラスは既に登録されています。");
-            request.getRequestDispatcher("/scoremanager/main/class_create.jsp").forward(request, response);
+            request.getRequestDispatcher("/scoremanager/main/classes/class_create.jsp").forward(request, response);
             return;
         }
 
@@ -49,10 +49,10 @@ public class ClassCreateAction extends Action {
         boolean success = dao.save(newClass);
 
         if (success) {
-        	request.getRequestDispatcher("/scoremanager/main/class_create_done.jsp").forward(request, response);
+        	request.getRequestDispatcher("/scoremanager/main/classes/class_create_done.jsp").forward(request, response);
         } else {
             request.setAttribute("error", "クラスの登録に失敗しました。");
-            request.getRequestDispatcher("/scoremanager/main/class_create.jsp").forward(request, response);
+            request.getRequestDispatcher("/scoremanager/main/classes/class_create.jsp").forward(request, response);
         }
     }
 }

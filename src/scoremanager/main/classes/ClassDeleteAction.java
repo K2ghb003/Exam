@@ -24,7 +24,7 @@ public class ClassDeleteAction extends Action {
             String classNum = request.getParameter("class_num");
 
             request.setAttribute("class_num", classNum);
-            request.getRequestDispatcher("/scoremanager/main/class_delete.jsp").forward(request, response);
+            request.getRequestDispatcher("/scoremanager/main/classes/class_delete.jsp").forward(request, response);
 
         } catch (Exception e) {
             request.setAttribute("error", "削除確認の表示中にエラーが発生しました。");

@@ -15,7 +15,7 @@
   </div>
 
   <div class="slide-skew delay-5"><a href="/exam/scoremanager/main/subject/SubjectList.action" class="cp_link">科目管理</a></div>
-  <div class="slide-skew delay-6"><a href="/exam/scoremanager/main/ClassList.action" class="cp_link">クラス管理</a></div>
+  <div class="slide-skew delay-6"><a href="/exam/scoremanager/main/classes/ClassList.action" class="cp_link">クラス管理</a></div>
   <div class="slide-skew delay-6"><a href="/exam/scoremanager/main/SchoolList.action" class="cp_link">学校管理</a></div>
 </div>
 

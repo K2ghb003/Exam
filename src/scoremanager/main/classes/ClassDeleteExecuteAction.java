@@ -30,7 +30,7 @@ public class ClassDeleteExecuteAction extends Action {
             if (dao.isUsedClass(classNum, school)) {
                 request.setAttribute("error", "このクラスは使用中のため削除できません。");
                 request.setAttribute("class_num", classNum);
-                request.getRequestDispatcher("/scoremanager/main/class_delete.jsp").forward(request, response);
+                request.getRequestDispatcher("/scoremanager/main/classes/class_delete.jsp").forward(request, response);
                 return;
             }
 
@@ -39,12 +39,12 @@ public class ClassDeleteExecuteAction extends Action {
             if (!success) {
                 request.setAttribute("error", "クラスの削除に失敗しました。");
                 request.setAttribute("class_num", classNum);
-                request.getRequestDispatcher("/scoremanager/main/class_delete.jsp").forward(request, response);
+                request.getRequestDispatcher("/scoremanager/main/classes/class_delete.jsp").forward(request, response);
                 return;
             }
 
             // 削除成功後にクラス一覧へリダイレクト
-            request.getRequestDispatcher("/scoremanager/main/class_delete_done.jsp").forward(request, response);
+            request.getRequestDispatcher("/scoremanager/main/classes/class_delete_done.jsp").forward(request, response);
 
         } catch (Exception e) {
             request.setAttribute("error", "削除中に予期せぬエラーが発生しました。");
