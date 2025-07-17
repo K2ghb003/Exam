@@ -142,7 +142,7 @@
 
         <a href="/exam/scoremanager/main/subject/SubjectList.action" class="btn-circle menu-item">科目管理</a>
         <a href="/exam/scoremanager/main/classes/ClassList.action" class="btn-circle menu-item">クラス管理</a>
-        <a href="/exam/scoremanager/main/SchoolList.action" class="btn-circle menu-item">学校管理</a>
+        <a href="/exam/scoremanager/main/school/SchoolList.action" class="btn-circle menu-item">学校管理</a>
         <%--<a href="/exam/scoremanager/main/SchoolListaa.action" class="btn-circle menu-item">エラーテスト</a>--%>
       </div>
     </div>

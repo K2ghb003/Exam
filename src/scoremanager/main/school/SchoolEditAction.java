@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager.main.school;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +18,6 @@ public class SchoolEditAction extends Action {
         request.setAttribute("school", school);
 
         // ↓ ここを修正（参考にした形式）
-        request.getRequestDispatcher("/scoremanager/main/school_edit.jsp").forward(request, response);
+        request.getRequestDispatcher("/scoremanager/main/school/school_edit.jsp").forward(request, response);
     }
 }

@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager.main.school;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +28,7 @@ public class SchoolDeleteExecuteAction extends Action {
         boolean isUsed = dao.isUsedSchool(cd);
         if (isUsed) {
             request.setAttribute("error", "この学校は使用中のため削除できません");
-            request.getRequestDispatcher("/scoremanager/main/school_list.jsp").forward(request, response);
+            request.getRequestDispatcher("/scoremanager/main/school/school_list.jsp").forward(request, response);
             return;
         }
 
@@ -39,6 +39,6 @@ public class SchoolDeleteExecuteAction extends Action {
             request.setAttribute("error", "削除に失敗しました");
         }
 
-        request.getRequestDispatcher("/scoremanager/main/school_delete_done.jsp").forward(request, response);
+        request.getRequestDispatcher("/scoremanager/main/school/school_delete_done.jsp").forward(request, response);
     }
 }

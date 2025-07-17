@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager.main.school;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,11 +31,11 @@ public class SchoolEditExecuteAction extends Action {
 
         if (success) {
             // 保存に成功したら一覧にリダイレクト
-        	request.getRequestDispatcher("/scoremanager/main/school_edit_done.jsp").forward(request, response);
+        	request.getRequestDispatcher("/scoremanager/main/school/school_edit_done.jsp").forward(request, response);
         } else {
             // 保存に失敗した場合はエラーページへ
             request.setAttribute("error", "学校情報の更新に失敗しました。");
-            request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
         }
     }
 }

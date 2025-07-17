@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager.main.school;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,11 +25,11 @@ public class SchoolDeleteAction extends Action {
 
         if (school == null) {
             request.setAttribute("error", "指定された学校が見つかりません。");
-            request.getRequestDispatcher("/scoremanager/main/school_list.jsp").forward(request, response);
+            request.getRequestDispatcher("/scoremanager/main/school/school_list.jsp").forward(request, response);
             return;
         }
 
         request.setAttribute("school", school);
-        request.getRequestDispatcher("/scoremanager/main/school_delete.jsp").forward(request, response);
+        request.getRequestDispatcher("/scoremanager/main/school/school_delete.jsp").forward(request, response);
     }
 }

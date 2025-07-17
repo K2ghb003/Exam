@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager.main.school;
 
 import java.util.List;
 
@@ -18,6 +18,6 @@ public class SchoolListAction extends Action {
 
         request.setAttribute("schools", schools);
 
-        request.getRequestDispatcher("/scoremanager/main/school_list.jsp").forward(request, response);
+        request.getRequestDispatcher("/scoremanager/main/school/school_list.jsp").forward(request, response);
     }
 }

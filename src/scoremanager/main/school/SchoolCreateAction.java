@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager.main.school;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +19,6 @@ public class SchoolCreateAction extends Action {
         }
 
         // 入力画面にフォワード
-        request.getRequestDispatcher("/scoremanager/main/school_create.jsp").forward(request, response);
+        request.getRequestDispatcher("/scoremanager/main/school/school_create.jsp").forward(request, response);
     }
 }

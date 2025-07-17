@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager.main.school;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +29,7 @@ public class SchoolCreateExecuteAction extends Action {
         // 入力チェック
         if (cd == null || cd.isEmpty() || name == null || name.isEmpty()) {
             request.setAttribute("error", "学校コードと名前を入力してください");
-            request.getRequestDispatcher("/scoremanager/main/school_create.jsp").forward(request, response);
+            request.getRequestDispatcher("/scoremanager/main/school/school_create.jsp").forward(request, response);
             return;
         }
 
@@ -38,7 +38,7 @@ public class SchoolCreateExecuteAction extends Action {
         // 登録済みチェック
         if (dao.get(cd) != null) {
             request.setAttribute("error", "この学校コードはすでに使用されています");
-            request.getRequestDispatcher("/scoremanager/main/school_create.jsp").forward(request, response);
+            request.getRequestDispatcher("/scoremanager/main/school/school_create.jsp").forward(request, response);
             return;
         }
 
@@ -50,6 +50,6 @@ public class SchoolCreateExecuteAction extends Action {
         dao.save(school, "create", null);
 
         // 完了後は一覧画面へ
-        request.getRequestDispatcher("/scoremanager/main/school_create_done.jsp").forward(request, response);
+        request.getRequestDispatcher("/scoremanager/main/school/school_create_done.jsp").forward(request, response);
     }
 }
