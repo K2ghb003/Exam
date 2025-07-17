@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager.main.classes;
 
 import java.util.List;
 
