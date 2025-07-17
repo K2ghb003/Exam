@@ -159,7 +159,7 @@
           menuOptions.style.display = "flex";
 
           items.forEach((item, index) => {
-        	  speed = speed - 0.05;
+        	  speed = speed - 0.06;
             setTimeout(() => {
               item.classList.add("show");
             }, (speed)*(index + 1) * 400);
