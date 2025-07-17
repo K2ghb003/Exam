@@ -47,7 +47,7 @@ public class SchoolCreateExecuteAction extends Action {
         school.setCd(cd);
         school.setName(name);
 
-        dao.save(school);
+        dao.save(school, "create", null);
 
         // 完了後は一覧画面へ
         request.getRequestDispatcher("/scoremanager/main/school_create_done.jsp").forward(request, response);

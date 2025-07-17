@@ -16,7 +16,9 @@ public class SchoolEditExecuteAction extends Action {
 
         // フォームから取得したパラメータを取得
         String cd = request.getParameter("cd");
+        String old_cd = request.getParameter("old_cd");
         String name = request.getParameter("name");
+        String mode = request.getParameter("mode");
 
         // Schoolオブジェクトを作成してデータをセット
         School school = new School();
@@ -25,7 +27,7 @@ public class SchoolEditExecuteAction extends Action {
 
         // DAOを使って保存（更新または登録）
         SchoolDao dao = new SchoolDao();
-        boolean success = dao.save(school);
+        boolean success = dao.save(school, mode, old_cd);
 
         if (success) {
             // 保存に成功したら一覧にリダイレクト

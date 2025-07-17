@@ -57,23 +57,26 @@ public class SchoolDao extends Dao {
      * 学校の登録または更新
      * 存在すれば UPDATE、存在しなければ INSERT
      */
-    public boolean save(School school) throws Exception {
+    public boolean save(School school, String mode, String old_cd) throws Exception {
         try (Connection con = getConnection()) {
             // 既に存在するかチェック
-            String checkSql = "SELECT COUNT(*) FROM school WHERE cd = ?";
-            try (PreparedStatement checkSt = con.prepareStatement(checkSql)) {
-                checkSt.setString(1, school.getCd());
-                ResultSet rs = checkSt.executeQuery();
-                rs.next();
-                int count = rs.getInt(1);
-                rs.close();
+//            String checkSql = "SELECT COUNT(*) FROM school WHERE cd = ?";
+//            try (PreparedStatement checkSt = con.prepareStatement(checkSql)) {
+//                checkSt.setString(1, school.getCd());
+//                ResultSet rs = checkSt.executeQuery();
+//                rs.next();
+//                int count = rs.getInt(1);
+//                rs.close();
 
-                if (count > 0) {
+//                if (count > 0) {
+//        	System.out.println("UPDATE SCHOOL SET CD = "+school.getCd()+", NAME = "+school.getName()+" WHERE CD = "+old_cd);
+                if ("update".equals(mode)) {
                     // 存在する → UPDATE
-                    String updateSql = "UPDATE school SET name = ? WHERE cd = ?";
+                    String updateSql = "UPDATE SCHOOL SET CD = ?, NAME = ? WHERE CD = ?";
                     try (PreparedStatement updateSt = con.prepareStatement(updateSql)) {
-                        updateSt.setString(1, school.getName());
-                        updateSt.setString(2, school.getCd());
+                    	updateSt.setString(1, school.getCd());
+                    	updateSt.setString(2, school.getName());
+                        updateSt.setString(3, old_cd);
                         return updateSt.executeUpdate() == 1;
                     }
                 } else {
@@ -87,7 +90,7 @@ public class SchoolDao extends Dao {
                 }
             }
         }
-    }
+//    }
 
     /**
      * 学校の削除
