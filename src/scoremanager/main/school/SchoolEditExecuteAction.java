@@ -25,8 +25,21 @@ public class SchoolEditExecuteAction extends Action {
         school.setCd(cd);
         school.setName(name);
 
-        // DAOを使って保存（更新または登録）
+
         SchoolDao dao = new SchoolDao();
+
+        if(dao.get(cd) != null && !cd.equals(old_cd)){
+
+            School school_send = dao.get(old_cd);
+
+            request.setAttribute("school", school_send);
+
+        	request.setAttribute("error", "この学校番号は使用中のため変更できません。");
+        	request.setAttribute("disabled", "disabled");
+            request.getRequestDispatcher("/scoremanager/main/school/school_edit.jsp").forward(request, response);
+        }
+
+        // DAOを使って保存（更新または登録）
         boolean success = dao.save(school, mode, old_cd);
 
         if (success) {

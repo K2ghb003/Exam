@@ -17,7 +17,6 @@ public class SchoolEditAction extends Action {
 
         request.setAttribute("school", school);
 
-        // ↓ ここを修正（参考にした形式）
         request.getRequestDispatcher("/scoremanager/main/school/school_edit.jsp").forward(request, response);
     }
 }

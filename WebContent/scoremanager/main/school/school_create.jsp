@@ -76,13 +76,21 @@
         border-radius: 5px;
         margin-bottom: 15px;
       }
+
+      .error {
+        color: orange;
+        font-size: 14px;
+        margin-bottom: 12px;
+        margin-left: 4px;
+        display: block;
+      }
     </style>
 
     <div class="container mt-4">
       <h2>学校登録</h2>
 
       <c:if test="${not empty error}">
-        <div class="alert alert-danger">${error}</div>
+        <div class="error">${error}</div>
       </c:if>
 
       <form action="SchoolCreateExecute.action" method="post">

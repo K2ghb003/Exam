@@ -68,18 +68,17 @@
       }
 
       .error {
-        color: #cc0000;
+        color: orange;
         font-size: 14px;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
+        margin-left: 4px;
+        display: block;
       }
     </style>
 
     <section class="school-form">
       <h2>学校情報変更</h2>
 
-      <c:if test="${not empty error}">
-        <div class="error">${error}</div>
-      </c:if>
 
       <form action="SchoolEditExecute.action" method="post">
         <label>学校コード</label>
@@ -88,13 +87,16 @@
           <input type="hidden" name="mode" value="update" />
           <input type="hidden" name="old_cd" value="${school.cd}" />
         </p>
+      <c:if test="${not empty error}">
+        <div class="error">${error}</div>
+      </c:if>
 
         <label>学校名</label>
         <p>
           <input type="text" name="name" value="${school.name}" required placeholder="学校名を入力してください" maxlength="50" />
         </p>
 
-        <input type="submit" value="変更">
+        <input type="submit" value="変更" <c:if test="${not empty disabled}">disabled</c:if> >
         <a href="SchoolList.action">戻る</a>
       </form>
     </section>
