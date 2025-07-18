@@ -89,15 +89,15 @@
     <div class="container mt-4">
       <h2>学校登録</h2>
 
-      <c:if test="${not empty error}">
-        <div class="error">${error}</div>
-      </c:if>
 
       <form action="SchoolCreateExecute.action" method="post">
         <div class="mb-3">
           <label class="form-label">学校コード</label>
           <input type="text" name="cd" class="form-control" value="${school.cd}" required />
         </div>
+      <c:if test="${not empty error}">
+        <div class="error">${error}</div>
+      </c:if>
 
         <div class="mb-3">
           <label class="form-label">学校名</label>

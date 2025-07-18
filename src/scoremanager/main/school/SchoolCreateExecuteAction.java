@@ -37,6 +37,10 @@ public class SchoolCreateExecuteAction extends Action {
 
         // 登録済みチェック
         if (dao.get(cd) != null) {
+        	School school = new School();
+        	school.setCd(cd);
+            school.setName(name);
+            request.setAttribute("school", school);
             request.setAttribute("error", "この学校コードはすでに使用されています");
             request.getRequestDispatcher("/scoremanager/main/school/school_create.jsp").forward(request, response);
             return;
