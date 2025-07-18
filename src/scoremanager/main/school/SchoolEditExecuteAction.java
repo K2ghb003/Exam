@@ -37,6 +37,7 @@ public class SchoolEditExecuteAction extends Action {
         	request.setAttribute("error", "この学校番号は使用中のため変更できません。");
         	request.setAttribute("disabled", "disabled");
             request.getRequestDispatcher("/scoremanager/main/school/school_edit.jsp").forward(request, response);
+            return;
         }
 
         // DAOを使って保存（更新または登録）
@@ -45,10 +46,12 @@ public class SchoolEditExecuteAction extends Action {
         if (success) {
             // 保存に成功したら一覧にリダイレクト
         	request.getRequestDispatcher("/scoremanager/main/school/school_edit_done.jsp").forward(request, response);
+        	return;
         } else {
             // 保存に失敗した場合はエラーページへ
             request.setAttribute("error", "学校情報の更新に失敗しました。");
             request.getRequestDispatcher("/error.jsp").forward(request, response);
+            return;
         }
     }
 }

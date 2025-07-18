@@ -50,6 +50,7 @@ public class ClassEditExecuteAction extends Action {
             request.setAttribute("classnum", classnum);
         	request.setAttribute("error", "このクラス番号は使用中のため変更できません。");
             request.getRequestDispatcher("/scoremanager/main/classes/class_edit.jsp").forward(request, response);
+            return;
         }
 
         ClassNum classNumObj = new ClassNum();
@@ -65,5 +66,6 @@ public class ClassEditExecuteAction extends Action {
         }
 
         request.getRequestDispatcher("/scoremanager/main/classes/class_edit_done.jsp").forward(request, response);
+        return;
     }
 }
