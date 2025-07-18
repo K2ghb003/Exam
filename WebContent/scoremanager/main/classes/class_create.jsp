@@ -78,21 +78,28 @@
         border-radius: 5px;
         margin-bottom: 15px;
       }
+
+      .error {
+        color: orange;
+        font-size: 14px;
+        margin-bottom: 12px;
+        margin-left: 4px;
+        display: block;
+      }
     </style>
 
     <section class="container mt-4">
       <h2>クラス新規登録</h2>
 
-<%--
-      <c:if test="${not empty error}">
-        <div class="alert alert-danger">${error}</div>
-      </c:if>
- --%>
+
       <form action="ClassCreate.action" method="post">
         <div class="mb-3">
           <label for="class_num">クラス番号</label>
           <input type="text" name="class_num" id="class_num" value="${class_num}" required/>
         </div>
+      <c:if test="${not empty error}">
+        <div class="error">${error}</div>
+      </c:if>
 
         <button type="submit" class="btn btn-primary">登録</button>
         <a href="ClassList.action" class="back-link">戻る</a>

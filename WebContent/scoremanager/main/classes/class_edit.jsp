@@ -72,20 +72,19 @@
       }
 
       .error {
-        color: #cc0000;
+        color: orange;
         font-size: 14px;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
+        margin-left: 4px;
+        display: block;
       }
     </style>
 
     <section class="class-form">
       <h2>クラス編集</h2>
 
-      <c:if test="${not empty error}">
-        <div class="error">${error}</div>
-      </c:if>
 
-      <form action="ClassEditExecute.action" method="post">
+      <form action="ClassEditExecute.action" method="get">
         <label>現在のクラス番号</label>
         <p>
           <input type="text" name="class_num" value="${classnum.class_num}" readonly style="border: 0; box-shadow: none;">
@@ -95,8 +94,11 @@
         <p>
           <input type="text" name="new_class_num" value="" placeholder="新しいクラス番号を入力してください" maxlength="10" required>
         </p>
+      <c:if test="${not empty error}">
+        <div class="error">${error}</div>
+      </c:if>
 
-        <input type="submit" value="変更">
+        <input type="submit" value="変更" <c:if test="${not empty disabled}">disabled</c:if> >
         <a href="ClassList.action">戻る</a>
       </form>
     </section>

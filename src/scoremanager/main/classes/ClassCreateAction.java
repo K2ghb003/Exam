@@ -27,8 +27,9 @@ public class ClassCreateAction extends Action {
 
         // 入力チェック
         if (classNum == null || classNum.trim().isEmpty()) {
-            request.setAttribute("error", "クラス番号を入力してください。");
+//            request.setAttribute("error", "クラス番号を入力してください。");
             request.getRequestDispatcher("/scoremanager/main/classes/class_create.jsp").forward(request, response);
+
             return;
         }
 

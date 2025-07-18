@@ -26,6 +26,7 @@ public class ClassEditExecuteAction extends Action {
         School school = teacher.getSchool();
         String oldClassNum = request.getParameter("class_num");
         String newClassNum = request.getParameter("new_class_num");
+//        System.out.println(oldClassNum + " " + newClassNum);
 
         if (newClassNum == null || newClassNum.isEmpty()) {
             request.setAttribute("error", "新しいクラス番号を入力してください。");
@@ -38,8 +39,17 @@ public class ClassEditExecuteAction extends Action {
         // すでに使用中のクラスは変更不可
         if (dao.isUsedClass(oldClassNum, school)) {
             request.setAttribute("error", "このクラスは使用中のため変更できません。");
+            request.setAttribute("disabled", "disabled");
             request.getRequestDispatcher("/scoremanager/main/classes/class_edit.jsp").forward(request, response);
             return;
+        }
+
+        if(dao.get(newClassNum, school) != null && !newClassNum.equals(oldClassNum)){
+        	ClassNum classnum = dao.get(oldClassNum, school);
+
+            request.setAttribute("classnum", classnum);
+        	request.setAttribute("error", "このクラス番号は使用中のため変更できません。");
+            request.getRequestDispatcher("/scoremanager/main/classes/class_edit.jsp").forward(request, response);
         }
 
         ClassNum classNumObj = new ClassNum();
