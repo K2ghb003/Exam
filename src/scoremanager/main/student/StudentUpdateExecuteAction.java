@@ -40,6 +40,8 @@ public class StudentUpdateExecuteAction extends Action {
         // バリデーション
         if (name == null || name.trim().isEmpty()) {
             errors.put("name", "氏名を入力してください");
+        } else if (name.matches(".*[０-９.0-9].*")) {
+            errors.put("name", "名前に英数字を使用しないでください");
         }
 
         if (classNum == null || classNum.trim().isEmpty()) {

@@ -78,7 +78,7 @@
       .error {
         color: orange;
         font-size: 14px;
-        margin-left: 120px;
+        margin-left: 20px;
         margin-top: -12px;
         margin-bottom: 8px;
         display: block;
@@ -137,7 +137,7 @@
           <input type="text" name="name" id="name" value="${student.name}" placeholder="氏名を入力してください" required />
         </div>
         <c:if test="${not empty errors.name}">
-          <span class="error">${errors.name}</span>
+          <div class="error">${errors.name}</div>
         </c:if>
 
         <div class="form-row">
