@@ -84,7 +84,7 @@
       <h2>クラス編集</h2>
 
 
-      <form action="ClassEditExecute.action" method="get">
+      <form action="ClassEditExecute.action" method="post">
         <label>現在のクラス番号</label>
         <p>
           <input type="text" name="class_num" value="${classnum.class_num}" readonly style="border: 0; box-shadow: none;">

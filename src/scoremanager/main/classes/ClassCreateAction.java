@@ -37,7 +37,8 @@ public class ClassCreateAction extends Action {
 
         // 重複チェック
         if (dao.get(classNum, school) != null && dao.get(classNum, school).getClass_num() != null) {
-            request.setAttribute("error", "このクラスは既に登録されています。");
+        	request.setAttribute("error", "このクラスは既に登録されています。");
+            request.setAttribute("class_num", classNum);
             request.getRequestDispatcher("/scoremanager/main/classes/class_create.jsp").forward(request, response);
             return;
         }
