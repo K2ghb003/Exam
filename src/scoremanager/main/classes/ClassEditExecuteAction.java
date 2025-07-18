@@ -38,6 +38,9 @@ public class ClassEditExecuteAction extends Action {
 
         // すでに使用中のクラスは変更不可
         if (dao.isUsedClass(oldClassNum, school)) {
+        	ClassNum classnum = dao.get(oldClassNum, school);
+
+            request.setAttribute("classnum", classnum);
             request.setAttribute("error", "このクラスは使用中のため変更できません。");
             request.setAttribute("disabled", "disabled");
             request.getRequestDispatcher("/scoremanager/main/classes/class_edit.jsp").forward(request, response);
