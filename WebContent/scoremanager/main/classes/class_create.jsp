@@ -94,7 +94,7 @@
           <input type="text" name="class_num" id="class_num" value="${class_num}" required/>
         </div>
 
-        <button type="submit" class="btn btn-primary">登録して一覧へ</button>
+        <button type="submit" class="btn btn-primary">登録</button>
         <a href="ClassList.action" class="back-link">戻る</a>
       </form>
     </section>
