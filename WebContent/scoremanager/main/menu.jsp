@@ -12,7 +12,7 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-        padding: 4rem 0 6rem;
+        padding: 4rem 10rem 6rem;
       }
 
       .menu-button-wrapper {
@@ -143,6 +143,7 @@
         <a href="/exam/scoremanager/main/subject/SubjectList.action" class="btn-circle menu-item">科目管理</a>
         <a href="/exam/scoremanager/main/classes/ClassList.action" class="btn-circle menu-item">クラス管理</a>
         <a href="/exam/scoremanager/main/school/SchoolList.action" class="btn-circle menu-item">学校管理</a>
+        <%--<a href="/exam/scoremanager/main/easter-egg.jsp" class="btn-circle menu-item">easter-egg</a>--%>
         <%--<a href="/exam/scoremanager/main/SchoolListaa.action" class="btn-circle menu-item">エラーテスト</a>--%>
       </div>
     </div>
