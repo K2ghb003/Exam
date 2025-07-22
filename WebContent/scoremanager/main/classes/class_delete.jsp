@@ -73,7 +73,7 @@
       <form action="ClassDeleteExecute.action" method="post">
         <input type="hidden" name="class_num" value="${class_num}">
         <input type="submit" value="削除">
-        <a href="ClassList.action" class="btn-cancel">キャンセル</a>
+        <a href="ClassList.action" class="btn-cancel">戻る</a>
       </form>
     </section>
   </c:param>

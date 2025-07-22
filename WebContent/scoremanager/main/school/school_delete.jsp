@@ -77,7 +77,7 @@
       <form action="SchoolDeleteExecute.action" method="post">
         <input type="hidden" name="cd" value="${school.cd}">
         <input type="submit" value="削除する" class="btn-danger">
-        <a href="SchoolList.action" class="btn-cancel">キャンセル</a>
+        <a href="SchoolList.action" class="btn-cancel">戻る</a>
       </form>
     </section>
   </c:param>
