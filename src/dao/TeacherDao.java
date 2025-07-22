@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import bean.Teacher;
 
@@ -90,5 +92,64 @@ public class TeacherDao extends Dao {
 			return null;
 		}
 		return teacher;
+	}
+
+	public List<Teacher> findSchool(String cd) throws Exception {
+		// 教員クラスのインスタンスを取得
+		List<Teacher> list = new ArrayList<>();
+		Teacher teacher = new Teacher();
+
+		Connection connection = getConnection();
+		// プリペアードステートメント
+		PreparedStatement statement = null;
+
+		try {
+			// プリペアードステートメントにSQL文をセット
+			statement = connection.prepareStatement("select * from teacher where school_cd=?");
+			// プリペアードステートメントに教員IDをバインド
+			statement.setString(1, cd);
+			// プリペアードステートメントを実行
+			ResultSet resultSet = statement.executeQuery();
+
+			// 学校Daoを初期化
+			SchoolDao schoolDao = new SchoolDao();
+
+			if (resultSet.next()) {
+				// リザルトセットが存在する場合
+				// 教員インスタンスに検索結果をセット
+				teacher.setId(resultSet.getString("id"));
+				teacher.setPassword(resultSet.getString("password"));
+				teacher.setName(resultSet.getString("name"));
+				// 学校フィールドには学校コードで検索した学校インスタンスをセット
+				teacher.setSchool(schoolDao.get(resultSet.getString("school_cd")));
+
+				list.add(teacher);
+			} else {
+				// リザルトセットが存在しない場合
+				// 教員インスタンスにnullをセット
+				teacher = null;
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			// プリペアードステートメントを閉じる
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			// コネクションを閉じる
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+		}
+
+		return list;
 	}
 }

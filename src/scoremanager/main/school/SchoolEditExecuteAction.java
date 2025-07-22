@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.School;
 import dao.SchoolDao;
+import dao.TeacherDao;
 import tool.Action;
 
 public class SchoolEditExecuteAction extends Action {
@@ -27,9 +28,11 @@ public class SchoolEditExecuteAction extends Action {
 
 
         SchoolDao dao = new SchoolDao();
-        System.out.println(dao.get(cd));
+        TeacherDao teacherDao = new TeacherDao();
+//        System.out.println(dao.get(cd));
+//        System.out.println(teacherDao.findSchool(old_cd).size());
 
-        if(dao.get(old_cd) != null && !cd.equals(old_cd)){
+        if(teacherDao.findSchool(old_cd).size() > 0 && !cd.equals(old_cd)){
 
             School school_send = dao.get(old_cd);
 
