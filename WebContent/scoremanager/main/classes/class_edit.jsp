@@ -98,7 +98,7 @@
         <div class="error">${error}</div>
       </c:if>
 
-        <input type="submit" value="変更" <c:if test="${not empty disabled}">disabled</c:if> >
+        <input type="submit" value="変更" >
         <a href="ClassList.action">戻る</a>
       </form>
     </section>

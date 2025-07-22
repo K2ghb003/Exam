@@ -96,7 +96,7 @@
           <input type="text" name="name" value="${school.name}" required placeholder="学校名を入力してください" maxlength="50" />
         </p>
 
-        <input type="submit" value="変更" <c:if test="${not empty disabled}">disabled</c:if> >
+        <input type="submit" value="変更"  ><%-- <c:if test="${not empty disabled}">disabled</c:if> --%>
         <a href="SchoolList.action">戻る</a>
       </form>
     </section>
