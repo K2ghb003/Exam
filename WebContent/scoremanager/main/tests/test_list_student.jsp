@@ -176,7 +176,8 @@
 		                <td class="ps-4">${testliststudent.subjectName}</td>
 		                <td>${testliststudent.subjectCd}</td>
 		                <td>${testliststudent.num}</td>
-		                <td>${testliststudent.point}</td>
+		                <td><c:if test="${not empty testliststudent.point}">${testliststudent.point}</c:if>
+		                	<c:if test="${empty testliststudent.point}"> - </c:if></td>
 		              </tr>
 		            </c:forEach>
 		          </tbody>
@@ -227,8 +228,10 @@
 		              <td>${subjectTest.classNum}</td>
 		              <td>${subjectTest.studentNo}</td>
 		              <td>${subjectTest.studentName}</td>
-		              <td><c:out value="${subjectTest.getPoint(1)}" /></td>
-		              <td><c:out value="${subjectTest.getPoint(2)}" /></td>
+		              <td><c:if test="${not empty subjectTest.getPoint(1)}"><c:out value="${subjectTest.getPoint(1)}" /></c:if>
+		              		<c:if test="${empty subjectTest.getPoint(1)}"> - </c:if></td>
+		              <td><c:if test="${not empty subjectTest.getPoint(2)}"><c:out value="${subjectTest.getPoint(1)}" /></c:if>
+		              		<c:if test="${empty subjectTest.getPoint(2)}"> - </c:if></td>
 		            </tr>
 		          </c:forEach>
 		        </tbody>
