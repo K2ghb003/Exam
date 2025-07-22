@@ -105,7 +105,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">登録</button>
-        <a href="SchoolList.action" class="btn btn-secondary">戻る</a>
+        <a href="SchoolList.action" class="btn btn-secondary">キャンセル</a>
       </form>
     </div>
   </c:param>
