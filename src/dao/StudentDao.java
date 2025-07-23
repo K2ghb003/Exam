@@ -13,7 +13,6 @@ public class StudentDao extends Dao {
 
     private final String baseSql = "SELECT * FROM student WHERE school_cd = ?";
 
-    // 学生一覧の絞り込み取得
     public List<Student> filter(School school, Integer entYear, String classNum, Boolean isAttend) throws Exception {
         List<Student> list = new ArrayList<>();
 
@@ -47,7 +46,6 @@ public class StudentDao extends Dao {
             }
 
             ResultSet rs = st.executeQuery();
-
             while (rs.next()) {
                 list.add(postFilter(rs, school));
             }
@@ -59,7 +57,6 @@ public class StudentDao extends Dao {
         return list;
     }
 
-    // 学生1人取得
     public Student get(String no) throws Exception {
         Student student = null;
 
@@ -82,10 +79,8 @@ public class StudentDao extends Dao {
         return student;
     }
 
-    // 新規登録 or 更新（ent_year は更新しない）
     public boolean save(Student student) throws Exception {
         try (Connection con = getConnection()) {
-            // 既存チェック
             String checkSql = "SELECT COUNT(*) FROM student WHERE no = ?";
             PreparedStatement checkSt = con.prepareStatement(checkSql);
             checkSt.setString(1, student.getNo());
@@ -99,7 +94,6 @@ public class StudentDao extends Dao {
             checkSt.close();
 
             if (exists) {
-                // 更新（ent_year は更新しない）
                 String updateSql = "UPDATE student SET name = ?, class_num = ?, is_attend = ?, school_cd = ? WHERE no = ?";
                 PreparedStatement updateSt = con.prepareStatement(updateSql);
                 updateSt.setString(1, student.getName());
@@ -112,7 +106,6 @@ public class StudentDao extends Dao {
                 updateSt.close();
                 return result == 1;
             } else {
-                // 新規登録
                 String insertSql = "INSERT INTO student (no, name, ent_year, class_num, is_attend, school_cd) VALUES (?, ?, ?, ?, ?, ?)";
                 PreparedStatement insertSt = con.prepareStatement(insertSql);
                 insertSt.setString(1, student.getNo());
@@ -129,7 +122,41 @@ public class StudentDao extends Dao {
         }
     }
 
-    // 入学年度一覧の取得
+    public boolean promote(Student student) throws Exception {
+        try (Connection con = getConnection()) {
+            String checkSql = "SELECT COUNT(*) FROM student WHERE no = ? AND ent_year = ? AND school_cd = ?";
+            PreparedStatement checkSt = con.prepareStatement(checkSql);
+            checkSt.setString(1, student.getNo().trim());
+            checkSt.setInt(2, student.getEntYear());
+            checkSt.setString(3, student.getSchool().getCd());
+            ResultSet rs = checkSt.executeQuery();
+
+            boolean exists = false;
+            if (rs.next()) {
+                exists = rs.getInt(1) > 0;
+            }
+            rs.close();
+            checkSt.close();
+
+            if (exists) {
+                return false;
+            }
+
+            String insertSql = "INSERT INTO student (no, name, ent_year, class_num, is_attend, school_cd) VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement insertSt = con.prepareStatement(insertSql);
+            insertSt.setString(1, student.getNo().trim());
+            insertSt.setString(2, student.getName());
+            insertSt.setInt(3, student.getEntYear());
+            insertSt.setString(4, student.getClassNum());
+            insertSt.setBoolean(5, student.isAttend());
+            insertSt.setString(6, student.getSchool().getCd());
+
+            int result = insertSt.executeUpdate();
+            insertSt.close();
+            return result == 1;
+        }
+    }
+
     public List<Integer> getEntYearList(School school) throws Exception {
         List<Integer> list = new ArrayList<>();
 
@@ -150,7 +177,6 @@ public class StudentDao extends Dao {
         return list;
     }
 
-    // 結果セットをStudentオブジェクトへ変換
     private Student postFilter(ResultSet rs, School school) throws Exception {
         Student s = new Student();
         s.setNo(rs.getString("no"));

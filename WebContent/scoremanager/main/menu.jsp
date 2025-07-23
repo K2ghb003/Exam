@@ -2,12 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:import url="/common/base.jsp">
-  <c:param name="title">得点管理システム</c:param>
-  <c:param name="showNavigation" value="false" />
-  <c:param name="scripts"></c:param>
-  <c:param name="content">
-        <%-- (.submenu)margin-left: 0; --%>
-    <style>
+<c:param name="title">得点管理システム</c:param>
+<c:param name="showNavigation" value="false" />
+<c:param name="scripts"></c:param>
+<c:param name="content">
+<%-- (.submenu)margin-left: 0; --%>
+<style>
       .center {
         display: flex;
         align-items: center;
@@ -120,33 +120,34 @@
         opacity: 1;
         visibility: visible;
       }
-    </style>
+</style>
 
     <div class="center">
-      <!-- 最初のメニュー ボタン（中央・下に微調整） -->
-      <div class="menu-button-wrapper">
-        <div id="menu-button" class="btn-circle show">メニュー</div>
-      </div>
+<!-- 最初のメニュー ボタン（中央・下に微調整） -->
+<div class="menu-button-wrapper">
+<div id="menu-button" class="btn-circle show">メニュー</div>
+</div>
 
       <!-- 下のメニュー項目（スライドイン表示） -->
-      <div id="menu-options" class="menu-options" style="display: none;">
-        <a href="/exam/scoremanager/main/student/StudentList.action" class="btn-circle menu-item">学生管理</a>
+<div id="menu-options" class="menu-options" style="display: none;">
+<a href="/exam/scoremanager/main/student/StudentList.action" class="btn-circle menu-item">学生管理</a>
 
         <div class="score-wrapper menu-item">
-          <div class="btn-circle score-main menu-item">成績管理</div>
-          <div class="submenu">
-            <a href="/exam/scoremanager/main/tests/TestRegist.action">成績登録</a>
-            <a href="/exam/scoremanager/main/tests/TestList.action">成績参照</a>
-          </div>
-        </div>
+<div class="btn-circle score-main menu-item">成績管理</div>
+<div class="submenu">
+<a href="/exam/scoremanager/main/tests/TestRegist.action">成績登録</a>
+<a href="/exam/scoremanager/main/tests/TestList.action">成績参照</a>
+</div>
+</div>
 
         <a href="/exam/scoremanager/main/subject/SubjectList.action" class="btn-circle menu-item">科目管理</a>
-        <a href="/exam/scoremanager/main/classes/ClassList.action" class="btn-circle menu-item">クラス管理</a>
-        <a href="/exam/scoremanager/main/school/SchoolList.action" class="btn-circle menu-item">学校管理</a>
-        <%--<a href="/exam/scoremanager/main/easter-egg.jsp" class="btn-circle menu-item">easter-egg</a>--%>
-        <%--<a href="/exam/scoremanager/main/SchoolListaa.action" class="btn-circle menu-item">エラーテスト</a>--%>
-      </div>
-    </div>
+<a href="/exam/scoremanager/main/classes/ClassList.action" class="btn-circle menu-item">クラス管理</a>
+<a href="/exam/scoremanager/main/school/SchoolList.action" class="btn-circle menu-item">学校管理</a>
+<a href="/exam/scoremanager/main/Promote.action" class="btn-circle menu-item">進級処理</a>
+<%--<a href="/exam/scoremanager/main/easter-egg.jsp" class="btn-circle menu-item">easter-egg</a>--%>
+<%--<a href="/exam/scoremanager/main/SchoolListaa.action" class="btn-circle menu-item">エラーテスト</a>--%>
+</div>
+</div>
 
     <script>
       document.addEventListener('DOMContentLoaded', function () {
@@ -167,6 +168,6 @@
           });
         }, 703);
       });
-    </script>
-  </c:param>
+</script>
+</c:param>
 </c:import>
