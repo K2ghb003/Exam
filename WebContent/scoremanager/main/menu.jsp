@@ -130,6 +130,8 @@
 
       <!-- 下のメニュー項目（スライドイン表示） -->
 <div id="menu-options" class="menu-options" style="display: none;">
+
+
 <a href="/exam/scoremanager/main/student/StudentList.action" class="btn-circle menu-item">学生管理</a>
 
         <div class="score-wrapper menu-item">
@@ -144,7 +146,7 @@
 <a href="/exam/scoremanager/main/classes/ClassList.action" class="btn-circle menu-item">クラス管理</a>
 <a href="/exam/scoremanager/main/school/SchoolList.action" class="btn-circle menu-item">学校管理</a>
 <a href="/exam/scoremanager/main/Promote.action" class="btn-circle menu-item">進級処理</a>
-<%--<a href="/exam/scoremanager/main/easter-egg.jsp" class="btn-circle menu-item">easter-egg</a>--%>
+<a id="easterMessage" style="display: none;" href="/exam/scoremanager/main/easter-egg.jsp" class="btn-circle menu-item">easter-egg</a>
 <%--<a href="/exam/scoremanager/main/SchoolListaa.action" class="btn-circle menu-item">エラーテスト</a>--%>
 </div>
 </div>
@@ -168,6 +170,38 @@
           });
         }, 703);
       });
+
+      <%-- EASTER EGG --%>
+
+      let typedKeys = '';
+      const secretCode = 'arrowuparrowuparrowdownarrowdownarrowleftarrowrightarrowleftarrowrightba';
+
+      document.addEventListener('keydown', function(e) {
+        typedKeys += e.key.toLowerCase();
+        console.log(typedKeys);
+
+        // Trim the typed string to the length of the secret
+        if (typedKeys.length > secretCode.length) {
+          typedKeys = typedKeys.slice(-secretCode.length);
+        }
+
+        if (typedKeys === secretCode) {
+          triggerEasterEgg();
+          typedKeys = ''; // reset after triggering
+        }
+      });
+
+      function triggerEasterEgg() {
+    	  const message = document.getElementById('easterMessage');
+    	  if (message) {
+    	    message.style.display = 'block';
+    	  }
+
+    	  // Optional: add sparkles or animation
+    	  console.log('✨ EASTER EGG TRIGGERED ✨');
+    	}
+
+
 </script>
 </c:param>
 </c:import>
