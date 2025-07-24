@@ -35,6 +35,11 @@ public class Student implements Serializable {
 	private School school;
 
 	/**
+	 * 学年
+	 */
+	private int year;
+
+	/**
 	 * ゲッター・セッター
 	 */
 	public String getNo() {
@@ -83,6 +88,14 @@ public class Student implements Serializable {
 
 	public void setSchool(School school) {
 		this.school = school;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
 	}
 
 }
