@@ -124,6 +124,17 @@
           <span class="error">${errors.classNum}</span>
         </c:if>
 
+        <!-- 学年 -->
+        <label for="year">学年</label>
+        <select id="year" name="year">
+          <option value="">選択してください</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </select>
+        <c:if test="${not empty errors.year}">
+          <span class="error">${errors.year}</span>
+        </c:if>
+
         <!-- 登録ボタン -->
         <div>
           <button class="btn-submit" name="end">登録して終了</button>

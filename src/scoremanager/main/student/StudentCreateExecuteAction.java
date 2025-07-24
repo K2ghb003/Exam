@@ -25,6 +25,7 @@ public class StudentCreateExecuteAction extends Action {
         String name = req.getParameter("name");
         String entYearStr = req.getParameter("entYear");
         String classCode = req.getParameter("classNum");
+        String year = req.getParameter("year");
 
         // 学生生成
         Student student = new Student();
@@ -32,6 +33,7 @@ public class StudentCreateExecuteAction extends Action {
         student.setName(name);
         student.setClassNum(classCode);
         student.setAttend(true);  // デフォルトで在学扱い
+        student.setYear(year);
 
         // セッションから教師取得
         Teacher teacher = (Teacher) req.getSession().getAttribute("user");
@@ -66,6 +68,10 @@ public class StudentCreateExecuteAction extends Action {
             errors.put("name", "氏名を入力してください");
         } else if (name.matches(".*[０-９.0-9].*")) {
             errors.put("name", "名前に英数字を使用しないでください");
+        }
+
+        if (year == null || year.trim().isEmpty()) {
+            errors.put("year", "学年を入力してください");
         }
 
 

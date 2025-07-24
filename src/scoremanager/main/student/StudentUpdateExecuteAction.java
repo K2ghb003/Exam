@@ -33,6 +33,7 @@ public class StudentUpdateExecuteAction extends Action {
         String name = request.getParameter("name");
         String classNum = request.getParameter("classNum");
         String isAttendStr = request.getParameter("isAttend");
+        String year = request.getParameter("year");
 
         // 入力チェック用エラーマップ
         Map<String, String> errors = new HashMap<>();
@@ -42,6 +43,10 @@ public class StudentUpdateExecuteAction extends Action {
             errors.put("name", "氏名を入力してください");
         } else if (name.matches(".*[０-９.0-9].*")) {
             errors.put("name", "名前に英数字を使用しないでください");
+        }
+
+        if (year == null || year.trim().isEmpty()) {
+            errors.put("year", "学年を入力してください");
         }
 
         if (classNum == null || classNum.trim().isEmpty()) {
@@ -71,10 +76,12 @@ public class StudentUpdateExecuteAction extends Action {
         student.setNo(no);
         student.setName(name);
         student.setClassNum(classNum);
+        student.setYear(year);
         student.setAttend("true".equals(isAttendStr));
         student.setSchool(school);
 
         StudentDao studentDao = new StudentDao();
+        System.out.println(year);
         boolean result = studentDao.save(student);
 
         if (result) {

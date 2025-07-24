@@ -94,13 +94,14 @@ public class StudentDao extends Dao {
             checkSt.close();
 
             if (exists) {
-                String updateSql = "UPDATE student SET name = ?, class_num = ?, is_attend = ?, school_cd = ? WHERE no = ?";
+                String updateSql = "UPDATE student SET name = ?, class_num = ?, is_attend = ?, school_cd = ?, year = ? WHERE no = ?";
                 PreparedStatement updateSt = con.prepareStatement(updateSql);
                 updateSt.setString(1, student.getName());
                 updateSt.setString(2, student.getClassNum());
                 updateSt.setBoolean(3, student.isAttend());
                 updateSt.setString(4, student.getSchool().getCd());
-                updateSt.setString(5, student.getNo());
+                updateSt.setString(5, student.getYear());
+                updateSt.setString(6, student.getNo());
 
                 int result = updateSt.executeUpdate();
                 updateSt.close();

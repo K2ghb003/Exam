@@ -149,6 +149,21 @@
             </c:forEach>
           </select>
         </div>
+        <c:if test="${not empty errors.classNum}">
+          <div class="error">${errors.classNum}</div>
+        </c:if>
+
+        <div class="form-row">
+          <label for="year">学年</label><br>
+          <select name="year" id="year">
+            <option value="">選択してください</option>
+            <option value="1" <c:if test="${student.year == 1}">selected</c:if>>1</option>
+            <option value="2" <c:if test="${student.year == 2}">selected</c:if>>2</option>
+          </select>
+        </div>
+        <c:if test="${not empty errors.year}">
+          <div class="error">${errors.year}</div>
+        </c:if>
 
         <div class="checkbox-row">
           <input class="form-check-input" type="checkbox" name="isAttend" id="isAttend" value="true" <c:if test="${student.attend}">checked</c:if> />
