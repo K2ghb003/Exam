@@ -3,6 +3,7 @@ package scoremanager.main.school;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.School;
 import bean.Teacher;
 import dao.SchoolDao;
 import tool.Action;
@@ -28,7 +29,9 @@ public class SchoolDeleteExecuteAction extends Action {
         boolean isUsed = dao.isUsedSchool(cd);
         if (isUsed) {
             request.setAttribute("error", "この学校は使用中のため削除できません");
-            request.getRequestDispatcher("/scoremanager/main/school/school_list.jsp").forward(request, response);
+            School school = dao.get(cd);
+            request.setAttribute("school", school);
+            request.getRequestDispatcher("/scoremanager/main/school/school_delete.jsp").forward(request, response);
             return;
         }
 
