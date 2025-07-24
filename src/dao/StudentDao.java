@@ -114,7 +114,7 @@ public class StudentDao extends Dao {
                 insertSt.setString(4, student.getClassNum());
                 insertSt.setBoolean(5, student.isAttend());
                 insertSt.setString(6, student.getSchool().getCd());
-                insertSt.setInt(7, student.getYear());
+                insertSt.setString(7, student.getYear());
 
                 int result = insertSt.executeUpdate();
                 insertSt.close();
@@ -151,7 +151,7 @@ public class StudentDao extends Dao {
             insertSt.setString(4, student.getClassNum());
             insertSt.setBoolean(5, student.isAttend());
             insertSt.setString(6, student.getSchool().getCd());
-            insertSt.setInt(7, student.getYear());
+            insertSt.setString(7, student.getYear());
 
             int result = insertSt.executeUpdate();
             insertSt.close();
@@ -186,7 +186,7 @@ public class StudentDao extends Dao {
         s.setEntYear(rs.getInt("ent_year"));
         s.setClassNum(rs.getString("class_num"));
         s.setAttend(rs.getBoolean("is_attend"));
-        s.setYear(rs.getInt("year"));
+        s.setYear(rs.getString("year"));
         s.setSchool(school);
         return s;
     }
