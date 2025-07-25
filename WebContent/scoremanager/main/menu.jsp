@@ -2,12 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:import url="/common/base.jsp">
-<c:param name="title">得点管理システム</c:param>
-<c:param name="showNavigation" value="false" />
-<c:param name="scripts"></c:param>
-<c:param name="content">
-<%-- (.submenu)margin-left: 0; --%>
-<style>
+  <c:param name="title">得点管理システム</c:param>
+  <c:param name="showNavigation" value="false" />
+  <c:param name="scripts"></c:param>
+  <c:param name="content">
+
+    <style>
       .center {
         display: flex;
         align-items: center;
@@ -22,7 +22,7 @@
       }
 
       #menu-button {
-        margin-top: 2rem; /* ← 少し下にずらす調整 */
+        margin-top: 2rem;
       }
 
       .menu-options {
@@ -42,7 +42,6 @@
         line-height: 13rem;
         border-radius: 50%;
         text-align: center;
-        background-image: linear-gradient(45deg, #709dff 0%, #91fdb7 100%);
         box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
         font-weight: bold;
         font-size: 1.3rem;
@@ -59,6 +58,35 @@
 
       .btn-circle:hover {
         transform: scale(1.05);
+      }
+
+      /* 個別の色設定 */
+      .btn-student {
+        background-image: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+      }
+
+      .btn-score {
+        background-image: linear-gradient(45deg, #43e97b 0%, #38f9d7 100%);
+      }
+
+      .btn-subject {
+        background-image: linear-gradient(45deg, #fa709a 0%, #fee140 100%);
+      }
+
+      .btn-class {
+        background-image: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);
+      }
+
+      .btn-school {
+        background-image: linear-gradient(45deg, #84fab0 0%, #8fd3f4 100%);
+      }
+
+      .btn-promote {
+        background-image: linear-gradient(45deg, #ffecd2 0%, #fcb69f 100%);
+      }
+
+      .btn-easter {
+        background-image: linear-gradient(45deg, #c471f5 0%, #fa71cd 100%);
       }
 
       .score-wrapper {
@@ -108,7 +136,6 @@
 
       .submenu a:hover {
         transform: scale(1.05);
-        color: var(--bs-link-color);
       }
 
       .score-wrapper:hover .score-main {
@@ -120,88 +147,76 @@
         opacity: 1;
         visibility: visible;
       }
-</style>
+    </style>
 
     <div class="center">
-<!-- 最初のメニュー ボタン（中央・下に微調整） -->
-<div class="menu-button-wrapper">
-<div id="menu-button" class="btn-circle show">メニュー</div>
-</div>
+      <!-- メニューボタン -->
+      <div class="menu-button-wrapper">
+        <div id="menu-button" class="btn-circle show btn-score">メニュー</div>
+      </div>
 
-      <!-- 下のメニュー項目（スライドイン表示） -->
-<div id="menu-options" class="menu-options" style="display: none;">
-
-
-<a href="/exam/scoremanager/main/student/StudentList.action" class="btn-circle menu-item">学生管理</a>
+      <!-- メニューオプション -->
+      <div id="menu-options" class="menu-options" style="display: none;">
+        <a href="/exam/scoremanager/main/student/StudentList.action" class="btn-circle menu-item btn-student">学生管理</a>
 
         <div class="score-wrapper menu-item">
-<div class="btn-circle score-main menu-item">成績管理</div>
-<div class="submenu">
-<a href="/exam/scoremanager/main/tests/TestRegist.action">成績登録</a>
-<a href="/exam/scoremanager/main/tests/TestList.action">成績参照</a>
-</div>
-</div>
+          <div class="btn-circle score-main btn-score menu-item">成績管理</div>
+          <div class="submenu">
+            <a href="/exam/scoremanager/main/tests/TestRegist.action">成績登録</a>
+            <a href="/exam/scoremanager/main/tests/TestList.action">成績参照</a>
+          </div>
+        </div>
 
-        <a href="/exam/scoremanager/main/subject/SubjectList.action" class="btn-circle menu-item">科目管理</a>
-<a href="/exam/scoremanager/main/classes/ClassList.action" class="btn-circle menu-item">クラス管理</a>
-<a href="/exam/scoremanager/main/school/SchoolList.action" class="btn-circle menu-item">学校管理</a>
-<a href="/exam/scoremanager/main/promote/Promote.action" class="btn-circle menu-item">進級処理</a>
-<a id="easterMessage" style="display: none;" href="/exam/scoremanager/main/easter-egg.jsp" class="btn-circle menu-item">easter-egg</a>
-<%--<a href="/exam/scoremanager/main/SchoolListaa.action" class="btn-circle menu-item">エラーテスト</a>--%>
-</div>
-</div>
+        <a href="/exam/scoremanager/main/subject/SubjectList.action" class="btn-circle menu-item btn-subject">科目管理</a>
+        <a href="/exam/scoremanager/main/classes/ClassList.action" class="btn-circle menu-item btn-class">クラス管理</a>
+        <a href="/exam/scoremanager/main/school/SchoolList.action" class="btn-circle menu-item btn-school">学校管理</a>
+        <a href="/exam/scoremanager/main/promote/Promote.action" class="btn-circle menu-item btn-promote">進級処理</a>
+        <a id="easterMessage" style="display: none;" href="/exam/scoremanager/main/easter-egg.jsp" class="btn-circle menu-item btn-easter">easter-egg</a>
+      </div>
+    </div>
 
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        setTimeout(() => {
-          const menuBtn = document.getElementById("menu-button");
-          const menuOptions = document.getElementById("menu-options");
-          const items = document.querySelectorAll(".menu-item");
-          var speed = 1;
+        const menuBtn = document.getElementById("menu-button");
+        const menuOptions = document.getElementById("menu-options");
+        const items = document.querySelectorAll(".menu-item");
 
+        menuBtn.addEventListener("click", function () {
           menuBtn.style.display = "none";
           menuOptions.style.display = "flex";
 
+          let speed = 1;
           items.forEach((item, index) => {
-        	  speed = speed - 0.06;
+            speed -= 0.06;
             setTimeout(() => {
               item.classList.add("show");
-            }, (speed)*(index + 1) * 400);
+            }, (speed) * (index + 1) * 400);
           });
-        }, 703);
+        });
       });
 
-      <%-- EASTER EGG --%>
-
+      // Easter Egg
       let typedKeys = '';
       const secretCode = 'arrowuparrowuparrowdownarrowdownarrowleftarrowrightarrowleftarrowrightba';
 
-      document.addEventListener('keydown', function(e) {
+      document.addEventListener('keydown', function (e) {
         typedKeys += e.key.toLowerCase();
-        console.log(e.key);
-
-        // Trim the typed string to the length of the secret
         if (typedKeys.length > secretCode.length) {
           typedKeys = typedKeys.slice(-secretCode.length);
         }
-
         if (typedKeys === secretCode) {
           triggerEasterEgg();
-          typedKeys = ''; // reset after triggering
+          typedKeys = '';
         }
       });
 
       function triggerEasterEgg() {
-    	  const message = document.getElementById('easterMessage');
-    	  if (message) {
-    	    message.style.display = 'block';
-    	  }
-
-    	  // Optional: add sparkles or animation
-    	  console.log('✨ EASTER EGG TRIGGERED ✨');
-    	}
-
-
-</script>
-</c:param>
+        const message = document.getElementById('easterMessage');
+        if (message) {
+          message.style.display = 'block';
+        }
+        console.log('✨ EASTER EGG TRIGGERED ✨');
+      }
+    </script>
+  </c:param>
 </c:import>
