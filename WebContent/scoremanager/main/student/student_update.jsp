@@ -8,6 +8,35 @@
 <%-- section.student-form
  display: flex;
  margin-left: 120px; --%>
+ <script>
+ document.addEventListener('DOMContentLoaded', function() {
+	    const yearSelect = document.getElementById('year');
+	    const isAttendCheckbox = document.getElementById('isAttend');
+
+	    function handleYearChange() {
+	        // Get the selected value of the year dropdown
+	        const selectedYear = yearSelect.value;
+
+	        // Check if the selected option is '卒業済'
+	        if (selectedYear === '卒業済') {
+	            // Disable the checkbox
+	            isAttendCheckbox.disabled = true;
+	            // Uncheck the checkbox
+	            isAttendCheckbox.checked = false;
+	        } else {
+	            // If any other option is selected, enable the checkbox
+	            isAttendCheckbox.disabled = false;
+	        }
+	    }
+
+	    // Add an event listener to the year select element
+	    yearSelect.addEventListener('change', handleYearChange);
+
+	    // Call the function once on page load to set the initial state
+	    handleYearChange();
+	});
+ </script>
+
     <style>
       section.student-form {
         width: 500px;
