@@ -95,7 +95,7 @@
       <form action="ClassCreate.action" method="post">
         <div class="mb-3">
           <label for="class_num">クラス番号</label>
-          <input type="text" name="class_num" id="class_num" value="${class_num}" required/>
+          <input type="text" name="class_num" id="class_num" value="${class_num}" maxlength="6" required/>
         </div>
       <c:if test="${not empty error}">
         <div class="error">${error}</div>

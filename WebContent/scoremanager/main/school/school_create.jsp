@@ -93,7 +93,7 @@
       <form action="SchoolCreateExecute.action" method="post">
         <div class="mb-3">
           <label class="form-label">学校コード</label>
-          <input type="text" name="cd" class="form-control" value="${school.cd}" required />
+          <input type="text" name="cd" class="form-control" value="${school.cd}" maxlength="6" required />
         </div>
       <c:if test="${not empty error}">
         <div class="error">${error}</div>

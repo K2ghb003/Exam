@@ -29,9 +29,9 @@ public class SchoolEditExecuteAction extends Action {
 
         SchoolDao dao = new SchoolDao();
         TeacherDao teacherDao = new TeacherDao();
-//        System.out.println(dao.get(cd));
+        System.out.println(dao.isUsedSchool(old_cd));
 
-        if(teacherDao.findSchool(old_cd).size() > 0 && !cd.equals(old_cd) && !dao.isUsedSchool(old_cd)){
+        if(teacherDao.findSchool(old_cd).size() > 0 || !cd.equals(old_cd) || !dao.isUsedSchool(old_cd)){
 
             School school_send = dao.get(old_cd);
 

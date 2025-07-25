@@ -83,7 +83,7 @@
       <form action="SchoolEditExecute.action" method="post">
         <label>学校コード</label>
         <p><%--  style="font-size: 18px; border: 0; box-shadow: 0 0 0 0;" --%>
-          <input type="text" name="cd" value="${school.cd}" required maxlength="10" />
+          <input type="text" name="cd" value="${school.cd}" required maxlength="6" />
           <input type="hidden" name="mode" value="update" />
           <input type="hidden" name="old_cd" value="${school.cd}" />
         </p>
