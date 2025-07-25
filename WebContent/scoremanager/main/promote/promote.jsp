@@ -49,7 +49,7 @@
       </form>
 
       <c:if test="${not empty studentList}">
-        <form method="get" action="/exam/scoremanager/main/promote/PromoteExecute.action">		<%-- ARREGLAR! --%>
+        <form method="post" action="/exam/scoremanager/main/promote/PromoteExecute.action">		<%-- ARREGLAR! --%>
           <input type="hidden" name="schoolCd" value="${selectedSchoolCd}" />
           <input type="hidden" name="year" value="${selectedYear}" />
 
@@ -138,6 +138,9 @@
             <div class="alert alert-info mt-4 text-center">${message}</div>
           </c:if>
         </form>
+      </c:if>
+      <c:if test="${empty studentList}">
+      <h5 class="mt-4">進級処理を行う学生がいません</h5>
       </c:if>
     </section>
   </c:param>
