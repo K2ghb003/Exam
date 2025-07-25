@@ -15,16 +15,6 @@
         padding: 4rem 10rem 6rem;
       }
 
-      .menu-button-wrapper {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-      }
-
-      #menu-button {
-        margin-top: 2rem;
-      }
-
       .menu-options {
         display: flex;
         justify-content: center;
@@ -60,7 +50,7 @@
         transform: scale(1.05);
       }
 
-      /* 個別の色設定 */
+      /* 個別色 */
       .btn-student {
         background-image: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
       }
@@ -89,6 +79,7 @@
         background-image: linear-gradient(45deg, #c471f5 0%, #fa71cd 100%);
       }
 
+      /* 成績管理 (サブメニュー付き) */
       .score-wrapper {
         position: relative;
         width: 13rem;
@@ -150,12 +141,7 @@
     </style>
 
     <div class="center">
-      <!-- メニューボタン -->
-      <div class="menu-button-wrapper">
-        <div id="menu-button" class="btn-circle show btn-score">メニュー</div>
-      </div>
-
-      <!-- メニューオプション -->
+      <!-- メニューオプション（初期は非表示） -->
       <div id="menu-options" class="menu-options" style="display: none;">
         <a href="/exam/scoremanager/main/student/StudentList.action" class="btn-circle menu-item btn-student">学生管理</a>
 
@@ -177,25 +163,23 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        const menuBtn = document.getElementById("menu-button");
-        const menuOptions = document.getElementById("menu-options");
-        const items = document.querySelectorAll(".menu-item");
+        setTimeout(() => {
+          const menuOptions = document.getElementById("menu-options");
+          const items = document.querySelectorAll(".menu-item");
+          let speed = 1;
 
-        menuBtn.addEventListener("click", function () {
-          menuBtn.style.display = "none";
           menuOptions.style.display = "flex";
 
-          let speed = 1;
           items.forEach((item, index) => {
             speed -= 0.06;
             setTimeout(() => {
               item.classList.add("show");
-            }, (speed) * (index + 1) * 400);
+            }, speed * (index + 1) * 400);
           });
-        });
+        }, 800); // 0.8秒後にメニュー表示
       });
 
-      // Easter Egg
+      // Easter Egg: Konamiコード検出
       let typedKeys = '';
       const secretCode = 'arrowuparrowuparrowdownarrowdownarrowleftarrowrightarrowleftarrowrightba';
 
@@ -218,5 +202,6 @@
         console.log('✨ EASTER EGG TRIGGERED ✨');
       }
     </script>
+
   </c:param>
 </c:import>
