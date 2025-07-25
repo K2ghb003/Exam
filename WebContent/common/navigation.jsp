@@ -16,7 +16,8 @@
 
   <div class="slide-skew delay-5"><a href="/exam/scoremanager/main/subject/SubjectList.action" class="cp_link">科目管理</a></div>
   <div class="slide-skew delay-6"><a href="/exam/scoremanager/main/classes/ClassList.action" class="cp_link">クラス管理</a></div>
-  <div class="slide-skew delay-6"><a href="/exam/scoremanager/main/school/SchoolList.action" class="cp_link">学校管理</a></div>
+  <div class="slide-skew delay-7"><a href="/exam/scoremanager/main/school/SchoolList.action" class="cp_link">学校管理</a></div>
+  <div class="slide-skew delay-8"><a href="/exam/scoremanager/main/promote/Promote.action" class="cp_link">進級処理</a></div>
 </div>
 
 <!-- スタイル -->
@@ -42,6 +43,9 @@
   .delay-4 { animation-delay: 0.4s; }
   .delay-5 { animation-delay: 0.5s; }
   .delay-6 { animation-delay: 0.6s; }
+  .delay-6 { animation-delay: 0.6s; }
+  .delay-7 { animation-delay: 0.7s; }
+  .delay-8 { animation-delay: 0.8s; }
 
   @keyframes slide-skew {
     0% {

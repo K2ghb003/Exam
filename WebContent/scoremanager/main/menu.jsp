@@ -145,7 +145,7 @@
         <a href="/exam/scoremanager/main/subject/SubjectList.action" class="btn-circle menu-item">科目管理</a>
 <a href="/exam/scoremanager/main/classes/ClassList.action" class="btn-circle menu-item">クラス管理</a>
 <a href="/exam/scoremanager/main/school/SchoolList.action" class="btn-circle menu-item">学校管理</a>
-<a href="/exam/scoremanager/main/Promote.action" class="btn-circle menu-item">進級処理</a>
+<a href="/exam/scoremanager/main/promote/Promote.action" class="btn-circle menu-item">進級処理</a>
 <a id="easterMessage" style="display: none;" href="/exam/scoremanager/main/easter-egg.jsp" class="btn-circle menu-item">easter-egg</a>
 <%--<a href="/exam/scoremanager/main/SchoolListaa.action" class="btn-circle menu-item">エラーテスト</a>--%>
 </div>
@@ -178,7 +178,7 @@
 
       document.addEventListener('keydown', function(e) {
         typedKeys += e.key.toLowerCase();
-        console.log(typedKeys);
+        console.log(e.key);
 
         // Trim the typed string to the length of the secret
         if (typedKeys.length > secretCode.length) {

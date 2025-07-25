@@ -157,8 +157,9 @@
           <label for="year">学年</label><br>
           <select name="year" id="year">
             <option value="">選択してください</option>
-            <option value="1" <c:if test="${student.year == 1}">selected</c:if>>1</option>
-            <option value="2" <c:if test="${student.year == 2}">selected</c:if>>2</option>
+            <option value="1" <c:if test="${student.year == '1'}">selected</c:if>>1</option>
+            <option value="2" <c:if test="${student.year == '2'}">selected</c:if>>2</option>
+            <option value="卒業済" <c:if test="${student.year == '卒業済'}">selected</c:if>>卒業済</option>
           </select>
         </div>
         <c:if test="${not empty errors.year}">

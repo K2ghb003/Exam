@@ -126,38 +126,20 @@ public class StudentDao extends Dao {
 
     public boolean promote(Student student) throws Exception {
         try (Connection con = getConnection()) {
-            String checkSql = "SELECT COUNT(*) FROM student WHERE no = ? AND ent_year = ? AND school_cd = ?";
-            PreparedStatement checkSt = con.prepareStatement(checkSql);
-            checkSt.setString(1, student.getNo().trim());
-            checkSt.setInt(2, student.getEntYear());
-            checkSt.setString(3, student.getSchool().getCd());
-            ResultSet rs = checkSt.executeQuery();
+        	Student newStu = student;
+        	if(student.getYear().equals("1")){
+        		newStu.setYear("2");
+        	} else if(student.getYear().equals("2")){
+        		newStu.setYear("卒業済");
+        		newStu.setAttend(false);
+        	}
+//        	System.out.println(student.getYear());
+//        	System.out.println(newStu.getYear());
 
-            boolean exists = false;
-            if (rs.next()) {
-                exists = rs.getInt(1) > 0;
-            }
-            rs.close();
-            checkSt.close();
+        	boolean success = this.save(newStu);
 
-            if (exists) {
-                return false;
-            }
-
-            String insertSql = "INSERT INTO student (no, name, ent_year, class_num, is_attend, school_cd, year) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement insertSt = con.prepareStatement(insertSql);
-            insertSt.setString(1, student.getNo().trim());
-            insertSt.setString(2, student.getName());
-            insertSt.setInt(3, student.getEntYear());
-            insertSt.setString(4, student.getClassNum());
-            insertSt.setBoolean(5, student.isAttend());
-            insertSt.setString(6, student.getSchool().getCd());
-            insertSt.setString(7, student.getYear());
-
-            int result = insertSt.executeUpdate();
-            insertSt.close();
-            return result == 1;
-        }
+        	return success;
+	        }
     }
 
     public List<Integer> getEntYearList(School school) throws Exception {

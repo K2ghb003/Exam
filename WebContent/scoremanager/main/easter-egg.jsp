@@ -8,6 +8,9 @@
 
   <c:param name="content">
 <script>
+document.addEventListener('keydown', function(e) {
+    console.log(e.keyCode, e.key);
+});
 window.addEventListener('DOMContentLoaded', () => {
 
 const keyCodes = {
@@ -21,7 +24,7 @@ const keyCodes = {
 		  // },
 		  8: {
 		    // 'backspace / delete',
-		    id: 'delete',
+		    id: 'backspace',
 		  },
 		  9: {
 		    id: 'tab',
@@ -47,10 +50,10 @@ const keyCodes = {
 		    id: 'alt',
 		    checkSide: true,
 		  },
-		  // 19: {
+		  19: {
 		  //   'pause/break',
-		  //   id: '',
-		  // },
+		    id: 'pause',
+		  },
 		  20: {
 		    id: 'capsLock',
 		  },
@@ -116,14 +119,14 @@ const keyCodes = {
 		  //   'execute',
 		  //   id: '',
 		  // },
-		  // 44: {
+		  44: {
 		  //   'print Screen',
-		  //   id: '',
-		  // },
-		  // 45: {
+		    id: 'print',
+		  },
+		  45: {
 		  //   'insert',
-		  //   id: '',
-		  // },
+		    id: 'insert',
+		  },
 		  46: {
 		    id: 'delete',
 		  },
@@ -557,7 +560,7 @@ const keyCodes = {
 		  },
 		  220: {
 		    // 'back slash',
-		    id: 'backslash',
+		    id: 'doubleYen',
 		  },
 		  221: {
 		    // 'close bracket / å',
@@ -608,14 +611,14 @@ const keyCodes = {
 		  //   'hiragana/katakana',
 		  //   id: '',
 		  // },
-		  // 243: {
-		  //   'half-width/full-width',
-		  //   id: '',
-		  // },
-		  // 244: {
-		  //   'kanji',
-		  //   id: '',
-		  // },
+		  243: {
+		  //   'half-width/full-width/Hankaku',
+		    id: 'HankakuZenkaku',
+		  },
+		  244: {
+		  //   'kanji/Zenkaku',
+		    id: 'HankakuZenkaku',
+		  },
 		  // 255: {
 		  //   'toggle touchpad',
 		  //   id: '',
@@ -661,7 +664,7 @@ const keyCodes = {
 
 		document.addEventListener('keyup', function(e) {
 		  const keyElement = getKeyElement(e);
-		  <%--console.log('Keyup detected:', e.keyCode);--%>
+		  console.log('Keyup detected:', e.keyCode);
 
 
 		  if (keyElement) {
@@ -796,7 +799,7 @@ p {
     Read how it works in <a href="https://muffinman.io/javascript-keyboard-easter-egg">this blog post</a>.
   </p>
 
-<svg class="Keyboard" viewBox="0 0 609 242" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="Keyboard" viewBox="0 0 800 242" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g stroke="none" stroke-width="1" fill="#FFFFFF" fill-rule="evenodd">
     <rect class="Key" id="Key--q" x="52" y="70" width="36" height="37" rx="6"></rect>
     <rect class="Key" id="Key--w" x="95" y="70" width="36" height="37" rx="6"></rect>
@@ -811,7 +814,7 @@ p {
     <rect class="Key" id="Key--squareBracketLeft" x="486" y="70" width="36" height="37" rx="6"></rect>
     <rect class="Key" id="Key--squareBracketRight" x="529" y="70" width="36" height="37" rx="6"></rect>
     <rect class="Key" id="Key--backslash" x="573" y="70" width="36" height="37" rx="6"></rect>
-    <rect class="Key" id="Key--tilde" x="1" y="25" width="36" height="37" rx="6"></rect>
+    <rect class="Key" id="Key--HankakuZenkaku" x="1" y="25" width="36" height="37" rx="6"></rect>
     <rect class="Key" id="Key--1" x="44" y="25" width="36" height="37" rx="6"></rect>
     <rect class="Key" id="Key--2" x="88" y="25" width="36" height="37" rx="6"></rect>
     <rect class="Key" id="Key--3" x="131" y="25" width="36" height="37" rx="6"></rect>
@@ -824,6 +827,7 @@ p {
     <rect class="Key" id="Key--0" x="435" y="25" width="36" height="37" rx="6"></rect>
     <rect class="Key" id="Key--minus" x="479" y="25" width="36" height="37" rx="6"></rect>
     <rect class="Key" id="Key--equals" x="522" y="25" width="36" height="37" rx="6"></rect>
+    <rect class="Key" id="Key--doubleYen" x="566" y="25" width="36" height="37" rx="6"></rect>
     <rect class="Key" id="Key--esc" x="1" y="0" width="37" height="18" rx="6"></rect>
     <rect class="Key" id="Key--f1" x="45" y="0" width="37" height="18" rx="6"></rect>
     <rect class="Key" id="Key--f2" x="89" y="0" width="37" height="18" rx="6"></rect>
@@ -837,8 +841,11 @@ p {
     <rect class="Key" id="Key--f10" x="440" y="0" width="37" height="18" rx="6"></rect>
     <rect class="Key" id="Key--f11" x="484" y="0" width="37" height="18" rx="6"></rect>
     <rect class="Key" id="Key--f12" x="528" y="0" width="37" height="18" rx="6"></rect>
-    <rect class="Key" id="Key--power" x="572" y="0" width="37" height="18" rx="6"></rect>
-    <rect class="Key" id="Key--delete" x="566" y="25" width="43" height="37" rx="6"></rect>
+    <rect class="Key" id="Key--print" x="572" y="0" width="37" height="18" rx="6"></rect>
+    <rect class="Key" id="Key--pause" x="616" y="0" width="37" height="18" rx="6"></rect>
+    <rect class="Key" id="Key--insert" x="660" y="0" width="37" height="18" rx="6"></rect>
+    <rect class="Key" id="Key--delete" x="704" y="0" width="37" height="18" rx="6"></rect>
+    <rect class="Key" id="Key--backspace" x="610" y="25" width="43" height="37" rx="6"></rect>
     <rect class="Key" id="Key--a" x="65" y="114" width="36" height="37" rx="6"></rect>
     <rect class="Key" id="Key--s" x="109" y="114" width="36" height="37" rx="6"></rect>
     <rect class="Key" id="Key--d" x="152" y="114" width="36" height="37" rx="6"></rect>

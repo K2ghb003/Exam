@@ -130,6 +130,7 @@
           <option value="">選択してください</option>
           <option value="1">1</option>
           <option value="2">2</option>
+          <option value="卒業済">卒業済</option>
         </select>
         <c:if test="${not empty errors.year}">
           <span class="error">${errors.year}</span>
