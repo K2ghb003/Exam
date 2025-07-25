@@ -15,6 +15,10 @@
         });
       }
     </script>
+
+    <style>
+    label { display: inline-block; width: 100%; }
+    </style>
   </c:param>
 
   <c:param name="content">
@@ -45,11 +49,11 @@
       </form>
 
       <c:if test="${not empty studentList}">
-        <form method="post" action="PromoteExecute.action">
+        <form method="get" action="/exam/scoremanager/main/promote/PromoteExecute.action">		<%-- ARREGLAR! --%>
           <input type="hidden" name="schoolCd" value="${selectedSchoolCd}" />
           <input type="hidden" name="year" value="${selectedYear}" />
 
-          <!-- 一括クラス選択 -->
+          <%-- <!-- 一括クラス選択 -->
           <div class="form-group mt-4">
             <label for="bulkClassSelect">すべての学生に進級先クラスを適用：</label>
             <div class="d-flex">
@@ -61,6 +65,7 @@
               <button type="button" class="btn btn-secondary" onclick="applyClassToAll()">適用</button>
             </div>
           </div>
+          --%>
 
           <h5 class="mt-4">進級対象学生の選択</h5>
           <table class="table table-bordered mt-2">
@@ -71,30 +76,30 @@
                 <th>氏名</th>
                 <th>学年</th>
                 <th>現在のクラス</th>
-                <th>進級先クラス</th>
+                <%--<th>進級先クラス</th> --%>
                 <th>備考</th>
               </tr>
             </thead>
             <tbody>
               <c:forEach var="student" items="${studentList}">
-                <c:set var="grade" value="${currentYear - student.entYear + 1}" />
-                <c:if test="${grade <= 2}">
+                <%--<c:set var="grade" value="${currentYear - student.entYear + 1}" />
+                <c:if test="${grade <= 2}"> --%>
                   <tr>
                     <td class="text-center">
-                      <c:choose>
+                      <%--<c:choose>
                         <c:when test="${!student.attend || student.entYear + 2 <= currentYear}">
                           <input type="checkbox" disabled>
                         </c:when>
-                        <c:otherwise>
-                          <input type="checkbox" name="promoteIds" value="${student.no}" checked>
-                        </c:otherwise>
-                      </c:choose>
+                        <c:otherwise>--%>
+                          <label><input type="checkbox" id="promoteIds" name="promoteIds" value="${student.no}" checked></label>
+                        <%--</c:otherwise>
+                      </c:choose>--%>
                     </td>
                     <td>${student.no}</td>
                     <td>${student.name}</td>
-                    <td>${grade} 年生</td>
+                    <td>${student.year} 年生</td>
                     <td>${student.classNum}</td>
-                    <td>
+                    <%--<td>
                       <c:choose>
                         <c:when test="${!student.attend || student.entYear + 2 <= currentYear}">
                           -
@@ -107,20 +112,20 @@
                           </select>
                         </c:otherwise>
                       </c:choose>
-                    </td>
+                    </td> --%>
                     <td>
                       <c:choose>
                         <c:when test="${!student.attend}">
                           <span class="text-danger">退学済み</span>
                         </c:when>
-                        <c:when test="${student.entYear + 2 <= currentYear}">
+                        <c:when test="${student.year == 2}">
                           <span class="text-warning">卒業予定</span>
                         </c:when>
                         <c:otherwise>-</c:otherwise>
                       </c:choose>
                     </td>
                   </tr>
-                </c:if>
+                <%--</c:if>--%>
               </c:forEach>
             </tbody>
           </table>

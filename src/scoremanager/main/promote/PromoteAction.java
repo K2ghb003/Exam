@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager.main.promote;
 
 import java.util.Calendar;
 import java.util.List;
@@ -86,6 +86,6 @@ public class PromoteAction extends Action {
         request.setAttribute("currentYear", currentYear);
         request.setAttribute("classList", classList); // ClassNum型のリスト
 
-        request.getRequestDispatcher("/scoremanager/main/promote.jsp").forward(request, response);
+        request.getRequestDispatcher("/scoremanager/main/promote/promote.jsp").forward(request, response);
     }
 }

@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager.main.promote;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,12 +30,12 @@ public class PromoteExecuteAction extends Action {
 
         if (promoteIds == null || promoteIds.length == 0) {
             request.setAttribute("message", "進級対象の学生が選択されていません。");
-            request.getRequestDispatcher("/scoremanager/main/promote.jsp").forward(request, response);
+            request.getRequestDispatcher("/scoremanager/main/promote/promote.jsp").forward(request, response);
             return;
         }
 
         StudentDao studentDao = new StudentDao();
-        int newEntYear = entYear + 1;
+//        int newEntYear = entYear + 1;
 
         List<String> promoted = new ArrayList<>();
         List<String> failed = new ArrayList<>();
@@ -48,18 +48,13 @@ public class PromoteExecuteAction extends Action {
                 oldStudent.getEntYear() == entYear &&
                 oldStudent.getSchool().getCd().equals(schoolCd)) {
 
-                String newClassNum = request.getParameter("class_" + studentNo);
-                if (newClassNum == null || newClassNum.isEmpty()) {
-                    failed.add(studentNo + "（進級先クラス未指定）");
-                    continue;
-                }
+//                String newClassNum = request.getParameter("class_" + studentNo);
+//                if (newClassNum == null || newClassNum.isEmpty()) {
+//                    failed.add(studentNo + "（進級先クラス未指定）");
+//                    continue;
+//                }
 
-                Student newStudent = new Student();
-                newStudent.setNo(oldStudent.getNo());
-                newStudent.setName(oldStudent.getName());
-                newStudent.setEntYear(newEntYear);
-                newStudent.setClassNum(newClassNum);
-                newStudent.setAttend(true);
+                Student newStudent =oldStudent;
 
                 School school = new School();
                 school.setCd(schoolCd);
@@ -86,6 +81,6 @@ public class PromoteExecuteAction extends Action {
         }
 
         request.setAttribute("message", msg.toString());
-        request.getRequestDispatcher("/scoremanager/main/promote.jsp").forward(request, response);
+        request.getRequestDispatcher("/scoremanager/main/promote/promote_done.jsp").forward(request, response);
     }
 }
