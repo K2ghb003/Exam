@@ -16,6 +16,7 @@
           <c:when test="${user.isAuthenticated()}">
             <main class="col-12 text-center">
               <h2 class="text-danger mt-4">エラーが発生しました</h2>
+              ${error}
 
               <c:if test="${param.error == 'h2'}">
                 <p class="mb-4 text-danger">H2 データベースに接続できません。H2 Console が起動しているか接続が切断されていないか確認してください。</p>
@@ -33,6 +34,7 @@
           <c:otherwise>
             <main class="col-12 text-center">
               <h2 class="text-danger mt-4">エラーが発生しました</h2>
+              ${error}
 
               <c:if test="${param.error == 'h2'}">
                 <p class="mb-4 text-danger">H2 データベースに接続できません。H2 Console を起動してください。</p>
